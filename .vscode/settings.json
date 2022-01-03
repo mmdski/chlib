@@ -1,0 +1,42 @@
+{
+    "cSpell.words": [
+        "bmatrix",
+        "builddir",
+        "cdnjs",
+        "chlib",
+        "chlmath",
+        "chlmatrix",
+        "chlsin",
+        "CHTML",
+        "devto",
+        "disqus",
+        "dragmode",
+        "dribbble",
+        "flickr",
+        "forloop",
+        "HEAPF",
+        "keybase",
+        "mathjax",
+        "mdate",
+        "microdotblog",
+        "MSVC",
+        "mult",
+        "pinterest",
+        "Plotly",
+        "plotsin",
+        "Trefethen",
+        "Valgrind",
+        "xaxis",
+        "xmlschema",
+        "yaxis"
+    ],
+    "files.associations": {
+        "chl.h": "c",
+        "chlmath.h": "c",
+        "chlmatrix.h": "c",
+        "chlmem.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled",
+    "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
+    "restructuredtext.confPath": "${workspaceFolder}/chlib/docs"
+}

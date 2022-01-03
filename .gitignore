@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# python environment
+env/
+
+# meson build
+build*/
+
+# sphinx docs
+docs/_build
+
+# doxygen xml
+docs/xml

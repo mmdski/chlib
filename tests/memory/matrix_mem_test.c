@@ -21,7 +21,7 @@ test_matrix_new_from ()
   int n_columns  = 10;
   int n_elements = n_rows * n_columns;
 
-  real *    elements = (real *) calloc (n_elements, sizeof (real *));
+  real *    elements = (real *) calloc (n_elements, sizeof (real));
   ChlMatrix a        = chl_matrix_new_from (n_rows, n_columns, elements);
   if (a == NULL)
     return -1;

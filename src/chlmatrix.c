@@ -23,8 +23,8 @@ chl_matrix_new (int n_rows, int n_columns)
       return NULL;
     }
 
-  real *elements = (real *) chl_calloc (n_rows * n_columns, sizeof (real *));
-  ChlMatrix a    = chl_matrix_new_from (n_rows, n_columns, elements);
+  real *    elements = (real *) chl_calloc (n_rows * n_columns, sizeof (real));
+  ChlMatrix a        = chl_matrix_new_from (n_rows, n_columns, elements);
   if (a == NULL)
     return NULL;
 
@@ -46,7 +46,7 @@ chl_matrix_new_from (int n_rows, int n_columns, real *elements)
   if (a == 0)
     abort ();
 
-  real **rows = (real **) chl_calloc (n_rows, sizeof (real **));
+  real **rows = (real **) chl_calloc (n_rows, sizeof (real *));
   for (int i = 0; i < n_rows; i++)
     {
       *(rows + i) = elements + i * n_columns;

@@ -1,6 +1,8 @@
 chl_ems_sources = ['matrix.c', chl_sources]
 
-executable('chlib',
+js_name = meson.project_name()
+
+executable(js_name,
     chl_ems_sources,
     include_directories: inc,
     c_args: chlib_c_args,

@@ -39,5 +39,6 @@
     "C_Cpp.errorSquiggles": "Disabled",
     "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
     "restructuredtext.confPath": "${workspaceFolder}/docs/source",
-    "restructuredtext.builtDocumentationPath": "${workspaceFolder}/docs/_build/html"
+    "restructuredtext.builtDocumentationPath": "${workspaceFolder}/docs/_build/html",
+    "restructuredtext.languageServer.disabled": true
 }

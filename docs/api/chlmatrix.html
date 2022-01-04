@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>chl/chlmatrix.h &#8212; chlib  documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Demos" href="../demo/index.html" />
+    <link rel="prev" title="chl/chlmath.h" href="chlmath.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../index.html">
+<p class="title">chlib</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  chlib API documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../demo/index.html">
+  Demos
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chl.html">
+   chl.h
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chlmath.html">
+   chl/chlmath.h
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   chl/chlmatrix.h
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="chl-chlmatrix-h">
+<h1>chl/chlmatrix.h<a class="headerlink" href="#chl-chlmatrix-h" title="Permalink to this headline">¶</a></h1>
+<p>Matrix interface. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.ChlMatrix">
+<span class="target" id="chlmatrix_8h_1abeba4a179891ef9ee1862498a9cf7737"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">ChlMatrix</span></span></span><a class="headerlink" href="#c.ChlMatrix" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Matrix object </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_new">
+<span class="target" id="chlmatrix_8h_1adf10b0f895d604d81c04f6537a020bdb"></span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_new</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">n_rows</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">n_columns</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_new" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new uninitialized matrix. </p>
+<p>Creates a new matrix with uninitialized values. This function returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if creation fails. The returned matrix must be freed with <a class="reference internal" href="#chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071"><span class="std std-ref">chl_matrix_free()</span></a> when no longer in use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_rows</strong> – number of rows </p></li>
+<li><p><strong>n_columns</strong> – number of columns </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>new empty matrix </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_new_from">
+<span class="target" id="chlmatrix_8h_1a13c7610c44ac35f66b3cbd50afa77fe7"></span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_new_from</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">n_rows</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">n_columns</span></span>, <a class="reference internal" href="chlmath.html#c.real" title="real"><span class="n"><span class="pre">real</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">entries</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_new_from" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new matrix from allocated memory. </p>
+<p>Creates a new matrix from allocated memory. This function returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if creation fails. The returned matrix must be freed with <a class="reference internal" href="#chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071"><span class="std std-ref">chl_matrix_free()</span></a> when no longer in use. <a class="reference internal" href="#chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071"><span class="std std-ref">chl_matrix_free()</span></a> will not free the memory allocated for <code class="docutils literal notranslate"><span class="pre">entries</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_rows</strong> – number of rows </p></li>
+<li><p><strong>n_columns</strong> – number of columns </p></li>
+<li><p><strong>entries</strong> – pointer to allocated memory for matrix entries </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>new empty matrix </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_zeros">
+<span class="target" id="chlmatrix_8h_1a3f83568008c648c8ba1256f54a97f1a6"></span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_zeros</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">n_rows</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">n_columns</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_zeros" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new matrix and initializes all entries to zero. </p>
+<p>Creates a new matrix with all entries initialized to zero. This function returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if creation fails. The returned matrix must be freed with <a class="reference internal" href="#chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071"><span class="std std-ref">chl_matrix_free()</span></a> when no longer in use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_rows</strong> – number of rows </p></li>
+<li><p><strong>n_columns</strong> – number of columns </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a new matrix </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_eye">
+<span class="target" id="chlmatrix_8h_1a0d2018c2420ded4fd93b0c6a45aec23b"></span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_eye</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_eye" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new square identity matrix. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> – shape of square matrix </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>new identity matrix </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_new_like">
+<span class="target" id="chlmatrix_8h_1a13191389e2bc7d697aef2b3a8b112a9e"></span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_new_like</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_new_like" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new matrix in the same shape of another matrix. </p>
+<p>The returned matrix must be freed with <a class="reference internal" href="#chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071"><span class="std std-ref">chl_matrix_free()</span></a> when no longer used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – a matrix </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>new matrix </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_free">
+<span class="target" id="chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_free</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_free" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Frees a matrix. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – matrix to free </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 if operation was a success, -1 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_get">
+<span class="target" id="chlmatrix_8h_1a25452587da05a61bb82d0751403a2b76"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_get</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">j</span></span>, <a class="reference internal" href="chlmath.html#c.real" title="real"><span class="n"><span class="pre">real</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ptr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_get" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets an entry from a matrix. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – matrix </p></li>
+<li><p><strong>i</strong> – row of entry </p></li>
+<li><p><strong>j</strong> – column of entry </p></li>
+<li><p><strong>ptr</strong> – pointer for value of entry </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 if operation was a success, -1 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_set">
+<span class="target" id="chlmatrix_8h_1a8b54856ad42de4b7777a537105bcc218"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">j</span></span>, <a class="reference internal" href="chlmath.html#c.real" title="real"><span class="n"><span class="pre">real</span></span></a><span class="w"> </span><span class="n"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_set" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets an entry in a matrix. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – matrix </p></li>
+<li><p><strong>i</strong> – row of entry </p></li>
+<li><p><strong>j</strong> – column of entry </p></li>
+<li><p><strong>value</strong> – value to set </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 if operation was a success, -1 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_rows">
+<span class="target" id="chlmatrix_8h_1a0e825b13b697a385f5c68d65f3f82a4d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_rows</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_rows" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of rows of a matrix. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – matrix </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of rows </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_cols">
+<span class="target" id="chlmatrix_8h_1ab21758df38543bdb9d075e55fb22c46c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_cols</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_cols" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of columns of a matrix. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – matrix </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of columns </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_eq">
+<span class="target" id="chlmatrix_8h_1ab189a6637e30e32be791765da175af57"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_eq</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_eq" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if <code class="docutils literal notranslate"><span class="pre">a</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – a matrix </p></li>
+<li><p><strong>b</strong> – another matrix </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if <code class="docutils literal notranslate"><span class="pre">a</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_add">
+<span class="target" id="chlmatrix_8h_1a14a0ffd22f0663ef84c63d980b6e048d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c_ptr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_add" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Adds two matrices. </p>
+<p>Adds two matrices of equal shape and sets the result to the matrix <code class="docutils literal notranslate"><span class="pre">c</span></code>. The dimensions of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> must be equal.</p>
+<p><code class="docutils literal notranslate"><span class="pre">c</span></code> may be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. If <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, a new matrix will be created. This newly created matrix must be freed with <a class="reference internal" href="#chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071"><span class="std std-ref">chl_matrix_free()</span></a> when no longer in use.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">c</span></code> is not <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code> must have the same dimensions of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – a matrix </p></li>
+<li><p><strong>b</strong> – another matrix </p></li>
+<li><p><strong>c_ptr</strong> – pointer to sum of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 if operation was a success, -1 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_mult">
+<span class="target" id="chlmatrix_8h_1a8f2a5cf9b1fb890abaebb558e200c9ac"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_mult</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c_ptr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_mult" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Multiplies two matrices. </p>
+<p>Multiplies two matrices <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> and sets the result to the matrix <code class="docutils literal notranslate"><span class="pre">c</span></code>. The inner dimensions of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> must be equal.</p>
+<p><code class="docutils literal notranslate"><span class="pre">c</span></code> may be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. If <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, a new matrix will be created. This newly created matrix must be freed with <a class="reference internal" href="#chlmatrix_8h_1a387a5ae70e65a85813f6bb6372d3b071"><span class="std std-ref">chl_matrix_free()</span></a> when no longer in use.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">c</span></code> is not <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code> must have dimensions equal to the outer dimensions of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – left matrix </p></li>
+<li><p><strong>b</strong> – right matrix </p></li>
+<li><p><strong>c_ptr</strong> – pointer to product of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 if operation was a success, -1 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_scalar_mult">
+<span class="target" id="chlmatrix_8h_1a26271df640ea983a8e112a708c2327bc"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_scalar_mult</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <a class="reference internal" href="chlmath.html#c.real" title="real"><span class="n"><span class="pre">real</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span>, <a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">b_ptr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_scalar_mult" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Multiplies a matrix by a scalar. </p>
+<p>Multiplies a matrix <code class="docutils literal notranslate"><span class="pre">a</span></code> by a scalar <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – a matrix </p></li>
+<li><p><strong>c</strong> – a scalar </p></li>
+<li><p><strong>b_ptr</strong> – pointer to product of <code class="docutils literal notranslate"><span class="pre">c</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span></code> </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 if operation was a success, -1 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_dot">
+<span class="target" id="chlmatrix_8h_1ae884a90014e3bd826f95442e08691460"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_dot</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">b</span></span>, <a class="reference internal" href="chlmath.html#c.real" title="real"><span class="n"><span class="pre">real</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">dot</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_dot" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the dot product of two vectors. </p>
+<p>Returns the dot (scalar) product of two vectors. The outer dimensions of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> must be 1, and the inner dimensions must be equal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – a row vector </p></li>
+<li><p><strong>b</strong> – a column vector </p></li>
+<li><p><strong>dot</strong> – a pointer to a real value </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 if operation was a success, -1 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.chl_matrix_transpose">
+<span class="target" id="chlmatrix_8h_1adb2fdc3debe7f62ef910ff09c7f79632"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">chl_matrix_transpose</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <a class="reference internal" href="#c.ChlMatrix" title="ChlMatrix"><span class="n"><span class="pre">ChlMatrix</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">a_t_ptr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.chl_matrix_transpose" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the transpose of a matrix. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – matrix </p></li>
+<li><p><strong>a_t_ptr</strong> – pointer to transpose of <code class="docutils literal notranslate"><span class="pre">a</span></code> </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 if operation was a success, -1 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="chlmath.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">chl/chlmath.h</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../demo/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Demos</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, Marian Domanski.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

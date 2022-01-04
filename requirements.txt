@@ -6,3 +6,4 @@ pydata-sphinx-theme
 rstcheck
 snooty
 Sphinx==4.3.2
+sphinx-autobuild

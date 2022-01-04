@@ -10,10 +10,8 @@ chlib documentation
    :maxdepth: 2
    :caption: Contents:
 
-   chl
-   chlmath
-   chlmatrix
-
+   api/index
+   demo/index
 
 
 General index

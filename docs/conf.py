@@ -27,7 +27,8 @@ author = 'Marian Domanski'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['breathe'
+extensions = ['breathe',
+              'sphinx.ext.mathjax'
               ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -49,7 +50,9 @@ html_theme = 'pydata_sphinx_theme'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_static_path = ['_static']
+html_static_path = ['_static']
+
+html_favicon = '_static/favicon.ico'
 
 # -- Options for breathe extension -------------------------------------------
 breathe_projects_source = {
@@ -58,4 +61,11 @@ breathe_projects_source = {
 breathe_default_project = "chlib"
 breathe_domain_by_extension = {
     "h": "c",
+}
+
+# -- Options for mathjax extension -------------------------------------------
+mathjax_path = 'https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+mathjax2_config = {
+    'extensions': ['tex2jax.js'],
+    'jax': ['input/TeX', 'output/HTML-CSS'],
 }

@@ -1,5 +1,9 @@
 project('chlib', 'c',
-    default_options : ['c_std=c99', 'c_args=-Wall', 'b_ndebug=if-release'],
+    default_options : [
+        'c_std=c99',
+        'c_args=-Wall',
+        'b_ndebug=if-release',
+        'b_lundef=false'],
     version : '0.0.0')
 
 if get_option('real_is_float')

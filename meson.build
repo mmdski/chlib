@@ -10,14 +10,12 @@ inc = include_directories('include')
 
 subdir('src')
 
-if target_machine.cpu() == 'x86_64'
-    subdir('app')
-    subdir('tests')
-endif
-
 # emscripten build
 if target_machine.cpu() == 'wasm32'
     js_install_dir = 'js'
     subdir('ems')
     subdir('js')
+else
+    subdir('app')
+    subdir('tests')
 endif

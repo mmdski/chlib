@@ -25,6 +25,23 @@
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c99",
             "intelliSenseMode": "linux-gcc-x64"
+        },
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/include/**",
+                "/opt/homebrew/Cellar/glib/2.70.2/include/glib-2.0",
+                "/opt/homebrew/Cellar/glib/2.70.2/lib/glib-2.0/include",
+                "/opt/homebrew/Cellar/emscripten/3.1.0/libexec/system/include/"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c99",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-arm64"
         }
     ],
     "version": 4

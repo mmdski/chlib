@@ -2,12 +2,16 @@ project('chlib', 'c',
     default_options : [
         'c_std=c99',
         'c_args=-Wall',
-        'b_ndebug=if-release',
-        'b_lundef=false'],
+        'b_ndebug=if-release'],
     version : '0.0.0')
 
 if get_option('real_is_float')
     add_project_arguments('-DREAL_IS_FLOAT', language : 'c')
+endif
+
+if get_option('debug') == true
+    add_project_arguments(['-Db_lundef=false', '-Db_sanitize=address'],
+        language : 'c')
 endif
 
 inc = include_directories('include')

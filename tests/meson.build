@@ -1,7 +1,6 @@
-if get_option('unit_tests')
-    subdir('unit')
-endif
+test_env = environment()
+test_env.set('ASAN_OPTIONS', 'detect_leaks=1')
 
-if get_option('b_sanitize') == 'address'
-    subdir('memory')
-endif
+test_inc = include_directories('.')
+
+subdir('matrix')

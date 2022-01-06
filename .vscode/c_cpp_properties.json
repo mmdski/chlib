@@ -4,9 +4,7 @@
             "name": "Fedora",
             "includePath": [
                 "~/src/emscripten/system/include",
-                "${workspaceFolder}/include/**",
-                "/usr/include/glib-2.0",
-                "/usr/lib64/glib-2.0/include"
+                "${workspaceFolder}/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
@@ -17,9 +15,7 @@
             "name": "Ubuntu",
             "includePath": [
                 "~/src/emscripten/system/include",
-                "${workspaceFolder}/include/**",
-                "/usr/include/glib-2.0",
-                "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+                "${workspaceFolder}/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
@@ -29,9 +25,7 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/include/**",
-                "/opt/homebrew/Cellar/glib/2.70.2/include/glib-2.0",
-                "/opt/homebrew/Cellar/glib/2.70.2/lib/glib-2.0/include",
+                "${workspaceFolder}/**",
                 "/opt/homebrew/Cellar/emscripten/3.1.0/libexec/system/include/"
             ],
             "defines": [],

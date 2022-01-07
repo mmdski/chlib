@@ -17,19 +17,16 @@ Install requirements
 pip install -r requirements.txt
 ```
 
-## Native build
+### 1. Install LLVM
 
-### 1. Install GLib
-
-```
-brew install glib
-```
-
-### 2. Install LLVM
-
-#### Install LLVM
 ```
 brew install llvm
+```
+
+### 2. Install lcov
+
+```
+brew install lcov
 ```
 
 #### Set environment variables
@@ -54,35 +51,20 @@ Generally, the command is
 meson <options> <build directory>
 ```
 
-With building the Meson project, you have three options:
-1. Build using `float` instead of `double`
-2. Build the unit tests
-3. Build the memory tests
-
-`float` instead of `double`
+To build with coverage reports
 ```
--real_is_float=true
-```
-
-Build the unit tests
-```
--Dunit_tests=true
-```
-
-Build the memory tests
-```
--Db_sanitize=address
-```
-
-To use all three options and use `build` as the build directory, the command is
-```
-meson -Dreal_is_float=true -Dunit_tests=true -Db_sanitize=address build
+meson -Db_coverage=true build
 ```
 
 #### Build and run tests
 The command to build and run tests is
 ```
 ninja -C build test
+```
+
+To build, run tests, and run coverage reports
+```
+ninja -C build test coverage-html
 ```
 
 ## Web Assembly build

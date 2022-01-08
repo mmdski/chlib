@@ -1,0 +1,33 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "setup-debug",
+            "type": "shell",
+            "command": "meson",
+            "args": [
+                "setup",
+                "-Db_lundef=false",
+                "-Db_sanitize=address",
+                "-Db_coverage=true",
+                "build"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "setup-wasm32",
+            "type": "shell",
+            "command": "meson",
+            "args": [
+                "setup",
+                "--cross",
+                "wasm32.ini",
+                "-Dprefix=${workspaceFolder}/docs/source/_static",
+                "build.wasm32"
+            ],
+            "group": "build"
+        }
+    ]
+}

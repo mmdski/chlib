@@ -51,9 +51,9 @@ Generally, the command is
 meson <options> <build directory>
 ```
 
-To build with coverage reports
+To initialize with coverage reports and memory tests
 ```
-meson -Db_coverage=true build
+meson -Db_coverage=true -Db_lundef=false -Db_sanitize=address build
 ```
 
 #### Build and run tests

@@ -9,11 +9,6 @@ if get_option('real_is_float')
     add_project_arguments('-DREAL_IS_FLOAT', language : 'c')
 endif
 
-if get_option('debug') == true
-    add_project_arguments(['-Db_lundef=false', '-Db_sanitize=address'],
-        language : 'c')
-endif
-
 inc = include_directories('include')
 
 subdir('src')

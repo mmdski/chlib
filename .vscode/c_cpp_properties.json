@@ -26,13 +26,13 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/opt/homebrew/Cellar/emscripten/3.1.0/libexec/system/include/"
+                "/opt/homebrew/Cellar/emscripten/3.1.3/libexec/system/include/"
             ],
             "defines": [],
             "macFrameworkPath": [
                 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
             ],
-            "compilerPath": "/usr/bin/clang",
+            "compilerPath": "/opt/homebrew/opt/llvm/bin/clang",
             "cStandard": "c99",
             "cppStandard": "c++17",
             "intelliSenseMode": "clang-arm64"

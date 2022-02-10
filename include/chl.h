@@ -13,5 +13,6 @@
 
 #include <chl/chlmath.h>
 #include <chl/chlmatrix.h>
+#include <chl/chlxs.h>
 
 #endif

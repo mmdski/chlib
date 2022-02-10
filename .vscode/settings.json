@@ -7,6 +7,7 @@
         "chlmath",
         "chlmatrix",
         "chlsin",
+        "chlxs",
         "CHTML",
         "devto",
         "disqus",
@@ -44,5 +45,6 @@
     "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
     "restructuredtext.confPath": "${workspaceFolder}/docs/source",
     "restructuredtext.builtDocumentationPath": "${workspaceFolder}/docs/_build/html",
-    "restructuredtext.languageServer.disabled": true
+    "restructuredtext.languageServer.disabled": true,
+    "editor.tabSize": 2
 }

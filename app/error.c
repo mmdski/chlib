@@ -23,6 +23,10 @@ main ()
   printf ("Message: %s\n", string);
   chl_string_free (message);
 
+  ChlErrorType type = chl_err_type (err);
+  printf ("INVALID_ARGUMENT_ERROR = %i\n", INVALID_ARGUMENT_ERROR);
+  printf ("Error type: %i\n", type);
+
   chl_err_free (err);
 
   return EXIT_SUCCESS;

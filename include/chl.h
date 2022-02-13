@@ -11,6 +11,7 @@
 
 #define __CHL_H_INSIDE__
 
+#include <chl/chlerror.h>
 #include <chl/chlmath.h>
 #include <chl/chlmatrix.h>
 #include <chl/chlstring.h>

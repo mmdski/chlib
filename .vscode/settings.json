@@ -3,10 +3,12 @@
         "bmatrix",
         "builddir",
         "cdnjs",
+        "chlerror",
         "chlib",
         "chlmath",
         "chlmatrix",
         "chlsin",
+        "chlstring",
         "chlxs",
         "CHTML",
         "devto",
@@ -36,10 +38,7 @@
         "yaxis"
     ],
     "files.associations": {
-        "chl.h": "c",
-        "chlmath.h": "c",
-        "chlmatrix.h": "c",
-        "chlmem.h": "c"
+        "*.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",

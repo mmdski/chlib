@@ -10,7 +10,12 @@ test_istype = executable('test_istype',
     'istype.c',
     include_directories : [inc, test_inc],
     link_with : [chlib])
+test_raise = executable('test_raise',
+    'raise.c',
+    include_directories : [inc, test_inc],
+    link_with : [chlib])
 
 test('chl/err/new', test_new, env: test_env, suite: 'err')
 test('chl/err/free', test_free, env: test_env, suite: 'err')
 test('chl/err/istype', test_istype, env: test_env, suite: 'err')
+test('chl/err/raise', test_raise, env: test_env, suite: 'err')

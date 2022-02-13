@@ -37,6 +37,7 @@ chl_err_new (ChlErrorType type, const char *message)
 {
   ChlError err;
   NEW (err);
+  err->type       = type;
   err->error_name = chl_err_type_name (type);
 
   if (message == NULL)
@@ -66,7 +67,7 @@ chl_err_is_type (ChlError err, ChlErrorType type)
 {
   if (err == NULL)
     return false;
-  return (err->type == type);
+  return ((err->type) == type);
 }
 
 ChlErrorType
@@ -155,4 +156,156 @@ fail:
   if (err_str_buffer != NULL)
     chl_free (err_str_buffer);
   return NULL;
+}
+
+typedef struct ChlErrorStackNode ChlErrorStackNode;
+
+struct ChlErrorStackNode
+{
+  int                line;
+  ChlString          file;
+  ChlString          string;
+  ChlErrorStackNode *next;
+};
+
+struct ChlErrorStack
+{
+  ChlError           error;
+  ChlErrorStackNode *node;
+};
+
+static struct ChlErrorStack stack = { NULL, NULL };
+
+static ChlErrorStackNode *
+chl_err_stack_last_node ()
+{
+  if (stack.node == NULL)
+    return NULL;
+
+  ChlErrorStackNode *node      = stack.node;
+  ChlErrorStackNode *next_node = node->next;
+
+  while (next_node != NULL)
+    {
+      node      = next_node;
+      next_node = node->next;
+    }
+
+  return node;
+}
+static ChlErrorStackNode *
+chl_err_stack_node_new (const char *file, int line)
+{
+  if (file == NULL)
+    return NULL;
+
+  ChlErrorStackNode *node;
+  NEW (node);
+
+  char node_string_buffer[500];
+
+  node->line = line;
+  node->file = chl_string_new (file);
+
+  sprintf (node_string_buffer, "File \"%s\", line %i", file, line);
+  node->string = chl_string_new (node_string_buffer);
+
+  node->next = NULL;
+
+  return node;
+}
+
+static int
+chl_err_stack_node_free (ChlErrorStackNode *node)
+{
+  if (node == NULL)
+    return -1;
+
+  chl_string_free (node->file);
+  chl_string_free (node->string);
+  FREE (node);
+  return 0;
+}
+
+int
+chl_err_raise (ChlErrorType type,
+               const char  *message,
+               const char  *file,
+               int          line)
+{
+  if (stack.error != NULL)
+    return -1;
+
+  stack.error = chl_err_new (type, message);
+  stack.node  = chl_err_stack_node_new (file, line);
+
+  return 0;
+}
+
+bool
+chl_err_stack_is_err ()
+{
+  return stack.error != NULL;
+}
+
+void
+chl_err_stack_clear ()
+{
+  if (stack.error != NULL)
+    {
+      chl_err_free (stack.error);
+      stack.error = NULL;
+    }
+
+  ChlErrorStackNode *node      = stack.node;
+  ChlErrorStackNode *next_node = node->next;
+  chl_err_stack_node_free (node);
+  while (next_node != NULL)
+    {
+      node      = next_node;
+      next_node = node->next;
+      chl_err_stack_node_free (node);
+    }
+  stack.node = NULL;
+}
+
+ChlError
+chl_err_stack_get_err ()
+{
+  return stack.error;
+}
+
+int
+chl_err_stack_push (const char *file, int line)
+{
+  if (stack.error == NULL || stack.node == NULL)
+    return -1;
+
+  ChlErrorStackNode *last_node = chl_err_stack_last_node ();
+  if (last_node == NULL)
+    return -1;
+
+  last_node->next = chl_err_stack_node_new (file, line);
+  return 0;
+}
+
+void
+chl_err_stack_print ()
+{
+  if (stack.error == NULL)
+    return;
+
+  char     *string;
+  ChlString err_string = chl_err_str (stack.error);
+  chl_string_get (err_string, &string);
+  fprintf (stderr, "%s\n", string);
+  chl_string_free (err_string);
+
+  ChlErrorStackNode *node = stack.node;
+  while (node != NULL)
+    {
+      chl_string_get (node->string, &string);
+      fprintf (stderr, "\t%s\n", string);
+      node = node->next;
+    }
 }

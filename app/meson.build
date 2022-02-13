@@ -10,3 +10,5 @@ string = executable('string',
     'string.c',
     include_directories: [inc],
     link_with: [chlib])
+
+subdir('errorstack')

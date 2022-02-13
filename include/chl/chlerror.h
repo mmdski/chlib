@@ -23,7 +23,9 @@ typedef enum
   /** Invalid argument error */
   INVALID_ARGUMENT_ERROR,
   /** Memory error */
-  MEMORY_ERROR
+  MEMORY_ERROR,
+  /** Number of error types */
+  NUM_ERROR_TYPES
 } ChlErrorType;
 
 /**
@@ -93,5 +95,53 @@ extern ChlString chl_err_str (ChlError err);
  * @returns the error type of @c err
  */
 extern ChlErrorType chl_err_type (ChlError err);
+
+/**
+ * @brief Puts an error on the error stack and initializes the first line of the
+ * stack
+ *
+ * @param type error type
+ * @param message error message
+ * @param file use __FILE__ macro
+ * @param line use __LINE__ macro
+ * @return 0 if successful, -1 otherwise
+ */
+extern int chl_err_raise (ChlErrorType type,
+                          const char  *message,
+                          const char  *file,
+                          int          line);
+
+/**
+ * @brief Returns true if an error is on the error stack, false otherwise
+ *
+ * @return true or false
+ */
+extern bool chl_err_stack_is_err ();
+
+/**
+ * @brief Clears the error stack
+ */
+extern void chl_err_stack_clear ();
+
+/**
+ * @brief Pushes a new line on the error stack
+ *
+ * @param file use __FILE__ macro
+ * @param line use __LINE__ macro
+ * @return 0 if successful, -1 otherwise
+ */
+extern int chl_err_stack_push (const char *file, int line);
+
+/**
+ * @brief Returns the error currently on the error stack
+ *
+ * @details The returned error is a reference to the error on the stack. Do not
+ * free outside of chl_err_stack_clear().
+ *
+ * @return error currently on the stack
+ */
+extern ChlError chl_err_stack_get_err ();
+
+void chl_err_stack_print ();
 
 #endif

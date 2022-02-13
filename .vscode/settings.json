@@ -4,6 +4,7 @@
         "builddir",
         "cdnjs",
         "chlerror",
+        "chlerrorstack",
         "chlib",
         "chlmath",
         "chlmatrix",

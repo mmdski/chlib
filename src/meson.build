@@ -1,4 +1,4 @@
-chl_sources = files(['chlmem.c', 'chlmatrix.c', 'chlxs.c'])
+chl_sources = files(['chlmem.c', 'chlmatrix.c', 'chlstring.c', 'chlxs.c'])
 chlib_c_args = ['-DCHL_COMPILATION']
 
 if target_machine.cpu() != 'wasm32'

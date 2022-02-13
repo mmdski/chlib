@@ -14,8 +14,13 @@ test_copy = executable('test_copy',
     'copy.c',
     include_directories : [inc, test_inc],
     link_with : [chlib])
+test_eq = executable('test_eq',
+    'eq.c',
+    include_directories : [inc, test_inc],
+    link_with : [chlib])
 
 test('chl/string/new', test_new, env: test_env, suite: 'string')
 test('chl/string/free', test_free, env: test_env, suite: 'string')
 test('chl/string/get', test_get, env: test_env, suite: 'string')
 test('chl/string/copy', test_copy, env: test_env, suite: 'string')
+test('chl/string/eq', test_copy, env: test_env, suite: 'string')

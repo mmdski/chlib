@@ -2,6 +2,7 @@
 #include <chl/chlstring.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct ChlString
 {
@@ -107,6 +108,18 @@ chl_string_copy (ChlString s)
   ChlString s_copy = chl_string_new (s->string);
 
   return s_copy;
+}
+
+bool
+chl_string_eq (ChlString a, ChlString b)
+{
+  if (a == NULL || b == NULL)
+    return false;
+
+  if (a == b)
+    return true;
+
+  return strcmp (a->string, b->string) == 0;
 }
 
 int

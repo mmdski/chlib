@@ -10,6 +10,8 @@
 #error "Only <chl.h> can be included directly."
 #endif
 
+#include <stdbool.h>
+
 /**
  * String object
  */
@@ -42,6 +44,15 @@ extern int chl_string_free (ChlString s);
  * @return a copy of s
  */
 extern ChlString chl_string_copy (ChlString s);
+
+/**
+ * @brief Returns true if two strings are equal
+ *
+ * @param a a string
+ * @param b another string
+ * @return true if two strings are equal, false otherwise
+ */
+extern bool chl_string_eq (ChlString a, ChlString b);
 
 /**
  * @brief Gets the character array contained in a string

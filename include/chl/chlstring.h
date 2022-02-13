@@ -25,7 +25,7 @@ typedef struct ChlString *ChlString;
  * @param string null-terminated string
  * @return new string
  */
-extern ChlString chl_string_new (char *string);
+extern ChlString chl_string_new (const char *string);
 
 /**
  * @brief Frees a string
@@ -34,6 +34,14 @@ extern ChlString chl_string_new (char *string);
  * @return 0 if operation was a success, -1 otherwise
  */
 extern int chl_string_free (ChlString s);
+
+/**
+ * @brief Copies a string
+ *
+ * @param s string to copy
+ * @return a copy of s
+ */
+extern ChlString chl_string_copy (ChlString s);
 
 /**
  * @brief Gets the character array contained in a string

@@ -29,7 +29,7 @@ chl_string_new_empty (long len)
 }
 
 static int
-chl_string_fill (ChlString s, char *string)
+chl_string_fill (ChlString s, const char *string)
 {
   if (s == NULL || string == NULL)
     {
@@ -42,13 +42,12 @@ chl_string_fill (ChlString s, char *string)
     {
       s->string[i] = string[i];
     }
-  // s->string[len] = '\0';
 
   return 0;
 }
 
 ChlString
-chl_string_new (char *string)
+chl_string_new (const char *string)
 {
   if (string == NULL)
     {
@@ -97,6 +96,17 @@ chl_string_free (ChlString s)
   chl_free (s->string);
   FREE (s);
   return 0;
+}
+
+ChlString
+chl_string_copy (ChlString s)
+{
+  if (s == NULL)
+    return NULL;
+
+  ChlString s_copy = chl_string_new (s->string);
+
+  return s_copy;
 }
 
 int

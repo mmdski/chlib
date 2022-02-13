@@ -58,7 +58,7 @@ extern int chl_string_get (ChlString s, char **string);
  * @details Gets the length of a string including the null character.
  *
  * @param s a string
- * @param len a pointer to a long that contains the length of @param s
+ * @param len a pointer to a long that contains the length of s
  * @returns 0 if operation was a success, -1 otherwise
  */
 extern int chl_string_len (ChlString s, long *len);

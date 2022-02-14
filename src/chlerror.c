@@ -276,6 +276,12 @@ chl_err_stack_push (const char *file, int line)
   return 0;
 }
 
+bool
+chl_err_stack_is_type (ChlErrorType type)
+{
+  return chl_err_is_type (stack.error, type);
+}
+
 void
 chl_err_stack_print ()
 {

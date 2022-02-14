@@ -142,6 +142,8 @@ extern int chl_err_stack_push (const char *file, int line);
  */
 extern ChlError chl_err_stack_get_err ();
 
+bool chl_err_stack_is_type (ChlErrorType type);
+
 void chl_err_stack_print ();
 
 #endif

@@ -2,6 +2,7 @@
 #include <chl/chlerror.h>
 #include <chl/chlstring.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 struct ChlError
 {
@@ -217,7 +218,10 @@ chl_err_raise (ChlErrorType type,
                int          line)
 {
   if (stack.error != NULL)
-    return -1;
+    {
+      fprintf (stderr, "Fatal error: Error raised while error in stack\n");
+      abort ();
+    }
 
   stack.error = chl_err_new (type, message);
   stack.node  = chl_err_stack_node_new (file, line);

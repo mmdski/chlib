@@ -1,4 +1,5 @@
 #include "chlmem.h"
+#include <chl/chlerror.h>
 #include <chl/chlxs.h>
 #include <stdlib.h>
 
@@ -12,13 +13,21 @@ ChlXSRect
 chl_xs_rect_new (real width)
 {
   if (width <= 0)
-    return NULL;
+    {
+      chl_err_raise (
+          INVALID_ARGUMENT_ERROR, "Invalid width", __FILE__, __LINE__);
+      return NULL;
+    }
 
   ChlXSRect xs;
   NEW (xs);
 
   if (xs == 0)
-    abort ();
+    {
+      chl_err_raise (
+          MEMORY_ERROR, "Unable to allocate memory", __FILE__, __LINE__);
+      return NULL;
+    }
 
   xs->width = width;
 
@@ -30,7 +39,10 @@ int
 chl_xs_rect_free (ChlXSRect xs)
 {
   if (xs == NULL)
-    return -1;
+    {
+      chl_err_raise (NULL_ARGUMENT_ERROR, "", __FILE__, __LINE__);
+      return -1;
+    }
 
   FREE (xs);
 

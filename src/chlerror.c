@@ -177,23 +177,6 @@ struct ChlErrorStack
 static struct ChlErrorStack stack = { NULL, NULL };
 
 static ChlErrorStackNode *
-chl_err_stack_last_node ()
-{
-  if (stack.node == NULL)
-    return NULL;
-
-  ChlErrorStackNode *node      = stack.node;
-  ChlErrorStackNode *next_node = node->next;
-
-  while (next_node != NULL)
-    {
-      node      = next_node;
-      next_node = node->next;
-    }
-
-  return node;
-}
-static ChlErrorStackNode *
 chl_err_stack_node_new (const char *file, int line)
 {
   if (file == NULL)
@@ -281,11 +264,11 @@ chl_err_stack_push (const char *file, int line)
   if (stack.error == NULL || stack.node == NULL)
     return -1;
 
-  ChlErrorStackNode *last_node = chl_err_stack_last_node ();
-  if (last_node == NULL)
-    return -1;
+  ChlErrorStackNode *new_node = chl_err_stack_node_new (file, line);
 
-  last_node->next = chl_err_stack_node_new (file, line);
+  new_node->next = stack.node;
+  stack.node     = new_node;
+
   return 0;
 }
 
@@ -295,11 +278,9 @@ chl_err_stack_print ()
   if (stack.error == NULL)
     return;
 
-  char     *string;
-  ChlString err_string = chl_err_str (stack.error);
-  chl_string_get (err_string, &string);
-  fprintf (stderr, "%s\n", string);
-  chl_string_free (err_string);
+  fprintf (stderr, "Stack trace (most recent call last):\n");
+
+  char *string;
 
   ChlErrorStackNode *node = stack.node;
   while (node != NULL)
@@ -308,4 +289,9 @@ chl_err_stack_print ()
       fprintf (stderr, "\t%s\n", string);
       node = node->next;
     }
+
+  ChlString err_string = chl_err_str (stack.error);
+  chl_string_get (err_string, &string);
+  fprintf (stderr, "%s\n", string);
+  chl_string_free (err_string);
 }

@@ -43,8 +43,7 @@
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
-    "restructuredtext.confPath": "${workspaceFolder}/docs/source",
-    "restructuredtext.builtDocumentationPath": "${workspaceFolder}/docs/_build/html",
-    "restructuredtext.languageServer.disabled": true,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "esbonio.sphinx.buildDir": "${workspaceFolder}/docs/_build",
+    "esbonio.sphinx.confDir": "${workspaceFolder}/docs/source"
 }

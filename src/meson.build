@@ -2,7 +2,6 @@ chl_sources = files(
     [
         'chlerror.c',
         'chlmem.c',
-        'chlmatrix.c',
         'chlstring.c',
         'chlxs.c'
     ]

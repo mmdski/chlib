@@ -1,4 +1,4 @@
-#include "chlmem.h"
+#include "memory.h"
 #include <chl/chlerror.h>
 #include <chl/chlstring.h>
 #include <stdio.h>

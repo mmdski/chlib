@@ -1,9 +1,9 @@
 chl_sources = files(
     [
-        'chlerror.c',
-        'chlmem.c',
-        'chlstring.c',
-        'chlxs.c'
+        'error.c',
+        'memory.c',
+        'string.c',
+        'xsection.c'
     ]
 )
 chlib_c_args = ['-DCHL_COMPILATION']

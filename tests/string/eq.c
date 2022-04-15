@@ -12,7 +12,7 @@ main ()
   assert_true (chl_string_eq (a, a));
   assert_false (chl_string_eq (a, c));
   assert_false (chl_string_eq (a, b));
-  assert_false (a == a_copy);
+  assert_false ((a == a_copy));
   assert_true (chl_string_eq (a, a_copy));
   assert_false (chl_string_eq (NULL, NULL));
 

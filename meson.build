@@ -11,6 +11,8 @@ endif
 
 inc = include_directories('include')
 
+subdir('gsl')
+
 subdir('src')
 
 # emscripten build

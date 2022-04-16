@@ -11,4 +11,5 @@ string = executable('string',
     include_directories: [inc],
     link_with: [chlib])
 
+subdir('gsl')
 subdir('errorstack')

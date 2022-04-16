@@ -45,5 +45,6 @@
     "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
     "editor.tabSize": 2,
     "esbonio.sphinx.buildDir": "${workspaceFolder}/docs/_build",
-    "esbonio.sphinx.confDir": "${workspaceFolder}/docs/source"
+    "esbonio.sphinx.confDir": "${workspaceFolder}/docs/source",
+    "mesonbuild.configureOnOpen": false
 }

@@ -9,16 +9,24 @@ if get_option('real_is_float')
     add_project_arguments('-DREAL_IS_FLOAT', language : 'c')
 endif
 
-inc = include_directories('include')
-
-subdir('src')
-
 # emscripten build
 if target_machine.cpu() == 'wasm32'
     js_install_dir = 'js'
-    subdir('ems')
-    subdir('js')
+    exe_name_suffix = 'js'
 else
+    exe_name_suffix = []
+endif
+
+inc = include_directories('include')
+
+subdir('gsl')
+
+subdir('src')
+
+if get_option('build_app')
     subdir('app')
+endif
+
+if get_option('build_tests')
     subdir('tests')
 endif

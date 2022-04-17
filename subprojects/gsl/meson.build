@@ -1,3 +1,6 @@
+project('gsl', 'c', version : '2.7')
+
+inc = include_directories('include')
 gsl_inc = include_directories('.')
 
 subdir('err')
@@ -8,6 +11,9 @@ gsl = static_library('gsl',
     include_directories: inc,
     link_with: [gslroots])
 
-if get_option('build_gsl_examples')
+gsl_dep = declare_dependency(include_directories : inc,
+  link_with : gsl)
+
+if get_option('build_examples')
   subdir('doc')
 endif

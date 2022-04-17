@@ -1,7 +1,8 @@
-#include "memory.h"
 #include <chl/chlerror.h>
 #include <chl/chlxs.h>
 #include <stdlib.h>
+
+#include "memory.h"
 
 struct ChlXSRect
 {

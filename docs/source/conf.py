@@ -56,7 +56,15 @@ html_favicon = '_static/favicon.ico'
 
 # -- Options for breathe extension -------------------------------------------
 breathe_projects_source = {
-    "chlib": ("../../include/", ["chl.h", "chl/chlerror.h", "chl/chlmath.h", "chl/chlstring.h"])
+    "chlib": ("../../include/",
+              [
+                  "chl.h",
+                  "chl/chlerror.h",
+                  "chl/chlmath.h",
+                  "chl/chlstring.h",
+                  "chl/chlxs.h"
+              ]
+              )
 }
 breathe_default_project = "chlib"
 breathe_domain_by_extension = {

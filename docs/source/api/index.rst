@@ -9,3 +9,4 @@ chlib API documentation
    chlerror
    chlmath
    chlstring
+   chlxs

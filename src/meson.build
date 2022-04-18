@@ -1,6 +1,7 @@
 chl_sys_sources = files(
     [
         'error.c',
+        'list.c',
         'memory.c',
         'string.c'
     ]

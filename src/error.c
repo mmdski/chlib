@@ -26,6 +26,9 @@ chl_err_type_name (ChlErrorType type)
     case MEMORY_ERROR:
       error_name = "MemoryError";
       break;
+    case VALUE_ERROR:
+      error_name = "ValueError";
+      break;
     default:
       error_name = "UnnamedError";
     }

@@ -24,6 +24,8 @@ typedef enum
   INVALID_ARGUMENT_ERROR,
   /** Memory error */
   MEMORY_ERROR,
+  /** Value error */
+  VALUE_ERROR,
   /** Number of error types */
   NUM_ERROR_TYPES
 } ChlErrorType;

@@ -5,4 +5,4 @@ test_inc = include_directories('.')
 
 subdir('error')
 subdir('string')
-subdir('xs')
+subdir('xsection')

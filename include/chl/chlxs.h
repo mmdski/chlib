@@ -122,4 +122,25 @@ extern ChlXSSubsect chl_xs_subsect_new (ChlXSArray a, real roughness);
  */
 extern int chl_xs_subsect_free (ChlXSSubsect ss);
 
+/**
+ * @brief Gets the roughness value of a subsection
+ *
+ * @param ss a subsection
+ * @param roughness the roughness value
+ * @return 0 if operation successful
+ * @return -1 if operation fails
+ */
+extern int chl_xs_subsect_roughness (ChlXSSubsect ss, real *roughness);
+
+/**
+ * @brief Gets the area of a subsection
+ *
+ * @param ss a subsection
+ * @param y elevation
+ * @param area subsection area
+ * @return 0 if operation was successful
+ * @return -1 if operation fails
+ */
+extern int chl_xs_subsect_area (ChlXSSubsect ss, real y, real *area);
+
 #endif

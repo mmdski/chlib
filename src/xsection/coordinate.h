@@ -1,6 +1,8 @@
 #ifndef __XS_COORD_H__
 #define __XS_COORD_H__
 
+#include <chl.h>
+
 /**
  * SECTION: coordinate.h
  * @short_description: Coordinate

@@ -3,9 +3,9 @@
 #include "coordinate.h"
 #include <chl.h>
 
-extern int chl_xs_array_max_y (ChlXSArray a, real *max_y);
+extern real chl_xs_array_max_y (ChlXSArray a);
 
-extern int chl_xs_array_min_y (ChlXSArray a, real *min_y);
+extern real chl_xs_array_min_y (ChlXSArray a);
 
 extern Coordinate chl_xs_array_get (ChlXSArray a, int i);
 
@@ -24,7 +24,7 @@ extern Coordinate chl_xs_array_get (ChlXSArray a, int i);
  *
  * Returns: a subset of @a
  */
-extern ChlXSArray chl_xs_array_subarray (ChlXSArray a, double zlo, double zhi);
+extern ChlXSArray chl_xs_array_subarray (ChlXSArray a, real zlo, real zhi);
 
 /**
  * chl_xs_array_subarray_y:
@@ -40,6 +40,6 @@ extern ChlXSArray chl_xs_array_subarray (ChlXSArray a, double zlo, double zhi);
  *
  * Returns: a subset of @a
  */
-extern ChlXSArray chl_xs_array_subarray_y (ChlXSArray a, double y);
+extern ChlXSArray chl_xs_array_subarray_y (ChlXSArray a, real y);
 
 #endif

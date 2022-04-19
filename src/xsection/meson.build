@@ -1,6 +1,7 @@
 xsection_sources = [
   'array.c',
   'coordinate.c',
+  'subsection.c',
   'rect.c'
 ]
 

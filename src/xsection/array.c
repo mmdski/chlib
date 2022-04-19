@@ -179,12 +179,12 @@ chl_xs_array_eq (ChlXSArray a1, ChlXSArray a2)
 
   int i;
 
+  /* check for either NULL */
+  if ((a1 == NULL) || (a2 == NULL))
+    return false;
+
   if (a1 == a2)
     return true;
-
-  /* check for either NULL */
-  if (!a1 || !a2)
-    return false;
 
   if (a1->length != a2->length)
     return false;

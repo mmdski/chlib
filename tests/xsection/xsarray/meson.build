@@ -16,6 +16,6 @@ test_copy = executable('test_copy',
     link_with : [chlib])
 
 test('chl/xs/array/new', test_new, env: test_env, suite: 'xs')
-test('chl/xs/array/free', test_new, env: test_env, suite: 'xs')
-test('chl/xs/array/eq', test_new, env: test_env, suite: 'xs')
+test('chl/xs/array/free', test_free, env: test_env, suite: 'xs')
+test('chl/xs/array/eq', test_eq, env: test_env, suite: 'xs')
 test('chl/xs/array/copy', test_copy, env: test_env, suite: 'xs')

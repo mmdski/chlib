@@ -41,7 +41,7 @@
     "files.associations": {
         "*.h": "c"
     },
-    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.errorSquiggles": "Enabled",
     "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
     "editor.tabSize": 2,
     "esbonio.sphinx.buildDir": "${workspaceFolder}/docs/_build",

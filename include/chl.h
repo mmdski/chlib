@@ -14,6 +14,9 @@
 #include <chl/chlerror.h>
 #include <chl/chlmath.h>
 #include <chl/chlstring.h>
+
+#include <chl/chlconstants.h>
+
 #include <chl/chlxs.h>
 
 #endif

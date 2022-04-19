@@ -6,6 +6,7 @@ chlib API documentation
    :caption: Contents:
 
    chl
+   chlconstants
    chlerror
    chlmath
    chlstring

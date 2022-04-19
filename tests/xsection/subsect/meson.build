@@ -8,4 +8,4 @@ test_free = executable('test_free',
     link_with : [chlib])
 
 test('chl/xs/subsect/new', test_new, env: test_env, suite: 'xs')
-test('chl/xs/subsect/free', test_new, env: test_env, suite: 'xs')
+test('chl/xs/subsect/free', test_free, env: test_env, suite: 'xs')

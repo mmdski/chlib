@@ -8,8 +8,7 @@ subdir('sys')
 subdir('roots')
 
 gsl = static_library('gsl',
-    include_directories: inc,
-    link_with: [gslroots])
+    link_whole: [gslroots])
 
 gsl_dep = declare_dependency(include_directories : inc,
   link_with : gsl)

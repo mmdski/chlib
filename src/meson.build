@@ -19,4 +19,4 @@ chlsys = static_library('chl_sys',
     c_args : chlib_c_args)
 
 chlib = static_library('chlib',
-    link_with : [chlsys, chlxsection])
+    link_whole : [chlsys, chlxsection])

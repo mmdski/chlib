@@ -16,7 +16,8 @@ subdir('xsection')
 chlsys = static_library('chl_sys',
     chl_sys_sources,
     include_directories : inc,
-    c_args : chlib_c_args)
+    c_args : chlib_c_args,
+    dependencies : m_dep)
 
 chlib = static_library('chlib',
     link_whole : [chlsys, chlxsection])

@@ -9,6 +9,9 @@ if get_option('real_is_float')
     add_project_arguments('-DREAL_IS_FLOAT', language : 'c')
 endif
 
+cc = meson.get_compiler('c')
+m_dep = cc.find_library('m', required : false)
+
 # emscripten build
 if target_machine.cpu() == 'wasm32'
     js_install_dir = 'js'

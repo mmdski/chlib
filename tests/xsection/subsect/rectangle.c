@@ -1,4 +1,4 @@
-#include "rectangle.h"
+#include <chl.h>
 
 const real WIDTH = 1;
 
@@ -21,4 +21,10 @@ real
 rect_area (real y)
 {
   return y * WIDTH;
+}
+
+real
+rect_wp (real y)
+{
+  return 2 * y + WIDTH;
 }

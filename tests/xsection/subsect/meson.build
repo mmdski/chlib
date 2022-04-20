@@ -13,7 +13,11 @@ test_roughness = executable('test_roughness',
 test_area = executable('test_area',
     'area.c',
     include_directories : [inc, test_inc],
-    link_with : [chlib, xs_test_lib])
+    link_with : [chlib])
+test_wp = executable('test_wp',
+    'wp.c',
+    include_directories : [inc, test_inc],
+    link_with : [chlib])
 
 
 if target_machine.cpu() == 'wasm32'
@@ -21,9 +25,11 @@ if target_machine.cpu() == 'wasm32'
     test('chl/xs/subsect/free', nodejs, args: test_free.full_path(), suite: 'xs')
     test('chl/xs/subsect/roughness', nodejs, args: test_roughness.full_path(), suite: 'xs')
     test('chl/xs/subsect/area', nodejs, args: test_area.full_path(), suite: 'xs')
+    test('chl/xs/subsect/wp', nodejs, args: test_wp.full_path(), suite: 'xs')
 else
     test('chl/xs/subsect/new', test_new, env: test_env, suite: 'xs')
     test('chl/xs/subsect/free', test_free, env: test_env, suite: 'xs')
     test('chl/xs/subsect/roughness', test_roughness, env: test_env, suite: 'xs')
     test('chl/xs/subsect/area', test_area, env: test_env, suite: 'xs')
+    test('chl/xs/subsect/wp', test_wp, env: test_env, suite: 'xs')
 endif

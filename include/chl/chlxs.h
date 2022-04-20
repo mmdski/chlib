@@ -143,4 +143,15 @@ extern int chl_xs_subsect_roughness (ChlXSSubsect ss, real *roughness);
  */
 extern int chl_xs_subsect_area (ChlXSSubsect ss, real y, real *area);
 
+/**
+ * @brief Gets the wetted perimeter of a subsection
+ *
+ * @param ss a subsection
+ * @param y elevation
+ * @param wp subsection wetted perimeter
+ * @return 0 if operation was successful
+ * @return -1 if operation fails
+ */
+int chl_xs_subsect_wp (ChlXSSubsect ss, real y, real *wp);
+
 #endif

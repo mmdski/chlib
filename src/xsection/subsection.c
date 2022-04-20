@@ -220,3 +220,27 @@ chl_xs_subsect_area (ChlXSSubsect ss, real y, real *area)
 
   return 0;
 }
+
+int
+chl_xs_subsect_wp (ChlXSSubsect ss, real y, real *wp)
+{
+  if (ss == NULL)
+    {
+      chl_err_raise (
+          NULL_ARGUMENT_ERROR, "subsection is NULL", __FILE__, __LINE__);
+      return -1;
+    }
+
+  if (wp == NULL)
+    {
+      chl_err_raise (
+          NULL_ARGUMENT_ERROR, "wp points to NULL", __FILE__, __LINE__);
+      return -1;
+    }
+
+  ChlXSProps xsp = subsection_properties (ss, y);
+  *wp            = xsp_get (xsp, XS_WETTED_PERIMETER);
+  xsp_free (xsp);
+
+  return 0;
+}

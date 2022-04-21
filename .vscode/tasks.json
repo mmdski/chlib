@@ -6,7 +6,7 @@
         {
             "label": "setup-debug",
             "type": "shell",
-            "command": "meson",
+            "command": "${workspaceFolder}/env/bin/meson",
             "args": [
                 "setup",
                 "--buildtype=debug",
@@ -18,9 +18,31 @@
             "group": "build"
         },
         {
+            "label": "test",
+            "type": "shell",
+            "command": "${workspaceFolder}/env/bin/ninja",
+            "args": [
+                "-C",
+                "build",
+                "test"
+            ],
+            "group": "test"
+        },
+        {
+            "label": "coverage",
+            "type": "shell",
+            "command": "${workspaceFolder}/env/bin/ninja",
+            "args": [
+                "-C",
+                "build",
+                "coverage-html"
+            ],
+            "group": "test"
+        },
+        {
             "label": "setup-wasm32",
             "type": "shell",
-            "command": "meson",
+            "command": "${workspaceFolder}/env/bin/meson",
             "args": [
                 "setup",
                 "--cross",

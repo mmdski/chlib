@@ -223,7 +223,7 @@ chl_err_raise (ChlErrorType type,
   if (stack.error != NULL)
     {
       fprintf (stderr, "Fatal error: Error raised while error in stack\n");
-      abort ();
+      exit (EXIT_FAILURE);
     }
 
   stack.error = chl_err_new (type, message);

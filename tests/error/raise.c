@@ -2,7 +2,7 @@
 #include <chl.h>
 
 int
-main ()
+main (void)
 {
   assert_false (chl_err_stack_is_err ());
 

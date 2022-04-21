@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int
-main ()
+main (void)
 {
 #if defined(REAL_IS_FLOAT)
   printf ("Real is float\n");

@@ -2,7 +2,7 @@
 #include <chl.h>
 
 int
-main ()
+main (void)
 {
   ChlError err = chl_err_new (INVALID_ARGUMENT_ERROR, "Argument is invalid");
   assert_nonnull (err);

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int
-main ()
+main (void)
 {
   ChlError err = chl_err_new (INVALID_ARGUMENT_ERROR, NULL);
 

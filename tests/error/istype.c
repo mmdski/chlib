@@ -2,7 +2,7 @@
 #include <chl.h>
 
 int
-main ()
+main (void)
 {
   ChlError err;
 

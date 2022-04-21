@@ -1,7 +1,7 @@
 #include <chl.h>
 
 int
-raise_error ()
+raise_error (void)
 {
   chl_err_raise (
       INVALID_ARGUMENT_ERROR, "Invalid argument", __FILE__, __LINE__);

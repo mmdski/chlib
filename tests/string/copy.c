@@ -3,7 +3,7 @@
 #include <string.h>
 
 int
-main ()
+main (void)
 {
   ChlString s      = chl_string_new ("Hello, world!");
   ChlString s_copy = chl_string_copy (s);

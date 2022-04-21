@@ -1,5 +1,5 @@
-#include <chl/chlerror.h>
-#include <chl/chlxs.h>
+#include "error.h"
+#include <chl.h>
 #include <stdlib.h>
 
 #include "memory.h"
@@ -14,21 +14,10 @@ ChlXSRect
 chl_xs_rect_new (real width)
 {
   if (width <= 0)
-    {
-      chl_err_raise (
-          INVALID_ARGUMENT_ERROR, "Invalid width", __FILE__, __LINE__);
-      return NULL;
-    }
+    RAISE_ARG_ERR_NULL;
 
   ChlXSRect xs;
   NEW (xs);
-
-  if (xs == 0)
-    {
-      chl_err_raise (
-          MEMORY_ERROR, "Unable to allocate memory", __FILE__, __LINE__);
-      return NULL;
-    }
 
   xs->width = width;
 
@@ -40,12 +29,55 @@ int
 chl_xs_rect_free (ChlXSRect xs)
 {
   if (xs == NULL)
-    {
-      chl_err_raise (NULL_ARGUMENT_ERROR, "", __FILE__, __LINE__);
-      return -1;
-    }
+    RAISE_NULL_ERR_INT;
 
   FREE (xs);
+
+  return 0;
+}
+
+// returns the area
+int
+chl_xs_rect_area (ChlXSRect xs, real y, real *area)
+{
+  if (xs == NULL)
+    RAISE_NULL_ERR_INT;
+
+  *area = xs->width * y;
+
+  return 0;
+}
+
+// wetted perimeter
+int
+chl_xs_rect_wp (ChlXSRect xs, real y, real *wp)
+{
+  if (xs == NULL)
+    RAISE_NULL_ERR_INT;
+
+  *wp = 2 * y + xs->width;
+
+  return 0;
+}
+
+int
+chl_xs_rect_tw (ChlXSRect xs, real y, real *tw)
+{
+  if (xs == NULL)
+    RAISE_NULL_ERR_INT;
+
+  *tw = xs->width;
+
+  return 0;
+}
+
+int
+chl_xs_rect_hr (ChlXSRect xs, real y, real *hr)
+{
+  if (xs == NULL)
+    RAISE_NULL_ERR_INT;
+
+  *hr = (y * xs->width) / (2 * y + xs->width);
 
   return 0;
 }

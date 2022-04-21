@@ -1,6 +1,5 @@
 #include "memory.h"
-#include <chl/chlerror.h>
-#include <chl/chlstring.h>
+#include <chl.h>
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int
-main ()
+main (void)
 {
 
   assert_negative (chl_xs_rect_free (NULL));

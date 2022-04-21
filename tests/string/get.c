@@ -3,7 +3,7 @@
 #include <string.h>
 
 int
-main ()
+main (void)
 {
   char     *string = "Hello, world!";
   ChlString s      = chl_string_new (string);

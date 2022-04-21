@@ -2,7 +2,7 @@
 #include <chl.h>
 
 int
-main ()
+main (void)
 {
   ChlString a      = chl_string_new ("abcd");
   ChlString b      = chl_string_new ("efgh");

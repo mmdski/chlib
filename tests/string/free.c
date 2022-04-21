@@ -2,7 +2,7 @@
 #include <chl.h>
 
 int
-main ()
+main (void)
 {
   ChlString s = chl_string_new ("Hello, world!");
   assert_zero (chl_string_free (s));

@@ -1,11 +1,12 @@
-#include "file1.h"
 #include <chl.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "file1.c"
+
 void
-check_is_err ()
+check_is_err (void)
 {
   bool     is_error = chl_err_stack_is_err ();
   ChlError err;
@@ -26,7 +27,7 @@ check_is_err ()
 }
 
 int
-main ()
+main (void)
 {
 
   if (raise_error () < 0)

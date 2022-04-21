@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int
-main ()
+main (void)
 {
   real width = 10;
 

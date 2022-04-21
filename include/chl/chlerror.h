@@ -118,12 +118,12 @@ extern int chl_err_raise (ChlErrorType type,
  *
  * @return true or false
  */
-extern bool chl_err_stack_is_err ();
+extern bool chl_err_stack_is_err (void);
 
 /**
  * @brief Clears the error stack
  */
-extern void chl_err_stack_clear ();
+extern void chl_err_stack_clear (void);
 
 /**
  * @brief Pushes a new line on the error stack
@@ -142,7 +142,7 @@ extern int chl_err_stack_push (const char *file, int line);
  *
  * @return error currently on the stack
  */
-extern ChlError chl_err_stack_get_err ();
+extern ChlError chl_err_stack_get_err (void);
 
 /**
  * @brief Checks the error type on the error stack
@@ -157,6 +157,6 @@ bool chl_err_stack_is_type (ChlErrorType type);
  * @brief Print the error stack to @c stderr
  *
  */
-void chl_err_stack_print ();
+void chl_err_stack_print (void);
 
 #endif

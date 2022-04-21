@@ -4,8 +4,8 @@
 #include "rectangle.c"
 #include "test.h"
 
-int
-main ()
+void
+test_rect ()
 {
   ChlXSSubsect rect_ss = new_rect_subsect ();
 
@@ -14,20 +14,20 @@ main ()
   int  n_values = 10;
   real dy       = (max_y - min_y) / n_values;
   real y;
-  real wp;
+  real hr;
   real diff;
 
   for (int i = 0; i < 10; i++)
     {
       y = i * dy;
-      assert_zero (chl_xs_subsect_wp (rect_ss, y, &wp));
-      if (y == 0)
+      assert_zero (chl_xs_subsect_hr (rect_ss, y, &hr));
+      if (y <= 0)
         {
-          assert_equal (wp, 0);
+          assert_true (isnan (hr));
         }
       else
         {
-          diff = wp - rect_wp (y);
+          diff = hr - rect_hr (y);
 #if defined(REAL_IS_FLOAT)
           assert_true (fabsf (diff) < 1e-5);
 #else
@@ -36,7 +36,7 @@ main ()
         }
     }
 
-  assert_negative (chl_xs_subsect_area (NULL, y, &wp));
+  assert_negative (chl_xs_subsect_area (NULL, y, &hr));
   assert_true (chl_err_stack_is_err ());
   assert_true (chl_err_stack_is_type (NULL_ARGUMENT_ERROR));
   chl_err_stack_clear ();
@@ -47,6 +47,11 @@ main ()
   chl_err_stack_clear ();
 
   chl_xs_subsect_free (rect_ss);
+}
 
+int
+main ()
+{
+  test_rect ();
   return EXIT_SUCCESS;
 }

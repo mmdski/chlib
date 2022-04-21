@@ -197,6 +197,7 @@ subsection_properties (ChlXSSubsect ss, real y)
   return xsp;
 }
 
+/* area */
 int
 chl_xs_subsect_area (ChlXSSubsect ss, real y, real *area)
 {
@@ -221,6 +222,7 @@ chl_xs_subsect_area (ChlXSSubsect ss, real y, real *area)
   return 0;
 }
 
+/* wetted perimeter */
 int
 chl_xs_subsect_wp (ChlXSSubsect ss, real y, real *wp)
 {
@@ -240,6 +242,81 @@ chl_xs_subsect_wp (ChlXSSubsect ss, real y, real *wp)
 
   ChlXSProps xsp = subsection_properties (ss, y);
   *wp            = xsp_get (xsp, XS_WETTED_PERIMETER);
+  xsp_free (xsp);
+
+  return 0;
+}
+
+/* top width */
+int
+chl_xs_subsect_tw (ChlXSSubsect ss, real y, real *tw)
+{
+  if (ss == NULL)
+    {
+      chl_err_raise (
+          NULL_ARGUMENT_ERROR, "subsection is NULL", __FILE__, __LINE__);
+      return -1;
+    }
+
+  if (tw == NULL)
+    {
+      chl_err_raise (
+          NULL_ARGUMENT_ERROR, "tw points to NULL", __FILE__, __LINE__);
+      return -1;
+    }
+
+  ChlXSProps xsp = subsection_properties (ss, y);
+  *tw            = xsp_get (xsp, XS_TOP_WIDTH);
+  xsp_free (xsp);
+
+  return 0;
+}
+
+/* hydraulic radius */
+int
+chl_xs_subsect_hr (ChlXSSubsect ss, real y, real *hr)
+{
+  if (ss == NULL)
+    {
+      chl_err_raise (
+          NULL_ARGUMENT_ERROR, "subsection is NULL", __FILE__, __LINE__);
+      return -1;
+    }
+
+  if (hr == NULL)
+    {
+      chl_err_raise (
+          NULL_ARGUMENT_ERROR, "hr points to NULL", __FILE__, __LINE__);
+      return -1;
+    }
+
+  ChlXSProps xsp = subsection_properties (ss, y);
+  *hr            = xsp_get (xsp, XS_HYDRAULIC_RADIUS);
+  xsp_free (xsp);
+
+  return 0;
+}
+
+/* conveyance */
+int
+chl_xs_subsect_conv (ChlXSSubsect ss, real y, real *conv)
+{
+  if (ss == NULL)
+    {
+      chl_err_raise (
+          NULL_ARGUMENT_ERROR, "subsection is NULL", __FILE__, __LINE__);
+      return -1;
+    }
+
+  if (conv == NULL)
+    {
+      chl_err_raise (
+          NULL_ARGUMENT_ERROR, "conv points to NULL", __FILE__, __LINE__);
+      return -1;
+    }
+
+  ChlXSProps xsp = subsection_properties (ss, y);
+  *conv          = xsp_get (xsp, XS_CONVEYANCE);
   xsp_free (xsp);
 
   return 0;

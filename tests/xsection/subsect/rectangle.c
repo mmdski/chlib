@@ -28,3 +28,15 @@ rect_wp (real y)
 {
   return 2 * y + WIDTH;
 }
+
+real
+rect_tw (real y)
+{
+  return WIDTH;
+}
+
+real
+rect_hr (real y)
+{
+  return rect_area (y) / rect_wp (y);
+}

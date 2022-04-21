@@ -152,6 +152,39 @@ extern int chl_xs_subsect_area (ChlXSSubsect ss, real y, real *area);
  * @return 0 if operation was successful
  * @return -1 if operation fails
  */
-int chl_xs_subsect_wp (ChlXSSubsect ss, real y, real *wp);
+extern int chl_xs_subsect_wp (ChlXSSubsect ss, real y, real *wp);
+
+/**
+ * @brief Gets the top width of a subsection
+ *
+ * @param ss a subsection
+ * @param y elevation
+ * @param tw subsection top width
+ * @return 0 if operation was successful
+ * @return -1 if operation fails
+ */
+extern int chl_xs_subsect_tw (ChlXSSubsect ss, real y, real *tw);
+
+/**
+ * @brief Gets the hydraulic radius of the subsection
+ *
+ * @param ss a subsection
+ * @param y elevation
+ * @param hr subsection hydraulic radius
+ * @return 0 if operation was successful
+ * @return -1 if operation fails
+ */
+extern int chl_xs_subsect_hr (ChlXSSubsect ss, real y, real *hr);
+
+/**
+ * @brief Gets the conveyance of the subsection
+ *
+ * @param ss a subsection
+ * @param y elevation
+ * @param conv subsection conveyance
+ * @return 0 if operation was successful
+ * @return -1 if operation fails
+ */
+extern int chl_xs_subsect_conv (ChlXSSubsect ss, real y, real *conv);
 
 #endif

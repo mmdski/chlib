@@ -142,8 +142,19 @@ extern int chl_err_stack_push (const char *file, int line);
  */
 extern ChlError chl_err_stack_get_err ();
 
+/**
+ * @brief Checks the error type on the error stack
+ *
+ * @param type error type
+ * @return true if @p type is the type of error on the stack
+ * @return false if @type is not the type of error on the stack
+ */
 bool chl_err_stack_is_type (ChlErrorType type);
 
+/**
+ * @brief Print the error stack to @c stderr
+ *
+ */
 void chl_err_stack_print ();
 
 #endif

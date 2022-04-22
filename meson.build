@@ -17,17 +17,6 @@ else
     exe_name_suffix = []
 endif
 
-if get_option('gsl_build_examples')
-    gsl_proj = subproject('gsl',
-        default_options : 'build_examples=true',
-        required : true)
-else
-    gsl_proj = subproject('gsl',
-        default_options : 'build_examples=false',
-        required : true)
-endif
-gsl_dep = gsl_proj.get_variable('gsl_dep')
-
 inc = include_directories('include')
 
 subdir('src')

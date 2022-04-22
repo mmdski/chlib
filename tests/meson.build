@@ -16,11 +16,6 @@ if get_option('b_sanitize') == 'address'
 
 endif
 
-# find nodejs if target machine is wasm32
-if target_machine.cpu() == 'wasm32'
-    nodejs = find_program('node', required : true)
-endif
-
 subdir('error')
 subdir('string')
 subdir('xs')

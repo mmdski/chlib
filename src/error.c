@@ -310,11 +310,12 @@ chl_err_stack_print (void)
 }
 
 void
-chl_err_stack_check (void)
+chl_err_stack_check (const char *file, int line)
 {
   if (chl_err_stack_is_err ())
     {
       fprintf (stderr, "Unchecked error\n");
+      fprintf (stderr, "Error stack checked on %s, line %i\n", file, line);
       chl_err_stack_push (__FILE__, __LINE__);
       chl_err_stack_print ();
       exit (EXIT_FAILURE);

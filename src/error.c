@@ -232,13 +232,13 @@ chl_err_raise (ChlErrorType type,
 }
 
 bool
-chl_err_stack_is_err ()
+chl_err_stack_is_err (void)
 {
   return stack.error != NULL;
 }
 
 void
-chl_err_stack_clear ()
+chl_err_stack_clear (void)
 {
 
   if (stack.error == NULL)
@@ -260,7 +260,7 @@ chl_err_stack_clear ()
 }
 
 ChlError
-chl_err_stack_get_err ()
+chl_err_stack_get_err (void)
 {
   return stack.error;
 }
@@ -286,7 +286,7 @@ chl_err_stack_is_type (ChlErrorType type)
 }
 
 void
-chl_err_stack_print ()
+chl_err_stack_print (void)
 {
   if (stack.error == NULL)
     return;
@@ -307,4 +307,16 @@ chl_err_stack_print ()
   chl_string_get (err_string, &string);
   fprintf (stderr, "%s\n", string);
   chl_string_free (err_string);
+}
+
+void
+chl_err_stack_check (void)
+{
+  if (chl_err_stack_is_err ())
+    {
+      fprintf (stderr, "Unchecked error\n");
+      chl_err_stack_push (__FILE__, __LINE__);
+      chl_err_stack_print ();
+      exit (EXIT_FAILURE);
+    }
 }

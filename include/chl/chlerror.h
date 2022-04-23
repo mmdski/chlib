@@ -159,4 +159,13 @@ bool chl_err_stack_is_type (ChlErrorType type);
  */
 void chl_err_stack_print (void);
 
+/**
+ * @brief Checks for an error on stack.
+ *
+ * @details If an error on the stack exists, prints the stack and exits the
+ * program.
+ *
+ */
+void chl_err_stack_check (void);
+
 #endif

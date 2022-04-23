@@ -9,3 +9,11 @@
 #define assert_null(a) assert (a == NULL);
 #define assert_true(a) assert (a == true);
 #define assert_zero(a) assert (a == 0);
+
+// clang-format off
+#ifdef REAL_IS_FLOAT
+#define assert_approx_eq(a, b, eps) assert(fabsf(a - b) < eps)
+#else
+#define assert_approx_eq(a, b, eps) assert(fabs(a - b) < eps)
+#endif
+// clang-format on

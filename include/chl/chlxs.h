@@ -57,9 +57,10 @@ extern void chl_xs_props_free (ChlXSProps xsp);
  *
  * @param xsp a cross section properties object
  * @param prop property to return
- * @return real
+ * @param value pointer to cross section property value
+ * @return int
  */
-extern real chl_xs_props_get (ChlXSProps xsp, ChlXSPropType prop);
+extern int chl_xs_props_get (ChlXSProps xsp, ChlXSPropType prop, real *value);
 
 /**
  * @brief Cross section coordinate array
@@ -193,61 +194,6 @@ extern int chl_xs_subsect_roughness (ChlXSSubsect ss, real *roughness);
  * @return ChlXSProps
  */
 extern ChlXSProps chl_xs_subsect_props (ChlXSSubsect ss, real h);
-
-/**
- * @brief Gets the area of a subsection
- *
- * @param ss a subsection
- * @param h elevation
- * @param area subsection area
- * @return 0 if operation was successful
- * @return -1 if operation fails
- */
-extern int chl_xs_subsect_area (ChlXSSubsect ss, real h, real *area);
-
-/**
- * @brief Gets the wetted perimeter of a subsection
- *
- * @param ss a subsection
- * @param h elevation
- * @param wp subsection wetted perimeter
- * @return 0 if operation was successful
- * @return -1 if operation fails
- */
-extern int chl_xs_subsect_wp (ChlXSSubsect ss, real h, real *wp);
-
-/**
- * @brief Gets the top width of a subsection
- *
- * @param ss a subsection
- * @param h elevation
- * @param tw subsection top width
- * @return 0 if operation was successful
- * @return -1 if operation fails
- */
-extern int chl_xs_subsect_tw (ChlXSSubsect ss, real h, real *tw);
-
-/**
- * @brief Gets the hydraulic radius of the subsection
- *
- * @param ss a subsection
- * @param h elevation
- * @param hr subsection hydraulic radius
- * @return 0 if operation was successful
- * @return -1 if operation fails
- */
-extern int chl_xs_subsect_hr (ChlXSSubsect ss, real h, real *hr);
-
-/**
- * @brief Gets the conveyance of the subsection
- *
- * @param ss a subsection
- * @param h elevation
- * @param conv subsection conveyance
- * @return 0 if operation was successful
- * @return -1 if operation fails
- */
-extern int chl_xs_subsect_conv (ChlXSSubsect ss, real h, real *conv);
 
 /**
  * @brief Compound cross section

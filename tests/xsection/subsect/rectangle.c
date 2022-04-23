@@ -1,15 +1,16 @@
 #include <chl.h>
+#include <math.h>
 
 const real WIDTH = 1;
+
+int  n         = 5;
+real z[]       = { 0, 0, 0.5, 1, 1 };
+real y[]       = { 1, 0, 0, 0, 1 };
+real roughness = 0.035;
 
 ChlXSSubsect
 new_rect_subsect ()
 {
-  int  n         = 5;
-  real z[]       = { 0, 0, 0.5, 1, 1 };
-  real y[]       = { 1, 0, 0, 0, 1 };
-  real roughness = 0.035;
-
   ChlXSArray   a  = chl_xs_array_new (n, y, z);
   ChlXSSubsect ss = chl_xs_subsect_new (a, roughness);
   chl_xs_array_free (a);
@@ -39,4 +40,18 @@ real
 rect_hr (real y)
 {
   return rect_area (y) / rect_wp (y);
+}
+
+real
+rect_k (real y)
+{
+  real area = rect_area (y);
+  real hr   = rect_hr (y);
+  real kc   = chl_const_manning ();
+
+#ifdef REAL_IS_FLOAT
+  return kc / roughness * powf (hr, 2. / 3.) * area;
+#else
+  return kc / roughness * pow (hr, 2. / 3.) * area;
+#endif
 }

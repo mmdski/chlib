@@ -1,4 +1,5 @@
 #include "properties.h"
+#include "error.h"
 #include "memory.h"
 #include <assert.h>
 
@@ -19,16 +20,22 @@ xsp_new (void)
 void
 chl_xs_props_free (ChlXSProps xsp)
 {
-  assert (xsp);
-  chl_free (xsp->properties);
-  FREE (xsp);
+  if (xsp)
+    {
+      chl_free (xsp->properties);
+      FREE (xsp);
+    }
 }
 
-real
-chl_xs_props_get (ChlXSProps xsp, ChlXSPropType prop)
+int
+chl_xs_props_get (ChlXSProps xsp, ChlXSPropType prop, real *value)
 {
-  assert (xsp);
-  return *(xsp->properties + prop);
+  if (!xsp)
+    RAISE_NULL_ERR_INT;
+
+  *value = *(xsp->properties + prop);
+
+  return 0;
 }
 
 void

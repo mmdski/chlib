@@ -11,7 +11,7 @@ main ()
   ChlXSArray a = chl_xs_array_new (n, y, z);
   assert_nonnull (a);
   assert_false (chl_err_stack_is_err ());
-  assert_zero (chl_xs_array_free (a));
+  chl_xs_array_free (a);
 
   ChlXSArray b;
   b = chl_xs_array_new (n, NULL, z);

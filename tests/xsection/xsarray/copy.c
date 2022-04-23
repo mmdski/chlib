@@ -21,8 +21,8 @@ main ()
   assert_true (chl_err_stack_is_type (NULL_ARGUMENT_ERROR));
   chl_err_stack_clear ();
 
-  assert_zero (chl_xs_array_free (a1));
-  assert_zero (chl_xs_array_free (a2));
+  chl_xs_array_free (a1);
+  chl_xs_array_free (a2);
 
   return EXIT_SUCCESS;
 }

@@ -145,15 +145,11 @@ chl_xs_array_copy (ChlXSArray ca)
   return copy;
 }
 
-int
+void
 chl_xs_array_free (ChlXSArray a)
 {
-  if (a == NULL)
-    {
-      chl_err_raise (
-          NULL_ARGUMENT_ERROR, "ChlXSArray is NULL", __FILE__, __LINE__);
-      return -1;
-    };
+  if (!a)
+    return;
 
   int        i;
   Coordinate c;
@@ -166,8 +162,6 @@ chl_xs_array_free (ChlXSArray a)
   chl_free ((void *) a->coordinates);
 
   FREE (a);
-
-  return 0;
 }
 
 bool

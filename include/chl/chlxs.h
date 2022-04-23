@@ -47,10 +47,8 @@ extern ChlXSArray chl_xs_array_copy (ChlXSArray a);
 /**
  * @brief Frees a coordinate array.
  *
- * @return 0 if successful
- * @return -1 otherrwise
  */
-extern int chl_xs_array_free (ChlXSArray a);
+extern void chl_xs_array_free (ChlXSArray a);
 
 /**
  * @brief Determines if arrays are equal
@@ -186,5 +184,7 @@ extern int chl_xs_subsect_hr (ChlXSSubsect ss, real y, real *hr);
  * @return -1 if operation fails
  */
 extern int chl_xs_subsect_conv (ChlXSSubsect ss, real y, real *conv);
+
+typedef struct ChlXSCompound *ChlXSCompound;
 
 #endif

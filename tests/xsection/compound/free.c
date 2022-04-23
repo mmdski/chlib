@@ -17,7 +17,7 @@ main (void)
   ChlXSCompound xs;
 
   /* invalid number of coordinates */
-  xs = chl_xs_comp_new (n, y, z, 1, &roughness, NULL);
+  xs = chl_xs_comp_new (n, y, z, n_roughness, &roughness, NULL);
   assert_nonnull (xs);
   chl_xs_comp_free (xs);
 

@@ -29,9 +29,9 @@ test_rect ()
         {
           diff = hr - rect_hr (y);
 #if defined(REAL_IS_FLOAT)
-          assert_true (fabsf (diff) < 1e-5);
+          assert_true ((fabsf (diff) < 1e-5));
 #else
-          assert_true (fabs (diff) < 1e-5);
+          assert_true ((fabs (diff) < 1e-5));
 #endif
         }
     }

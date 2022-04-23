@@ -240,11 +240,12 @@ chl_err_stack_is_err ()
 void
 chl_err_stack_clear ()
 {
-  if (stack.error != NULL)
-    {
-      chl_err_free (stack.error);
-      stack.error = NULL;
-    }
+
+  if (stack.error == NULL)
+    return;
+
+  chl_err_free (stack.error);
+  stack.error = NULL;
 
   ChlErrorStackNode *node      = stack.node;
   ChlErrorStackNode *next_node = node->next;

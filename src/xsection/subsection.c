@@ -1,12 +1,13 @@
+#include <assert.h>
+#include <chl.h>
+#include <math.h>
+#include <stddef.h>
+
 #include "array.h"
 #include "coordinate.h"
 #include "list.h"
 #include "memory.h"
 #include "properties.h"
-#include <assert.h>
-#include <chl.h>
-#include <math.h>
-#include <stddef.h>
 
 /* subsection interface */
 struct ChlXSSubsect
@@ -81,7 +82,7 @@ chl_xs_subsect_roughness (ChlXSSubsect ss, real *roughness)
 /* Calculates hydraulic properties for the subsection.
  * Returns a new ChlXSProps.
  */
-static ChlXSProps
+ChlXSProps
 subsection_properties (ChlXSSubsect ss, real y)
 {
   assert (ss);

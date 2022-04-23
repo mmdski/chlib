@@ -185,6 +185,40 @@ extern int chl_xs_subsect_hr (ChlXSSubsect ss, real y, real *hr);
  */
 extern int chl_xs_subsect_conv (ChlXSSubsect ss, real y, real *conv);
 
+/**
+ * @brief Compound cross section
+ *
+ */
 typedef struct ChlXSCompound *ChlXSCompound;
+
+/**
+ * @brief Creates a new compound cross section
+ *
+ * @details Creates a new compound cross section from station, elevation
+ * coordinates, roughness values, and subsection stations. The number of
+ * subsection stations is equal to one less than the number of roughness values
+ * provided.
+ *
+ * @param n_coords number of coordinates in @p station and @p elevation
+ * @param station station values of coordinates
+ * @param elevation elevation values of coordinates
+ * @param n_roughness number of values in @p roughness
+ * @param roughness n-values for each subsection
+ * @param sub_station break points for subsections
+ * @return ChlXSCompound
+ */
+extern ChlXSCompound chl_xs_comp_new (int   n_coords,
+                                      real *station,
+                                      real *elevation,
+                                      int   n_roughness,
+                                      real *roughness,
+                                      real *sub_station);
+
+/**
+ * @brief Frees a compound cross section
+ *
+ * @param xs a compound cross section
+ */
+extern void chl_xs_comp_free (ChlXSCompound xs);
 
 #endif

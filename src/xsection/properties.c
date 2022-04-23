@@ -17,7 +17,7 @@ xsp_new (void)
 }
 
 void
-xsp_free (ChlXSProps xsp)
+chl_xs_props_free (ChlXSProps xsp)
 {
   assert (xsp);
   chl_free (xsp->properties);
@@ -25,14 +25,14 @@ xsp_free (ChlXSProps xsp)
 }
 
 real
-xsp_get (ChlXSProps xsp, xs_prop prop)
+chl_xs_props_get (ChlXSProps xsp, ChlXSPropType prop)
 {
   assert (xsp);
   return *(xsp->properties + prop);
 }
 
 void
-xsp_set (ChlXSProps xsp, xs_prop prop, real value)
+xsp_set (ChlXSProps xsp, ChlXSPropType prop, real value)
 {
   assert (xsp);
   *(xsp->properties + prop) = value;

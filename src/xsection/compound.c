@@ -56,17 +56,17 @@ calc_hydraulic_properties (ChlXSCompound xs, real h)
       ss = *(xs->ss + i);
 
       xsp_ss  = subsection_properties (ss, h);
-      area_ss = xsp_get (xsp_ss, XS_AREA);
-      k_ss    = xsp_get (xsp_ss, XS_CONVEYANCE);
-      top_width += xsp_get (xsp_ss, XS_TOP_WIDTH);
-      w_perimeter += xsp_get (xsp_ss, XS_WETTED_PERIMETER);
+      area_ss = chl_xs_props_get (xsp_ss, XS_AREA);
+      k_ss    = chl_xs_props_get (xsp_ss, XS_CONVEYANCE);
+      top_width += chl_xs_props_get (xsp_ss, XS_TOP_WIDTH);
+      w_perimeter += chl_xs_props_get (xsp_ss, XS_WETTED_PERIMETER);
 
       if (area_ss > 0)
         {
           sum += (k_ss * k_ss * k_ss) / (area_ss * area_ss);
         }
 
-      xsp_free (xsp_ss);
+      chl_xs_props_free (xsp_ss);
 
       area += area_ss;
       conveyance += k_ss;

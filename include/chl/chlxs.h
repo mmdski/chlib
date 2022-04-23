@@ -13,6 +13,55 @@
 #include <chl/chlmath.h>
 
 /**
+ * @brief Hydraulic properties of a cross section
+ *
+ */
+typedef enum
+{
+  /** Depth associated with the properties */
+  XS_DEPTH,
+  /** Wetted area */
+  XS_AREA,
+  /** Top width */
+  XS_TOP_WIDTH,
+  /** Wetted perimeter */
+  XS_WETTED_PERIMETER,
+  /** Hydraulic depth */
+  XS_HYDRAULIC_DEPTH,
+  /** Hydraulic radius */
+  XS_HYDRAULIC_RADIUS,
+  /** Conveyance */
+  XS_CONVEYANCE,
+  /** Velocity coefficient (alpha) */
+  XS_VELOCITY_COEFF,
+  /** Critical flow */
+  XS_CRITICAL_FLOW,
+  N_XSP
+} ChlXSPropType;
+
+/**
+ * @brief Data type for hydraulic properties of a cross section
+ *
+ */
+typedef struct ChlXSProps *ChlXSProps;
+
+/**
+ * @brief Frees a cross section properties object
+ *
+ * @param xsp
+ */
+extern void chl_xs_props_free (ChlXSProps xsp);
+
+/**
+ * @brief Returns cross section property values
+ *
+ * @param xsp a cross section properties object
+ * @param prop property to return
+ * @return real
+ */
+extern real chl_xs_props_get (ChlXSProps xsp, ChlXSPropType prop);
+
+/**
  * @brief Cross section coordinate array
  *
  */

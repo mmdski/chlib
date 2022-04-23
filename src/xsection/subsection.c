@@ -217,8 +217,8 @@ chl_xs_subsect_area (ChlXSSubsect ss, real y, real *area)
     }
 
   ChlXSProps xsp = subsection_properties (ss, y);
-  *area          = xsp_get (xsp, XS_AREA);
-  xsp_free (xsp);
+  *area          = chl_xs_props_get (xsp, XS_AREA);
+  chl_xs_props_free (xsp);
 
   return 0;
 }
@@ -242,8 +242,8 @@ chl_xs_subsect_wp (ChlXSSubsect ss, real y, real *wp)
     }
 
   ChlXSProps xsp = subsection_properties (ss, y);
-  *wp            = xsp_get (xsp, XS_WETTED_PERIMETER);
-  xsp_free (xsp);
+  *wp            = chl_xs_props_get (xsp, XS_WETTED_PERIMETER);
+  chl_xs_props_free (xsp);
 
   return 0;
 }
@@ -267,8 +267,8 @@ chl_xs_subsect_tw (ChlXSSubsect ss, real y, real *tw)
     }
 
   ChlXSProps xsp = subsection_properties (ss, y);
-  *tw            = xsp_get (xsp, XS_TOP_WIDTH);
-  xsp_free (xsp);
+  *tw            = chl_xs_props_get (xsp, XS_TOP_WIDTH);
+  chl_xs_props_free (xsp);
 
   return 0;
 }
@@ -292,8 +292,8 @@ chl_xs_subsect_hr (ChlXSSubsect ss, real y, real *hr)
     }
 
   ChlXSProps xsp = subsection_properties (ss, y);
-  *hr            = xsp_get (xsp, XS_HYDRAULIC_RADIUS);
-  xsp_free (xsp);
+  *hr            = chl_xs_props_get (xsp, XS_HYDRAULIC_RADIUS);
+  chl_xs_props_free (xsp);
 
   return 0;
 }
@@ -317,8 +317,8 @@ chl_xs_subsect_conv (ChlXSSubsect ss, real y, real *conv)
     }
 
   ChlXSProps xsp = subsection_properties (ss, y);
-  *conv          = xsp_get (xsp, XS_CONVEYANCE);
-  xsp_free (xsp);
+  *conv          = chl_xs_props_get (xsp, XS_CONVEYANCE);
+  chl_xs_props_free (xsp);
 
   return 0;
 }

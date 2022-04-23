@@ -70,17 +70,17 @@ typedef struct ChlXSArray *ChlXSArray;
 /**
  * @brief Creates a new array
  *
- * @details Creates a new coordinate array with length @p n and y- and z-values
- * of @p y and @p z. The resulting coordinate array is newly allocated and must
- * be freed with chl_xs_array_free().
+ * @details Creates a new coordinate array with length @p n and station and
+ * elevation values of @p station and @p elevation. The resulting coordinate
+ * array is newly allocated and must be freed with chl_xs_array_free().
  *
- * @param n the length of @p y and @p z
- * @param y pointer to an array of @p n y-values
- * @param z pointer to an array of @p n z-values
+ * @param n the length of @p h and @p z
+ * @param elevation pointer to an array of @p n station values
+ * @param station pointer to an array of @p n elevation values
  * @return a new array
  * @return @c NULL if creation fails
  */
-extern ChlXSArray chl_xs_array_new (int n, real *y, real *z);
+extern ChlXSArray chl_xs_array_new (int n, real *elevation, real *station);
 
 /**
  * @brief Returns a new copy of an array
@@ -180,59 +180,74 @@ extern int chl_xs_subsect_free (ChlXSSubsect ss);
 extern int chl_xs_subsect_roughness (ChlXSSubsect ss, real *roughness);
 
 /**
+ * @brief Returns the hydraulic properties of a subsection
+ *
+ * @details The returned cross section properties object is newly created and
+ * must be freed with chl_xs_props_free().
+ *
+ * Area, top width, wetted perimeter, hydraulic radius, and conveyance are
+ * returned.
+ *
+ * @param ss a subsection
+ * @param h elevation
+ * @return ChlXSProps
+ */
+extern ChlXSProps chl_xs_subsect_props (ChlXSSubsect ss, real h);
+
+/**
  * @brief Gets the area of a subsection
  *
  * @param ss a subsection
- * @param y elevation
+ * @param h elevation
  * @param area subsection area
  * @return 0 if operation was successful
  * @return -1 if operation fails
  */
-extern int chl_xs_subsect_area (ChlXSSubsect ss, real y, real *area);
+extern int chl_xs_subsect_area (ChlXSSubsect ss, real h, real *area);
 
 /**
  * @brief Gets the wetted perimeter of a subsection
  *
  * @param ss a subsection
- * @param y elevation
+ * @param h elevation
  * @param wp subsection wetted perimeter
  * @return 0 if operation was successful
  * @return -1 if operation fails
  */
-extern int chl_xs_subsect_wp (ChlXSSubsect ss, real y, real *wp);
+extern int chl_xs_subsect_wp (ChlXSSubsect ss, real h, real *wp);
 
 /**
  * @brief Gets the top width of a subsection
  *
  * @param ss a subsection
- * @param y elevation
+ * @param h elevation
  * @param tw subsection top width
  * @return 0 if operation was successful
  * @return -1 if operation fails
  */
-extern int chl_xs_subsect_tw (ChlXSSubsect ss, real y, real *tw);
+extern int chl_xs_subsect_tw (ChlXSSubsect ss, real h, real *tw);
 
 /**
  * @brief Gets the hydraulic radius of the subsection
  *
  * @param ss a subsection
- * @param y elevation
+ * @param h elevation
  * @param hr subsection hydraulic radius
  * @return 0 if operation was successful
  * @return -1 if operation fails
  */
-extern int chl_xs_subsect_hr (ChlXSSubsect ss, real y, real *hr);
+extern int chl_xs_subsect_hr (ChlXSSubsect ss, real h, real *hr);
 
 /**
  * @brief Gets the conveyance of the subsection
  *
  * @param ss a subsection
- * @param y elevation
+ * @param h elevation
  * @param conv subsection conveyance
  * @return 0 if operation was successful
  * @return -1 if operation fails
  */
-extern int chl_xs_subsect_conv (ChlXSSubsect ss, real y, real *conv);
+extern int chl_xs_subsect_conv (ChlXSSubsect ss, real h, real *conv);
 
 /**
  * @brief Compound cross section
@@ -249,16 +264,16 @@ typedef struct ChlXSCompound *ChlXSCompound;
  * provided.
  *
  * @param n_coords number of coordinates in @p station and @p elevation
- * @param station station values of coordinates
  * @param elevation elevation values of coordinates
+ * @param station station values of coordinates
  * @param n_roughness number of values in @p roughness
  * @param roughness n-values for each subsection
  * @param sub_station break points for subsections
  * @return ChlXSCompound
  */
 extern ChlXSCompound chl_xs_comp_new (int   n_coords,
-                                      real *station,
                                       real *elevation,
+                                      real *station,
                                       int   n_roughness,
                                       real *roughness,
                                       real *sub_station);

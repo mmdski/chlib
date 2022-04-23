@@ -7,7 +7,6 @@
 #include "error.h"
 #include "memory.h"
 #include "properties.h"
-#include "subsection.h"
 
 /*
  * cross section interface
@@ -55,7 +54,7 @@ calc_hydraulic_properties (ChlXSCompound xs, real h)
        * subsection */
       ss = *(xs->ss + i);
 
-      xsp_ss  = subsection_properties (ss, h);
+      xsp_ss  = chl_xs_subsect_props (ss, h);
       area_ss = chl_xs_props_get (xsp_ss, XS_AREA);
       k_ss    = chl_xs_props_get (xsp_ss, XS_CONVEYANCE);
       top_width += chl_xs_props_get (xsp_ss, XS_TOP_WIDTH);

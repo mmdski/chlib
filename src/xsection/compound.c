@@ -20,7 +20,7 @@ struct ChlXSCompound
 };
 
 ChlXSProps
-calc_hydraulic_properties (ChlXSCompound xs, real h)
+chl_xs_comp_props (ChlXSCompound xs, real h)
 {
 
   if (xs == NULL)
@@ -31,17 +31,21 @@ calc_hydraulic_properties (ChlXSCompound xs, real h)
 
   real g = chl_const_gravity ();
 
-  real area        = 0; /* area */
-  real area_ss     = 0; /* subsection area */
-  real top_width   = 0; /* top width */
+  real area        = 0; /* xs area */
+  real top_width   = 0; /* xs top width */
   real w_perimeter = 0; /* wetted perimeter */
+  real conveyance  = 0; /* conveyance */
+  real sum         = 0; /* sum for velocity coefficient */
   real h_depth;         /* hydraulic depth */
   real h_radius;        /* hydraulic radius */
-  real conveyance = 0;  /* conveyance */
-  real k_ss       = 0;  /* subsection conveyance */
-  real sum        = 0;  /* sum for velocity coefficient */
-  real alpha;           /* velocity coefficient */
-  real crit_flow;       /* critical flow */
+
+  real area_ss; /* subsection area */
+  real tw_ss;   /* subsection top width */
+  real wp_ss;   /* subsection wetted perimeter */
+  real k_ss;    /* subsection conveyance */
+
+  real alpha;     /* velocity coefficient */
+  real crit_flow; /* critical flow */
 
   ChlXSProps   xsp = xsp_new ();
   ChlXSProps   xsp_ss;
@@ -54,11 +58,38 @@ calc_hydraulic_properties (ChlXSCompound xs, real h)
        * subsection */
       ss = *(xs->ss + i);
 
-      xsp_ss  = chl_xs_subsect_props (ss, h);
-      area_ss = chl_xs_props_get (xsp_ss, XS_AREA);
-      k_ss    = chl_xs_props_get (xsp_ss, XS_CONVEYANCE);
-      top_width += chl_xs_props_get (xsp_ss, XS_TOP_WIDTH);
-      w_perimeter += chl_xs_props_get (xsp_ss, XS_WETTED_PERIMETER);
+      xsp_ss = chl_xs_subsect_props (ss, h);
+
+      /* get the subsection area */
+      if (chl_xs_props_get (xsp_ss, XS_AREA, &area_ss) < 0)
+        {
+          chl_err_stack_push (__FILE__, __LINE__);
+          goto fail;
+        }
+
+      /* get the subsection conveyance */
+      if (chl_xs_props_get (xsp_ss, XS_CONVEYANCE, &k_ss) < 0)
+        {
+          chl_err_stack_push (__FILE__, __LINE__);
+          goto fail;
+        }
+
+      /* get the subsection top width and add it to the total top width */
+      if (chl_xs_props_get (xsp_ss, XS_TOP_WIDTH, &tw_ss))
+        {
+          chl_err_stack_push (__FILE__, __LINE__);
+          goto fail;
+        }
+      top_width += tw_ss;
+
+      /* get the subsection wetted perimeter and add it to the total wetted
+       * perimeter */
+      if (chl_xs_props_get (xsp_ss, XS_WETTED_PERIMETER, &wp_ss))
+        {
+          chl_err_stack_push (__FILE__, __LINE__);
+          goto fail;
+        }
+      w_perimeter += wp_ss;
 
       if (area_ss > 0)
         {
@@ -89,6 +120,11 @@ calc_hydraulic_properties (ChlXSCompound xs, real h)
   xsp_set (xsp, XS_CRITICAL_FLOW, crit_flow);
 
   return xsp;
+
+fail:
+  chl_xs_props_free (xsp);
+  chl_xs_props_free (xsp_ss);
+  return NULL;
 }
 
 ChlXSCompound

@@ -231,4 +231,16 @@ extern ChlXSCompound chl_xs_comp_new (int   n_coords,
  */
 extern void chl_xs_comp_free (ChlXSCompound xs);
 
+/**
+ * @brief Returns the hydraulic properies of a compound cross section
+ *
+ * @details The returned cross section properties object is newly created and
+ * must be freed with chl_xs_props_free().
+ *
+ * @param xs a compound cross section
+ * @param h elevation
+ * @return ChlXSProps
+ */
+extern ChlXSProps chl_xs_comp_props (ChlXSCompound xs, real h);
+
 #endif

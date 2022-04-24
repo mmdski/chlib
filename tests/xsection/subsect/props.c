@@ -80,7 +80,7 @@ test_rect (void)
 }
 
 int
-main ()
+main (void)
 {
   test_rect ();
 

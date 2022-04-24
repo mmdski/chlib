@@ -9,7 +9,7 @@
 #define WIDTH 1
 
 ChlXSCompound
-new_rect_xs ()
+new_rect_xs (void)
 {
   int  n         = 5;
   real z[]       = { 0, 0, 0.5, 1, 1 };

@@ -11,7 +11,7 @@
 #define FP_WIDTH 0.67
 
 ChlXSCompound
-new_comprect_xs ()
+new_comprect_xs (void)
 {
   int  n             = 8;
   real z[]           = { 0, 0, 0.33, 0.33, 0.66, 0.66, 1, 1 };

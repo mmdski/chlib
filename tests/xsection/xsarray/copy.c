@@ -2,7 +2,7 @@
 #include <chl.h>
 
 int
-main ()
+main (void)
 {
   int  n1   = 4;
   real y1[] = { 1, 0, 0, 1 };

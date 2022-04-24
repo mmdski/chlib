@@ -14,8 +14,18 @@ test_copy = executable('test_copy',
     'copy.c',
     include_directories : [inc, test_inc],
     link_with : [chlib])
+test_vals = executable('test_vals',
+    'vals.c',
+    include_directories : [inc, test_inc],
+    link_with : [chlib])
+test_subarray = executable('test_subarray',
+    'subarray.c',
+    include_directories : [inc, test_inc],
+    link_with : [chlib])
 
 test('chl/xs/array/new', test_new, env: test_env, suite: 'xs')
 test('chl/xs/array/free', test_free, env: test_env, suite: 'xs')
 test('chl/xs/array/eq', test_eq, env: test_env, suite: 'xs')
 test('chl/xs/array/copy', test_copy, env: test_env, suite: 'xs')
+test('chl/xs/array/subarray', test_subarray, env: test_env, suite: 'xs')
+test('chl/xs/array/vals', test_vals, env: test_env, suite: 'xs')

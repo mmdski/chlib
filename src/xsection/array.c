@@ -4,6 +4,7 @@
 #include <stddef.h>
 
 #include "coordinate.h"
+#include "error.h"
 #include "list.h"
 #include "memory.h"
 
@@ -232,6 +233,27 @@ chl_xs_array_get (ChlXSArray a, int i)
     return NULL;
 }
 
+int
+chl_xs_array_vals (ChlXSArray a, real *elevation, real *station)
+{
+  if (a == NULL)
+    RAISE_NULL_ERR_INT;
+
+  int len = a->length;
+
+  Coordinate c;
+
+  for (int i = 0; i < len; i++)
+    {
+      c                = chl_xs_array_get (a, i);
+      *(elevation + i) = c->z;
+      *(station + i)   = c->y;
+      coord_free (c);
+    }
+
+  return len;
+}
+
 /* find the index of the coordinate with the greatest z value that's less than
  * or equal to zlo */
 static int
@@ -265,6 +287,11 @@ find_zhi_idx (ChlXSArray a, int n, int lo, int hi, real zhi)
         {
           hi++;
         }
+      // while (hi < n && a->coordinates[hi + 1]->z == a->coordinates[hi]->z &&
+      //        a->coordinates[hi + 1]->y >= a->coordinates[hi]->y)
+      //   {
+      //     hi++;
+      //   }
       return a->coordinates[hi]->z >= zhi ? hi : -1;
     }
 
@@ -356,13 +383,71 @@ chl_xs_array_subarray_y (ChlXSArray a, real y)
   return sa;
 }
 
+static int
+find_high_elev (ChlXSArray a, int i)
+{
+  int len = a->length;
+  if (i == 0)
+    {
+      if (a->coordinates[i + 1]->y > a->coordinates[i]->y &&
+          a->coordinates[i + 1]->z == a->coordinates[i]->z)
+        return find_high_elev (a, i + 1);
+      else
+        return i;
+    }
+  else if (i == (len - 1))
+    {
+      if (a->coordinates[i - 1]->y > a->coordinates[i]->y &&
+          a->coordinates[i - 1]->z == a->coordinates[i]->z)
+        return find_high_elev (a, i - 1);
+      else
+        return i;
+    }
+  else
+    {
+      if (a->coordinates[i + 1]->y > a->coordinates[i]->y &&
+          a->coordinates[i + 1]->z == a->coordinates[i]->z)
+        return find_high_elev (a, i + 1);
+      else if (a->coordinates[i - 1]->y > a->coordinates[i]->y &&
+               a->coordinates[i - 1]->z == a->coordinates[i]->z)
+        return find_high_elev (a, i - 1);
+      else
+        return i;
+    }
+}
+
 ChlXSArray
 chl_xs_array_subarray (ChlXSArray a, real zlo, real zhi)
 {
-  assert (a);
-  assert (zhi > zlo);
-  assert (a->coordinates[0]->z <= zlo);
-  assert (zhi <= a->coordinates[a->length - 1]->z);
+  if (!a)
+    RAISE_NULL_ERR_NULL;
+
+  if (zhi <= zlo)
+    {
+      chl_err_raise (INVALID_ARGUMENT_ERROR,
+                     "sta_hi must be > sta_lo",
+                     __FILE__,
+                     __LINE__);
+      return NULL;
+    }
+
+  if (a->coordinates[0]->z > zlo)
+    {
+      chl_err_raise (INVALID_ARGUMENT_ERROR,
+                     "sta_lo must be greater than or equal to first station",
+                     __FILE__,
+                     __LINE__);
+      return NULL;
+    }
+
+  if (zhi > a->coordinates[a->length - 1]->z)
+    {
+      chl_err_raise (INVALID_ARGUMENT_ERROR,
+                     "sta_hi must be less than or equal to last station",
+                     __FILE__,
+                     __LINE__);
+      return NULL;
+    }
 
   real        eps = 1e-10;
   ChlXSArray  sa;
@@ -372,13 +457,15 @@ chl_xs_array_subarray (ChlXSArray a, real zlo, real zhi)
 
   /* loop variables */
   int i  = find_zlo_idx (a, 0, a->length, zlo);
+  i      = find_high_elev (a, i);
   int j  = 0;
   int hi = find_zhi_idx (a, a->length, 0, a->length, zhi);
+  hi     = find_high_elev (a, hi);
 
   c0 = a->coordinates[i];
   c1 = a->coordinates[i + 1];
 
-  if (fabs (c1->z - c0->z) <= eps)
+  if (chl_abs (c1->z - c0->z) <= eps)
     array[j++] = coord_copy (c0);
   else
     array[j++] = coord_interp_y (c0, c1, zlo);
@@ -390,7 +477,7 @@ chl_xs_array_subarray (ChlXSArray a, real zlo, real zhi)
 
   c0 = a->coordinates[i - 1];
   c1 = a->coordinates[i];
-  if (fabs (c1->z - c0->z) <= eps)
+  if (chl_abs (c1->z - c0->z) <= eps)
     array[j++] = coord_copy (c1);
   else
     array[j++] = coord_interp_y (c0, c1, zhi);

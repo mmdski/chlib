@@ -111,12 +111,41 @@ extern void chl_xs_array_free (ChlXSArray a);
 extern bool chl_xs_array_eq (ChlXSArray a1, ChlXSArray a2);
 
 /**
+ * @brief Gets the station and elevation values of an array
+ *
+ * @details @p elevation and @p station must be allocated before calling this
+ * function and freed when no longer in use.
+ *
+ * @param a an array
+ * @param elevation elevation values
+ * @param station station values
+ * @return int length of array
+ */
+extern int chl_xs_array_vals (ChlXSArray a, real *elevation, real *station);
+
+/**
  * @brief Returns the length of an array.
  *
  * @param a an array
  * @return int the length of @p a
  */
 extern int chl_xs_array_length (ChlXSArray a);
+
+/**
+ * @brief Returns a subset of the coordinate in an array
+ *
+ * @details The subset is selected so that the z-values of the coordinate are
+ * between @p sta_lo and @p sta_hi. @p sta_lo and @p sta_hi must be within the
+ * range of the station values of @p a. The resulting coordinate array is newly
+ * crated and must be freed with chl_xs_array_free().
+ *
+ * @param a a cross section array
+ * @param sta_lo low station
+ * @param sta_hi hi station
+ * @return ChlXSArray
+ */
+extern ChlXSArray
+chl_xs_array_subarray (ChlXSArray a, real sta_lo, real sta_hi);
 
 /**
  * Rectangular cross section.

@@ -183,8 +183,12 @@ chl_xs_subsect_props (ChlXSSubsect ss, real y)
     }
 
   hydraulic_radius = area / perimeter;
-  conveyance =
-      chl_const_manning () / ss->n * area * pow (hydraulic_radius, 2.0 / 3.0);
+
+  if (area > 0)
+    conveyance =
+        chl_const_manning () / ss->n * area * pow (hydraulic_radius, 2.0 / 3.0);
+  else
+    conveyance = 0;
 
   xsp_set (xsp, XS_AREA, area);
   xsp_set (xsp, XS_TOP_WIDTH, top_width);

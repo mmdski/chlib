@@ -7,7 +7,7 @@ test_free = executable('test_free',
     include_directories : [inc, test_inc],
     link_with : [chlib])
 test_props = executable('test_props',
-    'props.c',
+    ['props.c', 'rectangle.c', 'comprect.c'],
     include_directories : [inc, test_inc],
     link_with : [chlib])
 

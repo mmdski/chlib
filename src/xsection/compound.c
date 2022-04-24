@@ -173,7 +173,7 @@ chl_xs_comp_new (int   n_coords,
   xs->ca            = ca;
 
   /* initialize z splits
-   * include first and last z-values of the CoArray
+   * include first and last z-values of the array
    */
   real *z_splits = chl_calloc (n_roughness + 1, sizeof (real));
 

@@ -48,7 +48,7 @@ subdir('chlutil')
 subdir('chl1d')
 
 chlib = static_library('chlib',
-    link_whole : [chlutil])
+    link_whole : [chlutil, chl1d])
 
 if get_option('build_app')
     subdir('app')

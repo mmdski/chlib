@@ -20,6 +20,26 @@ else
     exe_name_suffix = []
 endif
 
+if get_option('build_tests')
+
+    # test environment
+    test_env = environment()
+    test_inc = include_directories('tests')
+
+    # run memory tests if ASAN is enabled
+    if get_option('b_sanitize') == 'address'
+        test_env.set('ASAN_OPTIONS', 'detect_leaks=1')
+
+        # add leak suppression if on macOS
+        if build_machine.system() == 'darwin'
+            lsan_supp = meson.current_source_dir() + '/lsan.supp'
+            test_env.set('LSAN_OPTIONS', 'suppressions=' + lsan_supp)
+        endif
+    endif
+
+    subdir('tests')
+endif
+
 chl_inc = include_directories('include')
 
 util_inc = include_directories('chlutil')
@@ -30,8 +50,4 @@ chlib = static_library('chlib',
 
 if get_option('build_app')
     subdir('app')
-endif
-
-if get_option('build_tests')
-    subdir('tests')
 endif

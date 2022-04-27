@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-#include <chl/chl1dcompxs.h>
+#include <chl/chl1d.h>
 #include <chl/chlconstants.h>
 #include <chl/chlerror.h>
 
@@ -15,7 +15,7 @@
 /*
  * cross section interface
  */
-struct ChlXSCompound
+struct Chl1DCompXS
 {
   int           n_coordinates; /* number of coordinates */
   int           n_subsections; /* number of subsections */
@@ -23,8 +23,8 @@ struct ChlXSCompound
   ChlXSSubsect *ss;            /* array of subsections */
 };
 
-ChlXSProps
-chl_xs_comp_props (ChlXSCompound xs, real h)
+Chl1DXSProps
+chl_1d_compxs_props (Chl1DCompXS xs, real h)
 {
 
   if (xs == NULL)
@@ -51,8 +51,8 @@ chl_xs_comp_props (ChlXSCompound xs, real h)
   real alpha;     /* velocity coefficient */
   real crit_flow; /* critical flow */
 
-  ChlXSProps   xsp = xsp_new ();
-  ChlXSProps   xsp_ss;
+  Chl1DXSProps xsp = xsp_new ();
+  Chl1DXSProps xsp_ss;
   ChlXSSubsect ss;
 
   for (i = 0; i < n_subsections; i++)
@@ -65,21 +65,21 @@ chl_xs_comp_props (ChlXSCompound xs, real h)
       xsp_ss = chl_xs_subsect_props (ss, h);
 
       /* get the subsection area */
-      if (chl_xs_props_get (xsp_ss, XS_AREA, &area_ss) < 0)
+      if (chl_1d_xs_props_get (xsp_ss, XS_AREA, &area_ss) < 0)
         {
           chl_err_stack_push (__FILE__, __LINE__);
           goto fail;
         }
 
       /* get the subsection conveyance */
-      if (chl_xs_props_get (xsp_ss, XS_CONVEYANCE, &k_ss) < 0)
+      if (chl_1d_xs_props_get (xsp_ss, XS_CONVEYANCE, &k_ss) < 0)
         {
           chl_err_stack_push (__FILE__, __LINE__);
           goto fail;
         }
 
       /* get the subsection top width and add it to the total top width */
-      if (chl_xs_props_get (xsp_ss, XS_TOP_WIDTH, &tw_ss))
+      if (chl_1d_xs_props_get (xsp_ss, XS_TOP_WIDTH, &tw_ss))
         {
           chl_err_stack_push (__FILE__, __LINE__);
           goto fail;
@@ -88,7 +88,7 @@ chl_xs_comp_props (ChlXSCompound xs, real h)
 
       /* get the subsection wetted perimeter and add it to the total wetted
        * perimeter */
-      if (chl_xs_props_get (xsp_ss, XS_WETTED_PERIMETER, &wp_ss))
+      if (chl_1d_xs_props_get (xsp_ss, XS_WETTED_PERIMETER, &wp_ss))
         {
           chl_err_stack_push (__FILE__, __LINE__);
           goto fail;
@@ -100,7 +100,7 @@ chl_xs_comp_props (ChlXSCompound xs, real h)
           sum += (k_ss * k_ss * k_ss) / (area_ss * area_ss);
         }
 
-      chl_xs_props_free (xsp_ss);
+      chl_1d_xs_props_free (xsp_ss);
 
       area += area_ss;
       conveyance += k_ss;
@@ -126,18 +126,18 @@ chl_xs_comp_props (ChlXSCompound xs, real h)
   return xsp;
 
 fail:
-  chl_xs_props_free (xsp);
-  chl_xs_props_free (xsp_ss);
+  chl_1d_xs_props_free (xsp);
+  chl_1d_xs_props_free (xsp_ss);
   return NULL;
 }
 
-ChlXSCompound
-chl_xs_comp_new (int   n_coords,
-                 real *y,
-                 real *z,
-                 int   n_roughness,
-                 real *roughness,
-                 real *z_roughness)
+Chl1DCompXS
+chl_1d_compxs_new (int   n_coords,
+                   real *y,
+                   real *z,
+                   int   n_roughness,
+                   real *roughness,
+                   real *z_roughness)
 {
   if (n_coords < 2)
     RAISE_ARG_ERR_NULL;
@@ -169,7 +169,7 @@ chl_xs_comp_new (int   n_coords,
   Coordinate c;
 
   /* cross section to return */
-  ChlXSCompound xs;
+  Chl1DCompXS xs;
   NEW (xs);
   xs->n_coordinates = chl_xs_array_length (ca);
   xs->n_subsections = n_roughness;
@@ -209,7 +209,7 @@ chl_xs_comp_new (int   n_coords,
 }
 
 void
-chl_xs_comp_free (ChlXSCompound xs)
+chl_1d_compxs_free (Chl1DCompXS xs)
 {
   if (!xs)
     return;

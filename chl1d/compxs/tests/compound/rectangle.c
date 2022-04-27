@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-#include <chl/chl1dcompxs.h>
+#include <chl/chl1d.h>
 #include <chl/chlconstants.h>
 #include <chl/chlmath.h>
 
@@ -11,7 +11,7 @@
 
 #define WIDTH 1
 
-ChlXSCompound
+Chl1DCompXS
 new_rect_xs (void)
 {
   int  n         = 5;
@@ -19,7 +19,7 @@ new_rect_xs (void)
   real y[]       = { 1, 0, 0, 0, 1 };
   real roughness = 0.035;
 
-  ChlXSCompound xs = chl_xs_comp_new (n, y, z, 1, &roughness, NULL);
+  Chl1DCompXS xs = chl_1d_compxs_new (n, y, z, 1, &roughness, NULL);
 
   return xs;
 }
@@ -73,8 +73,8 @@ rect_k (real y)
 void
 test_rect (void)
 {
-  ChlXSCompound xs = new_rect_xs ();
-  ChlXSProps    xsp;
+  Chl1DCompXS  xs = new_rect_xs ();
+  Chl1DXSProps xsp;
 
   real min_h    = 0;
   real max_h    = 1;
@@ -93,19 +93,19 @@ test_rect (void)
     {
       h = i * dh;
 
-      xsp = chl_xs_comp_props (xs, h);
+      xsp = chl_1d_compxs_props (xs, h);
       assert_nonnull (xsp);
 
-      assert_zero (chl_xs_props_get (xsp, XS_AREA, &area));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_AREA, &area));
       assert_approx_eq (area, rect_area (h), EPS);
 
-      assert_zero (chl_xs_props_get (xsp, XS_TOP_WIDTH, &tw));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_TOP_WIDTH, &tw));
       assert_approx_eq (tw, rect_tw (h), EPS);
 
-      assert_zero (chl_xs_props_get (xsp, XS_WETTED_PERIMETER, &wp));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_WETTED_PERIMETER, &wp));
       assert_approx_eq (wp, rect_wp (h), EPS);
 
-      assert_zero (chl_xs_props_get (xsp, XS_HYDRAULIC_RADIUS, &hr));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_HYDRAULIC_RADIUS, &hr));
       if (h <= 0)
         {
           assert_true (isnan (hr));
@@ -115,7 +115,7 @@ test_rect (void)
           assert_approx_eq (hr, rect_hr (h), EPS);
         }
 
-      assert_zero (chl_xs_props_get (xsp, XS_HYDRAULIC_DEPTH, &hd));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_HYDRAULIC_DEPTH, &hd));
       if (h <= 0)
         {
           assert_true (isnan (hd));
@@ -125,7 +125,7 @@ test_rect (void)
           assert_approx_eq (hd, rect_hd (h), EPS);
         }
 
-      assert_zero (chl_xs_props_get (xsp, XS_CONVEYANCE, &k));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_CONVEYANCE, &k));
       if (h <= 0)
         {
           assert_true (isnan (hr));
@@ -135,7 +135,7 @@ test_rect (void)
           assert_approx_eq (k, rect_k (h), EPS);
         }
 
-      assert_zero (chl_xs_props_get (xsp, XS_VELOCITY_COEFF, &alpha));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_VELOCITY_COEFF, &alpha));
       if (h <= 0)
         {
           assert_true (isnan (alpha));
@@ -145,8 +145,8 @@ test_rect (void)
           assert_approx_eq (alpha, 1, EPS);
         }
 
-      chl_xs_props_free (xsp);
+      chl_1d_xs_props_free (xsp);
     }
 
-  chl_xs_comp_free (xs);
+  chl_1d_compxs_free (xs);
 }

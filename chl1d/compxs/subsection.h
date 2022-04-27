@@ -1,7 +1,7 @@
 #ifndef __1D_SUBSECT_H__
 #define __1D_SUBSECT_H__
 
-#include <chl/chl1dcompxs.h>
+#include <chl/chl1d.h>
 #include <chl/chlmath.h>
 
 #include "array.h"
@@ -45,15 +45,15 @@ extern int chl_xs_subsect_roughness (ChlXSSubsect ss, real *roughness);
  * @brief Returns the hydraulic properties of a subsection
  *
  * @details The returned cross section properties object is newly created and
- * must be freed with chl_xs_props_free().
+ * must be freed with chl_1d_xs_props_free().
  *
  * Area, top width, wetted perimeter, hydraulic radius, and conveyance are
  * returned.
  *
  * @param ss a subsection
  * @param h elevation
- * @return ChlXSProps
+ * @return Chl1DXSProps
  */
-extern ChlXSProps chl_xs_subsect_props (ChlXSSubsect ss, real h);
+extern Chl1DXSProps chl_xs_subsect_props (ChlXSSubsect ss, real h);
 
 #endif

@@ -12,7 +12,7 @@ void
 test_rect (void)
 {
   ChlXSSubsect rect_ss = new_rect_subsect ();
-  ChlXSProps   xsp;
+  Chl1DXSProps xsp;
 
   real min_h    = 0;
   real max_h    = 1;
@@ -32,10 +32,10 @@ test_rect (void)
       xsp = chl_xs_subsect_props (rect_ss, h);
       assert_nonnull (xsp);
 
-      assert_zero (chl_xs_props_get (xsp, XS_AREA, &area));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_AREA, &area));
       assert_approx_eq (area, rect_area (h), EPS);
 
-      assert_zero (chl_xs_props_get (xsp, XS_TOP_WIDTH, &tw));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_TOP_WIDTH, &tw));
       if (h <= 0)
         {
           assert_equal (tw, 0);
@@ -45,7 +45,7 @@ test_rect (void)
           assert_approx_eq (tw, rect_tw (h), EPS);
         }
 
-      assert_zero (chl_xs_props_get (xsp, XS_WETTED_PERIMETER, &wp));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_WETTED_PERIMETER, &wp));
       if (h <= 0)
         {
           assert_equal (wp, 0);
@@ -55,7 +55,7 @@ test_rect (void)
           assert_approx_eq (wp, rect_wp (h), EPS);
         }
 
-      assert_zero (chl_xs_props_get (xsp, XS_HYDRAULIC_RADIUS, &hr));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_HYDRAULIC_RADIUS, &hr));
       if (h <= 0)
         {
           assert_true (isnan (hr));
@@ -65,7 +65,7 @@ test_rect (void)
           assert_approx_eq (hr, rect_hr (h), EPS);
         }
 
-      assert_zero (chl_xs_props_get (xsp, XS_CONVEYANCE, &k));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_CONVEYANCE, &k));
       if (h <= 0)
         {
           assert_true (isnan (hr));
@@ -75,7 +75,7 @@ test_rect (void)
           assert_approx_eq (k, rect_k (h), EPS);
         }
 
-      chl_xs_props_free (xsp);
+      chl_1d_xs_props_free (xsp);
     }
 
   chl_xs_subsect_free (rect_ss);

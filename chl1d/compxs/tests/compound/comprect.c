@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <chl/chl1dcompxs.h>
+#include <chl/chl1d.h>
 #include <chl/chlconstants.h>
 
 #include "test.h"
@@ -12,7 +12,7 @@
 #define CHAN_WIDTH 0.33
 #define FP_WIDTH 0.67
 
-ChlXSCompound
+Chl1DCompXS
 new_comprect_xs (void)
 {
   int  n             = 8;
@@ -22,8 +22,8 @@ new_comprect_xs (void)
   real roughness[]   = { 0.06, 0.035, 0.06 };
   real z_roughness[] = { 0.33, 0.66 };
 
-  ChlXSCompound xs =
-      chl_xs_comp_new (n, y, z, n_roughness, roughness, z_roughness);
+  Chl1DCompXS xs =
+      chl_1d_compxs_new (n, y, z, n_roughness, roughness, z_roughness);
 
   return xs;
 }
@@ -124,8 +124,8 @@ comprect_k (real y)
 void
 test_comprect (void)
 {
-  ChlXSCompound xs = new_comprect_xs ();
-  ChlXSProps    xsp;
+  Chl1DCompXS  xs = new_comprect_xs ();
+  Chl1DXSProps xsp;
 
   real min_h    = 0;
   real max_h    = 1;
@@ -145,22 +145,22 @@ test_comprect (void)
 
       printf ("h = %f\n", h);
 
-      xsp = chl_xs_comp_props (xs, h);
+      xsp = chl_1d_compxs_props (xs, h);
       assert_nonnull (xsp);
 
-      assert_zero (chl_xs_props_get (xsp, XS_AREA, &area));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_AREA, &area));
       printf ("a  : %f %f\n", area, comprect_area (h));
       assert_approx_eq (area, comprect_area (h), EPS);
 
-      assert_zero (chl_xs_props_get (xsp, XS_TOP_WIDTH, &tw));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_TOP_WIDTH, &tw));
       printf ("tw : %f %f\n", tw, comprect_tw (h));
       assert_approx_eq (tw, comprect_tw (h), EPS);
 
-      assert_zero (chl_xs_props_get (xsp, XS_WETTED_PERIMETER, &wp));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_WETTED_PERIMETER, &wp));
       printf ("wp : %f %f\n", wp, comprect_wp (h));
       assert_approx_eq (wp, comprect_wp (h), EPS);
 
-      assert_zero (chl_xs_props_get (xsp, XS_HYDRAULIC_RADIUS, &hr));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_HYDRAULIC_RADIUS, &hr));
       printf ("hr : %f %f\n", hr, comprect_hr (h));
       if (h <= 0)
         {
@@ -171,7 +171,7 @@ test_comprect (void)
           assert_approx_eq (hr, comprect_hr (h), EPS);
         }
 
-      assert_zero (chl_xs_props_get (xsp, XS_HYDRAULIC_DEPTH, &hd));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_HYDRAULIC_DEPTH, &hd));
       printf ("hd : %f %f\n", hd, comprect_hd (h));
       if (h <= 0)
         {
@@ -182,7 +182,7 @@ test_comprect (void)
           assert_approx_eq (hd, comprect_hd (h), EPS);
         }
 
-      assert_zero (chl_xs_props_get (xsp, XS_CONVEYANCE, &k));
+      assert_zero (chl_1d_xs_props_get (xsp, XS_CONVEYANCE, &k));
       printf ("k  : %f %f\n", k, comprect_k (h));
       if (h <= 0)
         {
@@ -196,8 +196,8 @@ test_comprect (void)
 
       printf ("\n");
 
-      chl_xs_props_free (xsp);
+      chl_1d_xs_props_free (xsp);
     }
 
-  chl_xs_comp_free (xs);
+  chl_1d_compxs_free (xs);
 }

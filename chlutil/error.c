@@ -1,7 +1,9 @@
-#include "memory.h"
-#include <chl.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include <chl/chlerror.h>
+
+#include "memory.h"
 
 struct ChlError
 {

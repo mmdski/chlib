@@ -1,6 +1,9 @@
-#include "test.h"
-#include <chl.h>
 #include <stdlib.h>
+
+#include <chl/chl1d.h>
+#include <chl/chlerror.h>
+
+#include "test.h"
 
 int
 main (void)

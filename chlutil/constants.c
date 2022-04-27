@@ -1,4 +1,4 @@
-#include <chl.h>
+#include <chl/chlmath.h>
 
 static real gravity            = 9.81;
 static real manning_conversion = 1;

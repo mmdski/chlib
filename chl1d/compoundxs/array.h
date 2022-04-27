@@ -1,7 +1,9 @@
 #ifndef __XS_ARRAY_H__
 #define __XS_ARRAY_H__
+
+#include <chl/chlmath.h>>
+
 #include "coordinate.h"
-#include <chl.h>
 
 extern real chl_xs_array_max_y (ChlXSArray a);
 

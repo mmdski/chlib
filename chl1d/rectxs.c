@@ -1,7 +1,9 @@
-#include "error.h"
-#include <chl.h>
 #include <stdlib.h>
 
+#include <chl/chl1d.h>
+#include <chl/chlerror.h>
+
+#include "error.h"
 #include "memory.h"
 
 struct ChlXSRect

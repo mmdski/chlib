@@ -1,5 +1,6 @@
-#include <chl.h>
 #include <string.h>
+
+#include <chl/chlstring.h>
 
 #include "test.h"
 

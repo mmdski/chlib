@@ -3,4 +3,4 @@ test_const = executable('test_const',
     include_directories : [chl_inc, util_inc, test_inc],
     link_with : [chlutil])
 
-test('chl/const', test_const, env: test_env, suite: 'util')
+test('chl/util/const', test_const, env: test_env, suite: 'util')

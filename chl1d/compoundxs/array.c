@@ -1,7 +1,9 @@
 #include <assert.h>
-#include <chl.h>
 #include <math.h>
 #include <stddef.h>
+
+#include <chl/chlerror.h>
+#include <chl/chlxs.h>
 
 #include "coordinate.h"
 #include "error.h"

@@ -28,10 +28,10 @@ test_stack_check_fail = executable('test_stack_check_fail',
     link_with : [chlutil])
 
 
-test('chl/err/new', test_new, env: test_env, suite: 'util')
-test('chl/err/free', test_free, env: test_env, suite: 'util')
-test('chl/err/istype', test_istype, env: test_env, suite: 'util')
-test('chl/err/raise', test_raise, env: test_env, suite: 'util')
-test('chl/err/raise fail', test_raise_fail, env: test_env, should_fail: true, suite: 'util')
-test('chl/err/stack check', test_stack_check, env: test_env, suite: 'util')
-test('chl/err/stack check fail', test_stack_check_fail, env: test_env, should_fail: true, suite: 'util')
+test('chl/util/err/new', test_new, env: test_env, suite: 'util')
+test('chl/util/err/free', test_free, env: test_env, suite: 'util')
+test('chl/util/err/istype', test_istype, env: test_env, suite: 'util')
+test('chl/util/err/raise', test_raise, env: test_env, suite: 'util')
+test('chl/util/err/raise fail', test_raise_fail, env: test_env, should_fail: true, suite: 'util')
+test('chl/util/err/stack check', test_stack_check, env: test_env, suite: 'util')
+test('chl/util/err/stack check fail', test_stack_check_fail, env: test_env, should_fail: true, suite: 'util')

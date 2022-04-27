@@ -1,7 +1,7 @@
 #ifndef __XS_COORD_H__
 #define __XS_COORD_H__
 
-#include <chl.h>
+#include <chl/chlmath.h>
 
 /**
  * SECTION: coordinate.h

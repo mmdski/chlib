@@ -12,6 +12,7 @@ chlib documentation
 
    api/index
    demo/index
+   w2/index
 
 
 General index

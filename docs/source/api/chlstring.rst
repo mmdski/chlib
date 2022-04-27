@@ -1,4 +1,4 @@
-chl/chlstring.h
-===============
+chlstring.h
+===========
 .. autodoxygenfile:: chl/chlstring.h
    :project: chlib

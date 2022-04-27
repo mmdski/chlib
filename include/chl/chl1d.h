@@ -11,20 +11,20 @@
 /**
  * Rectangular cross section.
  */
-typedef struct ChlXSRect *ChlXSRect;
+typedef struct Chl1DRectXS *Chl1DRectXS;
 
 /**
  * @brief Creates a new rectangular cross section
  *
  * @details Creates a new rectangular cross section. This function
  * returns @c NULL if creation fails. The returned cross section must be freed
- * with chl_xs_rect_free() when no longer in use.
+ * with chl_1d_rectxs_free() when no longer in use.
  *
  * @param width width of cross section
  * @return new rectangular cross section
  * @return @c NULL if creation fails
  */
-extern ChlXSRect chl_xs_rect_new (real width);
+extern Chl1DRectXS chl_1d_rectxs_new (real width);
 
 /**
  * @brief Frees a rectangular cross section
@@ -33,6 +33,6 @@ extern ChlXSRect chl_xs_rect_new (real width);
  * @return 0 if operation was a success
  * @return -1 if operation fails
  */
-extern int chl_xs_rect_free (ChlXSRect xs);
+extern int chl_1d_rectxs_free (Chl1DRectXS xs);
 
 #endif

@@ -6,19 +6,19 @@
 #include "error.h"
 #include "memory.h"
 
-struct ChlXSRect
+struct Chl1DRectXS
 {
   real width;
 };
 
 // creates a new rectangular cross section
-ChlXSRect
-chl_xs_rect_new (real width)
+Chl1DRectXS
+chl_1d_rectxs_new (real width)
 {
   if (width <= 0)
     RAISE_ARG_ERR_NULL;
 
-  ChlXSRect xs;
+  Chl1DRectXS xs;
   NEW (xs);
 
   xs->width = width;
@@ -28,7 +28,7 @@ chl_xs_rect_new (real width)
 
 // frees a rectangular cross section
 int
-chl_xs_rect_free (ChlXSRect xs)
+chl_1d_rectxs_free (Chl1DRectXS xs)
 {
   if (xs == NULL)
     RAISE_NULL_ERR_INT;
@@ -40,7 +40,7 @@ chl_xs_rect_free (ChlXSRect xs)
 
 // returns the area
 int
-chl_xs_rect_area (ChlXSRect xs, real y, real *area)
+chl_1d_rectxs_area (Chl1DRectXS xs, real y, real *area)
 {
   if (xs == NULL)
     RAISE_NULL_ERR_INT;
@@ -52,7 +52,7 @@ chl_xs_rect_area (ChlXSRect xs, real y, real *area)
 
 // wetted perimeter
 int
-chl_xs_rect_wp (ChlXSRect xs, real y, real *wp)
+chl_1d_rectxs_wp (Chl1DRectXS xs, real y, real *wp)
 {
   if (xs == NULL)
     RAISE_NULL_ERR_INT;
@@ -63,7 +63,7 @@ chl_xs_rect_wp (ChlXSRect xs, real y, real *wp)
 }
 
 int
-chl_xs_rect_tw (ChlXSRect xs, real y, real *tw)
+chl_1d_rectxs_tw (Chl1DRectXS xs, real y, real *tw)
 {
   if (xs == NULL)
     RAISE_NULL_ERR_INT;
@@ -74,7 +74,7 @@ chl_xs_rect_tw (ChlXSRect xs, real y, real *tw)
 }
 
 int
-chl_xs_rect_hr (ChlXSRect xs, real y, real *hr)
+chl_1d_rectxs_hr (Chl1DRectXS xs, real y, real *hr)
 {
   if (xs == NULL)
     RAISE_NULL_ERR_INT;

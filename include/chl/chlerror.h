@@ -6,10 +6,6 @@
 #ifndef __CHL_ERR_H__
 #define __CHL_ERR_H__
 
-#if !defined(__CHL_H_INSIDE__) && !defined(CHL_COMPILATION)
-#error "Only <chl.h> can be included directly."
-#endif
-
 #include <chl/chlstring.h>
 #include <stdbool.h>
 
@@ -49,9 +45,8 @@ extern ChlError chl_err_new (ChlErrorType type, const char *message);
  * @brief Frees an error object.
  *
  * @param err error object
- * @returns 0 if the operation was a success, -1 otherwise.
  */
-extern int chl_err_free (ChlError err);
+extern void chl_err_free (ChlError err);
 
 /**
  * @brief Returns true if an error object is of a specified type.

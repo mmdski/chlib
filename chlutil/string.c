@@ -1,8 +1,9 @@
-#include "memory.h"
 #include <chl/chlstring.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "memory.h"
 
 struct ChlString
 {
@@ -87,16 +88,16 @@ chl_string_new (const char *string)
   return s;
 }
 
-int
+void
 chl_string_free (ChlString s)
 {
   if (s == NULL)
     {
-      return -1;
+      return;
     }
   chl_free (s->string);
   FREE (s);
-  return 0;
+  return;
 }
 
 ChlString

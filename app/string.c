@@ -19,8 +19,7 @@ main (void)
 
   printf ("The string is %ld characters long\n", len);
 
-  if (chl_string_free (s) < 0)
-    return EXIT_FAILURE;
+  chl_string_free (s);
 
   return EXIT_SUCCESS;
 }

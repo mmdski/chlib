@@ -20,9 +20,13 @@ else
     exe_name_suffix = []
 endif
 
-inc = include_directories('include')
+chl_inc = include_directories('include')
 
-subdir('src')
+util_inc = include_directories('chlutil')
+subdir('chlutil')
+
+chlib = static_library('chlib',
+    link_whole : [chlutil])
 
 if get_option('build_app')
     subdir('app')

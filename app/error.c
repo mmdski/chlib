@@ -1,11 +1,11 @@
-#include <chl.h>
+#include <chl/chlerror.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 int
 main (void)
 {
-  ChlError err = chl_err_new (INVALID_ARGUMENT_ERROR, NULL);
+  ChlError err = chl_err_new (INVALID_ARGUMENT_ERROR, "Invalid argument");
 
   ChlString err_string = chl_err_str (err);
   char     *string;

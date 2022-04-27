@@ -1,30 +1,30 @@
 test_new = executable('test_new',
     'new.c',
-    include_directories : [inc, test_inc],
+    include_directories : [chl_inc, test_inc],
     link_with : [chlib])
 test_free = executable('test_free',
     'free.c',
-    include_directories : [inc, test_inc],
+    include_directories : [chl_inc, test_inc],
     link_with : [chlib])
 test_istype = executable('test_istype',
     'istype.c',
-    include_directories : [inc, test_inc],
+    include_directories : [chl_inc, test_inc],
     link_with : [chlib])
 test_raise = executable('test_raise',
     'raise.c',
-    include_directories : [inc, test_inc],
+    include_directories : [chl_inc, test_inc],
     link_with : [chlib])
 test_raise_fail = executable('test_raise_fail',
     'raisefail.c',
-    include_directories : [inc, test_inc],
+    include_directories : [chl_inc, test_inc],
     link_with : [chlib])
 test_stack_check = executable('test_stack_check',
     'stackcheck.c',
-    include_directories : [inc, test_inc],
+    include_directories : [chl_inc, test_inc],
     link_with : [chlib])
 test_stack_check_fail = executable('test_stack_check_fail',
     'stackcheckfail.c',
-    include_directories : [inc, test_inc],
+    include_directories : [chl_inc, test_inc],
     link_with : [chlib])
 
 

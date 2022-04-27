@@ -1,5 +1,5 @@
 #include "test.h"
-#include <chl.h>
+#include <chl/chlstring.h>
 #include <string.h>
 
 int
@@ -16,8 +16,8 @@ main (void)
 
   assert_zero (strcmp (a, b));
 
-  assert_zero (chl_string_free (s));
-  assert_zero (chl_string_free (s_copy));
+  chl_string_free (s);
+  chl_string_free (s_copy);
 
   return EXIT_SUCCESS;
 }

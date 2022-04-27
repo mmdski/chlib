@@ -1,6 +1,7 @@
-#include "test.h"
 #include <chl.h>
 #include <string.h>
+
+#include "test.h"
 
 int
 main (void)
@@ -12,7 +13,7 @@ main (void)
   assert_zero (chl_string_get (s, &get_string));
   assert_zero (strcmp (get_string, string));
 
-  assert_zero (chl_string_free (s));
+  chl_string_free (s);
 
   return EXIT_SUCCESS;
 }

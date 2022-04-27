@@ -51,18 +51,16 @@ chl_err_new (ChlErrorType type, const char *message)
   return err;
 }
 
-int
+void
 chl_err_free (ChlError err)
 {
   if (err == NULL)
-    return -1;
+    return;
 
   chl_string_free (err->error_name);
   chl_string_free (err->message);
 
   FREE (err);
-
-  return 0;
 }
 
 bool

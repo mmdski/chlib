@@ -1,5 +1,6 @@
+#include <chl/chlconstants.h>
+
 #include "test.h"
-#include <chl.h>
 
 int
 main ()

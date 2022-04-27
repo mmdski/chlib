@@ -1,5 +1,6 @@
+#include <chl/chlerror.h>
+
 #include "test.h"
-#include <chl.h>
 
 int
 main (void)

@@ -1,4 +1,4 @@
-#include <chl.h>
+#include <chl/chlerror.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>

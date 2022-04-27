@@ -6,10 +6,6 @@
 #ifndef __CHL_STRING_H__
 #define __CHL_STRING_H__
 
-#if !defined(__CHL_H_INSIDE__) && !defined(CHL_COMPILATION)
-#error "Only <chl.h> can be included directly."
-#endif
-
 #include <stdbool.h>
 
 /**
@@ -33,9 +29,8 @@ extern ChlString chl_string_new (const char *string);
  * @brief Frees a string
  *
  * @param s a string
- * @return 0 if operation was a success, -1 otherwise
  */
-extern int chl_string_free (ChlString s);
+extern void chl_string_free (ChlString s);
 
 /**
  * @brief Copies a string

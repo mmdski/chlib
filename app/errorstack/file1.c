@@ -1,4 +1,4 @@
-#include <chl.h>
+#include <chl/chlerror.h>
 
 int
 raise_error (void)

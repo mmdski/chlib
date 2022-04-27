@@ -5,9 +5,8 @@ chlib API documentation
    :maxdepth: 2
    :caption: Contents:
 
-   chl
    chlconstants
    chlerror
    chlmath
    chlstring
-   chlxs
+   chl1d

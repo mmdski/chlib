@@ -12,7 +12,7 @@
 #ifndef __CHL_CONST_H__
 #define __CHL_CONST_H__
 
-#include <chl.h>
+#include <chl/chlmath.h>
 
 /**
  * @brief Returns the acceleration due to gravity [L/T^2]

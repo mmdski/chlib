@@ -46,6 +46,7 @@ util_inc = include_directories('chlutil')
 subdir('chlutil')
 
 subdir('chl1d')
+subdir('chlw2')
 
 chlib = static_library('chlib',
     link_whole : [chlutil, chl1d])

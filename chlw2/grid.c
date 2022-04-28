@@ -53,3 +53,43 @@ chl_w2_sgrid_free (ChlW2SGrid g)
   chl_free (values);
   FREE (g);
 }
+
+int
+chl_w2_sgrid_get (ChlW2SGrid g, int segment, int layer, real *value)
+{
+  if (!g)
+    RAISE_NULL_ERR_INT;
+
+  int n_segments = g->n_segments;
+  int n_layers   = g->n_layers;
+
+  if (segment < 1 || segment > n_segments)
+    RAISE_ARG_ERR_INT;
+
+  if (layer < 1 || layer > n_layers)
+    RAISE_ARG_ERR_INT;
+
+  *value = g->values[segment - 1][layer - 1];
+
+  return 0;
+}
+
+int
+chl_w2_sgrid_set (ChlW2SGrid g, int segment, int layer, real value)
+{
+  if (!g)
+    RAISE_NULL_ERR_INT;
+
+  int n_segments = g->n_segments;
+  int n_layers   = g->n_layers;
+
+  if (segment < 1 || segment > n_segments)
+    RAISE_ARG_ERR_INT;
+
+  if (layer < 1 || layer > n_layers)
+    RAISE_ARG_ERR_INT;
+
+  g->values[segment - 1][layer - 1] = value;
+
+  return 0;
+}

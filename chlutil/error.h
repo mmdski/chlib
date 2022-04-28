@@ -13,6 +13,12 @@
     return NULL;                                                               \
   }
 
+#define RAISE_ARG_ERR_INT                                                      \
+  {                                                                            \
+    chl_err_raise (INVALID_ARGUMENT_ERROR, "", __FILE__, __LINE__);            \
+    return -1;                                                                 \
+  }
+
 #define RAISE_ARG_ERR_NULL                                                     \
   {                                                                            \
     chl_err_raise (INVALID_ARGUMENT_ERROR, "", __FILE__, __LINE__);            \

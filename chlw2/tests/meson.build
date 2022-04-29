@@ -1,1 +1,1 @@
-subdir('sgrid')
+subdir('grid')

@@ -11,6 +11,6 @@ test_setget = executable('test_setget',
     include_directories : [chl_inc, util_inc, test_inc],
     link_with : [chlw2])
 
-test('chl/w2/sgrid/new', test_new, env: test_env, suite: 'chlw2')
-test('chl/w2/sgrid/free', test_free, env: test_env, suite: 'chlw2')
-test('chl/w2/sgrid/setget', test_setget, env: test_env, suite: 'chlw2')
+test('chl/w2/grid/new', test_new, env: test_env, suite: 'chlw2')
+test('chl/w2/grid/free', test_free, env: test_env, suite: 'chlw2')
+test('chl/w2/grid/setget', test_setget, env: test_env, suite: 'chlw2')

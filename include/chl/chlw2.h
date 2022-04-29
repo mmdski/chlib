@@ -14,17 +14,18 @@
 #include <chl/chlmath.h>
 
 /**
- * @brief Scalar W2 grid
+ * @brief Generic W2 grid
  *
  */
-typedef struct ChlW2SGrid *ChlW2SGrid;
+typedef struct ChlW2Grid *ChlW2Grid;
 
-extern ChlW2SGrid chl_w2_sgrid_new (int n_segments, int n_layers);
+extern ChlW2Grid chl_w2_grid_new (
+    int n_segments, int n_layers, int n_us, int n_ds, int n_top, int n_bot);
 
-extern void chl_w2_sgrid_free (ChlW2SGrid g);
+extern void chl_w2_grid_free (ChlW2Grid g);
 
-extern int chl_w2_sgrid_get (ChlW2SGrid g, int segment, int layer, real *value);
+extern int chl_w2_grid_get (ChlW2Grid g, int segment, int layer, real *value);
 
-extern int chl_w2_sgrid_set (ChlW2SGrid g, int segment, int layer, real value);
+extern int chl_w2_grid_set (ChlW2Grid g, int segment, int layer, real value);
 
 #endif

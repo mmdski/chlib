@@ -62,7 +62,8 @@ breathe_projects_source = {
                   "chl/chlerror.h",
                   "chl/chlmath.h",
                   "chl/chlstring.h",
-                  "chl/chl1d.h"
+                  "chl/chl1d.h",
+                  "chl/chlw2.h"
               ]
               )
 }

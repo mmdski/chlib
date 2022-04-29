@@ -8,6 +8,7 @@ MM-DSKI-W2 documentation
 
    equations
    solution
+   api
 
 
 General index

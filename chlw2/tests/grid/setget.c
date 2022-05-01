@@ -77,12 +77,12 @@ main (void)
           setvalue = max - (real) rand () / (float) (RAND_MAX / range);
           if (chl_w2_grid_set (g, i, j, setvalue) < 0)
             {
-              chl_err_stack_print ();
+              chl_err_stack_print (__FILE__, __LINE__);
               return EXIT_FAILURE;
             }
           if (chl_w2_grid_get (g, i, j, &getvalue) < 0)
             {
-              chl_err_stack_print ();
+              chl_err_stack_print (__FILE__, __LINE__);
               return EXIT_FAILURE;
             }
 

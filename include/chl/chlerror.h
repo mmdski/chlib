@@ -151,8 +151,10 @@ extern bool chl_err_stack_is_type (ChlErrorType type);
 /**
  * @brief Print the error stack to @c stderr
  *
+ * @param file use __FILE__ macro
+ * @param line use __LINE__ macro
  */
-extern void chl_err_stack_print (void);
+extern void chl_err_stack_print (const char *file, int line);
 
 /**
  * @brief Checks for an error on stack.

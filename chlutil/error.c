@@ -286,11 +286,12 @@ chl_err_stack_is_type (ChlErrorType type)
 }
 
 void
-chl_err_stack_print (void)
+chl_err_stack_print (const char *file, int line)
 {
   if (stack.error == NULL)
     return;
 
+  fprintf (stderr, "Error stack print called from %s on line %i\n", file, line);
   fprintf (stderr, "Stack trace (most recent call last):\n");
 
   char *string;
@@ -316,8 +317,7 @@ chl_err_stack_check (const char *file, int line)
     {
       fprintf (stderr, "Unchecked error\n");
       fprintf (stderr, "Error stack checked on %s, line %i\n", file, line);
-      chl_err_stack_push (__FILE__, __LINE__);
-      chl_err_stack_print ();
+      chl_err_stack_print (__FILE__, __LINE__);
       exit (EXIT_FAILURE);
     }
 }

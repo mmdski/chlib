@@ -33,11 +33,11 @@ main (void)
   if (raise_error () < 0)
     chl_err_stack_push (__FILE__, __LINE__);
 
-  chl_err_stack_print ();
+  chl_err_stack_print (__FILE__, __LINE__);
 
   chl_err_stack_clear ();
 
-  chl_err_stack_print ();
+  chl_err_stack_print (__FILE__, __LINE__);
 
   return EXIT_SUCCESS;
 }

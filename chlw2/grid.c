@@ -117,7 +117,7 @@ chl_w2_grid_get (ChlW2Grid g, int segment, int layer, real *value)
       return -1;
     }
 
-  *value = g->values[segment - 1][layer - 1];
+  *value = *(*(g->values + segment - 1) + layer - 1);
 
   return 0;
 }
@@ -160,7 +160,7 @@ chl_w2_grid_set (ChlW2Grid g, int segment, int layer, real value)
       return -1;
     }
 
-  g->values[segment - 1][layer - 1] = value;
+  *(*(g->values + segment - 1) + layer - 1) = value;
 
   return 0;
 }

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 #include <chl/chlerror.h>
@@ -84,11 +85,37 @@ chl_w2_grid_get (ChlW2Grid g, int segment, int layer, real *value)
   if (!g)
     RAISE_NULL_ERR_INT;
 
-  if (segment < 1 - g->n_ds || segment > g->n_segments + g->n_us)
-    RAISE_ARG_ERR_INT;
+  int n_ds       = g->n_ds;
+  int n_us       = g->n_us;
+  int n_segments = g->n_segments;
 
-  if (layer < 1 - g->n_top || layer > g->n_layers + g->n_bot)
-    RAISE_ARG_ERR_INT;
+  int n_top    = g->n_top;
+  int n_bot    = g->n_bot;
+  int n_layers = g->n_layers;
+
+  if (segment < 1 - n_ds || segment > n_segments + n_us)
+    {
+      char *err_msg_buff = chl_calloc (80, sizeof (char));
+      sprintf (err_msg_buff,
+               "Segment numer %i is invalid for grid with %i segments\n",
+               segment,
+               n_segments);
+      chl_err_raise (INVALID_ARGUMENT_ERROR, err_msg_buff, __FILE__, __LINE__);
+      chl_free (err_msg_buff);
+      return -1;
+    }
+
+  if (layer < 1 - n_top || layer > n_layers + n_bot)
+    {
+      char *err_msg_buff = chl_calloc (80, sizeof (char));
+      sprintf (err_msg_buff,
+               "Layer numer %i is invalid for grid with %i layers\n",
+               layer,
+               n_layers);
+      chl_err_raise (INVALID_ARGUMENT_ERROR, err_msg_buff, __FILE__, __LINE__);
+      chl_free (err_msg_buff);
+      return -1;
+    }
 
   *value = g->values[segment - 1][layer - 1];
 
@@ -101,11 +128,37 @@ chl_w2_grid_set (ChlW2Grid g, int segment, int layer, real value)
   if (!g)
     RAISE_NULL_ERR_INT;
 
-  if (segment < 1 - g->n_ds || segment > g->n_segments + g->n_us)
-    RAISE_ARG_ERR_INT;
+  int n_ds       = g->n_ds;
+  int n_us       = g->n_us;
+  int n_segments = g->n_segments;
 
-  if (layer < 1 - g->n_top || layer > g->n_layers + g->n_bot)
-    RAISE_ARG_ERR_INT;
+  int n_top    = g->n_top;
+  int n_bot    = g->n_bot;
+  int n_layers = g->n_layers;
+
+  if (segment < 1 - n_ds || segment > n_segments + n_us)
+    {
+      char *err_msg_buff = chl_calloc (80, sizeof (char));
+      sprintf (err_msg_buff,
+               "Segment numer %i is invalid for grid with %i segments\n",
+               segment,
+               n_segments);
+      chl_err_raise (INVALID_ARGUMENT_ERROR, err_msg_buff, __FILE__, __LINE__);
+      chl_free (err_msg_buff);
+      return -1;
+    }
+
+  if (layer < 1 - n_top || layer > n_layers + n_bot)
+    {
+      char *err_msg_buff = chl_calloc (80, sizeof (char));
+      sprintf (err_msg_buff,
+               "Layer numer %i is invalid for grid with %i layers\n",
+               layer,
+               n_layers);
+      chl_err_raise (INVALID_ARGUMENT_ERROR, err_msg_buff, __FILE__, __LINE__);
+      chl_free (err_msg_buff);
+      return -1;
+    }
 
   g->values[segment - 1][layer - 1] = value;
 

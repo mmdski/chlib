@@ -1,31 +1,38 @@
 test_new = executable('test_new',
     'new.c',
     include_directories : [chl_inc, util_inc, test_inc],
-    link_with : [chlutil])
+    link_with : [chlutil],
+    name_suffix : exe_name_suffix)
 test_free = executable('test_free',
     'free.c',
     include_directories : [chl_inc, util_inc, test_inc],
-    link_with : [chlutil])
+    link_with : [chlutil],
+    name_suffix : exe_name_suffix)
 test_istype = executable('test_istype',
     'istype.c',
     include_directories : [chl_inc, util_inc, test_inc],
-    link_with : [chlutil])
+    link_with : [chlutil],
+    name_suffix : exe_name_suffix)
 test_raise = executable('test_raise',
     'raise.c',
     include_directories : [chl_inc, util_inc, test_inc],
-    link_with : [chlutil])
+    link_with : [chlutil],
+    name_suffix : exe_name_suffix)
 test_raise_fail = executable('test_raise_fail',
     'raisefail.c',
     include_directories : [chl_inc, util_inc, test_inc],
-    link_with : [chlutil])
+    link_with : [chlutil],
+    name_suffix : exe_name_suffix)
 test_stack_check = executable('test_stack_check',
     'stackcheck.c',
     include_directories : [chl_inc, util_inc, test_inc],
-    link_with : [chlutil])
+    link_with : [chlutil],
+    name_suffix : exe_name_suffix)
 test_stack_check_fail = executable('test_stack_check_fail',
     'stackcheckfail.c',
     include_directories : [chl_inc, util_inc, test_inc],
-    link_with : [chlutil])
+    link_with : [chlutil],
+    name_suffix : exe_name_suffix)
 
 
 test('chl/util/err/new', test_new, env: test_env, suite: 'util')

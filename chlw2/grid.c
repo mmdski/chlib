@@ -41,7 +41,7 @@ chl_w2_grid_new (
   int total_segments = n_ds + n_segments + n_us;
   int total_layers   = n_top + n_layers + n_bot;
 
-  real **values = chl_calloc (total_segments, sizeof (real *));
+  real **values = chl_calloc (total_segments, sizeof (real **));
 
   for (int i = 0; i < total_segments; i++)
     {

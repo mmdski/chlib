@@ -8,6 +8,9 @@
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
+            "compilerArgs": [
+                "-DCHECK_ARGS"
+            ],
             "cStandard": "c99",
             "intelliSenseMode": "linux-gcc-x64"
         },
@@ -19,6 +22,9 @@
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
+            "compilerArgs": [
+                "-DCHECK_ARGS"
+            ],
             "cStandard": "c99",
             "intelliSenseMode": "linux-gcc-x64"
         },
@@ -33,6 +39,9 @@
                 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
             ],
             "compilerPath": "/opt/homebrew/opt/llvm/bin/clang",
+            "compilerArgs": [
+                "-DCHECK_ARGS"
+            ],
             "cStandard": "c99",
             "cppStandard": "c++17",
             "intelliSenseMode": "clang-arm64"

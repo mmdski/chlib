@@ -15,8 +15,11 @@ struct Chl1DRectXS
 Chl1DRectXS
 chl_1d_rectxs_new (real width)
 {
+
+#ifdef CHECK_ARGS
   if (width <= 0)
     RAISE_ARG_ERR_NULL;
+#endif
 
   Chl1DRectXS xs;
   NEW (xs);
@@ -30,8 +33,11 @@ chl_1d_rectxs_new (real width)
 int
 chl_1d_rectxs_free (Chl1DRectXS xs)
 {
+
+#ifdef CHECK_ARGS
   if (xs == NULL)
     RAISE_NULL_ERR_INT;
+#endif
 
   FREE (xs);
 
@@ -42,8 +48,11 @@ chl_1d_rectxs_free (Chl1DRectXS xs)
 int
 chl_1d_rectxs_area (Chl1DRectXS xs, real y, real *area)
 {
+
+#ifdef CHECK_ARGS
   if (xs == NULL)
     RAISE_NULL_ERR_INT;
+#endif
 
   *area = xs->width * y;
 
@@ -54,8 +63,11 @@ chl_1d_rectxs_area (Chl1DRectXS xs, real y, real *area)
 int
 chl_1d_rectxs_wp (Chl1DRectXS xs, real y, real *wp)
 {
+
+#ifdef CHECK_ARGS
   if (xs == NULL)
     RAISE_NULL_ERR_INT;
+#endif
 
   *wp = 2 * y + xs->width;
 
@@ -65,8 +77,11 @@ chl_1d_rectxs_wp (Chl1DRectXS xs, real y, real *wp)
 int
 chl_1d_rectxs_tw (Chl1DRectXS xs, real y, real *tw)
 {
+
+#ifdef CHECK_ARGS
   if (xs == NULL)
     RAISE_NULL_ERR_INT;
+#endif
 
   *tw = xs->width;
 
@@ -76,8 +91,11 @@ chl_1d_rectxs_tw (Chl1DRectXS xs, real y, real *tw)
 int
 chl_1d_rectxs_hr (Chl1DRectXS xs, real y, real *hr)
 {
+
+#ifdef CHECK_ARGS
   if (xs == NULL)
     RAISE_NULL_ERR_INT;
+#endif
 
   *hr = (y * xs->width) / (2 * y + xs->width);
 

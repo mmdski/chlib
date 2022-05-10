@@ -13,6 +13,6 @@ chl1dcompxs = static_library('chl1dcompxs',
     include_directories : [chl_inc, util_inc, chl1dcompxs_inc],
     link_with : chlutil)
 
-if get_option('build_tests')
+if get_option('tests')
     subdir('tests')
 endif

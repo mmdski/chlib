@@ -9,6 +9,6 @@ chlw2 = static_library('chlw2',
   include_directories : [chl_inc, util_inc, chlw2_inc],
   link_with : [chlutil])
 
-if get_option('build_tests')
+if get_option('tests')
     subdir('tests')
 endif

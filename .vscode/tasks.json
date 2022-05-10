@@ -13,6 +13,8 @@
                 "-Db_lundef=false",
                 "-Db_sanitize=address",
                 "-Db_coverage=true",
+                "-Dtests=true",
+                "-Dbuild_app=true",
                 "build"
             ],
             "group": "build"

@@ -11,6 +11,6 @@ chlutil = static_library('chlutil',
     include_directories : [chl_inc, util_inc],
     dependencies : m_dep)
 
-if get_option('build_tests')
+if get_option('tests')
     subdir('tests')
 endif

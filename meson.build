@@ -20,7 +20,7 @@ else
     exe_name_suffix = []
 endif
 
-if get_option('build_tests')
+if get_option('tests')
 
     # test environment
     test_env = environment()

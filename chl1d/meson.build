@@ -12,6 +12,6 @@ chl1d = static_library('chl1d',
     link_with : [chlutil],
     link_whole : [chl1dcompxs])
 
-if get_option('build_tests')
+if get_option('tests')
     subdir('tests')
 endif

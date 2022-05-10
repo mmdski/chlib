@@ -58,10 +58,10 @@ html_favicon = '_static/favicon.ico'
 breathe_projects_source = {
     "chlib": ("../../include/",
               [
-                  "chl/chlconstants.h",
-                  "chl/chlerror.h",
-                  "chl/chlstring.h",
-                  "chl/chl1d.h"
+                  "chl/chl_constants.h",
+                  "chl/chl_error.h",
+                  "chl/chl_string.h",
+                  "chl/chl_xs.h"
               ]
               )
 }

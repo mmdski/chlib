@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <chl/chlstring.h>
+#include <chl/chl_string.h>
 
 int
 main (void)

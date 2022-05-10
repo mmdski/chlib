@@ -1,7 +1,0 @@
-test_const = executable('test_const',
-    'test.c',
-    include_directories : [chl_inc, util_inc, test_inc],
-    link_with : [chlutil],
-    name_suffix : exe_name_suffix)
-
-test('chl/util/const', test_const, env: test_env, suite: 'util')

@@ -20,6 +20,9 @@ else
     exe_name_suffix = []
 endif
 
+chl_inc = include_directories('include')
+subdir('src')
+
 if get_option('tests')
 
     # test environment
@@ -40,16 +43,15 @@ if get_option('tests')
     subdir('tests')
 endif
 
-chl_inc = include_directories('include')
 
-util_inc = include_directories('chlutil')
-subdir('chlutil')
+# util_inc = include_directories('chlutil')
+# subdir('chlutil')
 
-subdir('chl1d')
+# subdir('chl1d')
 
-chlib = static_library('chlib',
-    link_whole : [chlutil, chl1d])
+# chlib = static_library('chlib',
+    # link_whole : [chlutil, chl1d])
 
-if get_option('build_app')
-    subdir('app')
-endif
+# if get_option('build_app')
+    # subdir('app')
+# endif

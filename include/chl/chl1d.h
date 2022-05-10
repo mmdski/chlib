@@ -6,8 +6,6 @@
 #ifndef __CHL_1D_H__
 #define __CHL_1D_H__
 
-#include <chl/chlmath.h>
-
 /**
  * @brief Hydraulic properties of a cross section
  *
@@ -57,7 +55,7 @@ extern void chl_1d_xs_props_free (Chl1DXSProps xsp);
  * @return int
  */
 extern int
-chl_1d_xs_props_get (Chl1DXSProps xsp, Chl1DXSPropNum prop, real *value);
+chl_1d_xs_props_get (Chl1DXSProps xsp, Chl1DXSPropNum prop, double *value);
 
 /**
  * Rectangular cross section.
@@ -75,7 +73,7 @@ typedef struct Chl1DRectXS *Chl1DRectXS;
  * @return new rectangular cross section
  * @return @c NULL if creation fails
  */
-extern Chl1DRectXS chl_1d_rectxs_new (real width);
+extern Chl1DRectXS chl_1d_rectxs_new (double width);
 
 /**
  * @brief Frees a rectangular cross section
@@ -108,12 +106,12 @@ typedef struct Chl1DCompXS *Chl1DCompXS;
  * @param sub_station break points for subsections
  * @return Chl1DCompXS
  */
-extern Chl1DCompXS chl_1d_compxs_new (int   n_coords,
-                                      real *elevation,
-                                      real *station,
-                                      int   n_roughness,
-                                      real *roughness,
-                                      real *sub_station);
+extern Chl1DCompXS chl_1d_compxs_new (int     n_coords,
+                                      double *elevation,
+                                      double *station,
+                                      int     n_roughness,
+                                      double *roughness,
+                                      double *sub_station);
 
 /**
  * @brief Frees a compound cross section
@@ -132,6 +130,6 @@ extern void chl_1d_compxs_free (Chl1DCompXS xs);
  * @param h elevation
  * @return Chl1DXSProps
  */
-extern Chl1DXSProps chl_1d_compxs_props (Chl1DCompXS xs, real h);
+extern Chl1DXSProps chl_1d_compxs_props (Chl1DCompXS xs, double h);
 
 #endif

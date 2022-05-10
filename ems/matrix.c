@@ -13,7 +13,7 @@ matrix_new (int n_rows, int n_columns)
 // creates a new matrix from previously allocated memory
 EMSCRIPTEN_KEEPALIVE
 ChlMatrix
-matrix_new_from (int n_rows, int n_columns, real *entries)
+matrix_new_from (int n_rows, int n_columns, double *entries)
 {
   return chl_matrix_new_from (n_rows, n_columns, entries);
 }
@@ -51,10 +51,10 @@ matrix_cols (ChlMatrix a)
 
 // returns an entry from a matrix
 EMSCRIPTEN_KEEPALIVE
-real
+double
 matrix_get (ChlMatrix a, int i, int j)
 {
-  real value;
+  double value;
   chl_matrix_get (a, i, j, &value);
   return value;
 }
@@ -62,7 +62,7 @@ matrix_get (ChlMatrix a, int i, int j)
 // sets an entry in a matrix
 EMSCRIPTEN_KEEPALIVE
 void
-matrix_set (ChlMatrix a, int i, int j, real value)
+matrix_set (ChlMatrix a, int i, int j, double value)
 {
   chl_matrix_set (a, i, j, value);
 }
@@ -78,17 +78,17 @@ matrix_mult (ChlMatrix a, ChlMatrix b, ChlMatrix c)
 // multiply a matrix by a scalar
 EMSCRIPTEN_KEEPALIVE
 void
-matrix_scalar_mult (ChlMatrix a, real c, ChlMatrix b)
+matrix_scalar_mult (ChlMatrix a, double c, ChlMatrix b)
 {
   chl_matrix_scalar_mult (a, c, &b);
 }
 
 // vector dot product
 EMSCRIPTEN_KEEPALIVE
-real
+double
 matrix_dot (ChlMatrix a, ChlMatrix b)
 {
-  real dot;
+  double dot;
   chl_matrix_dot (a, b, &dot);
   return dot;
 }

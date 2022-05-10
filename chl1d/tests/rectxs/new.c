@@ -8,7 +8,7 @@
 int
 main (void)
 {
-  real width = 10;
+  double width = 10;
 
   Chl1DRectXS xs = chl_1d_rectxs_new (width);
   assert_nonnull (xs);

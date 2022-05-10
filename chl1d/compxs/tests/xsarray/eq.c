@@ -1,5 +1,3 @@
-#include <chl/chlmath.h>
-
 #include "array.h"
 #include "test.h"
 
@@ -10,14 +8,14 @@ main (void)
   int n2 = 4;
   int n3 = 5;
 
-  real y1[] = { 1, 0, 0, 1 };
-  real z1[] = { 0, 0, 1, 1 };
+  double y1[] = { 1, 0, 0, 1 };
+  double z1[] = { 0, 0, 1, 1 };
 
-  real y2[] = { 1, 2, 0, 1 };
-  real z2[] = { -1, 0, 1, 1 };
+  double y2[] = { 1, 2, 0, 1 };
+  double z2[] = { -1, 0, 1, 1 };
 
-  real y3[] = { 1, 0, 0, 0, 1 };
-  real z3[] = { 0, 0, 1, 1, 1 };
+  double y3[] = { 1, 0, 0, 0, 1 };
+  double z3[] = { 0, 0, 1, 1, 1 };
 
   ChlXSArray a1 = chl_xs_array_new (n1, y1, z1);
   assert_nonnull (a1);

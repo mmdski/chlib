@@ -8,7 +8,7 @@
 
 struct Chl1DXSProps
 {
-  real *properties;
+  double *properties;
 };
 
 Chl1DXSProps
@@ -16,7 +16,7 @@ xsp_new (void)
 {
   Chl1DXSProps xsp;
   NEW (xsp);
-  xsp->properties = chl_calloc (N_XSP, sizeof (real));
+  xsp->properties = chl_calloc (N_XSP, sizeof (double));
   return xsp;
 }
 
@@ -31,7 +31,7 @@ chl_1d_xs_props_free (Chl1DXSProps xsp)
 }
 
 int
-chl_1d_xs_props_get (Chl1DXSProps xsp, Chl1DXSPropNum prop, real *value)
+chl_1d_xs_props_get (Chl1DXSProps xsp, Chl1DXSPropNum prop, double *value)
 {
   if (!xsp)
     RAISE_NULL_ERR_INT;
@@ -42,7 +42,7 @@ chl_1d_xs_props_get (Chl1DXSProps xsp, Chl1DXSPropNum prop, real *value)
 }
 
 void
-xsp_set (Chl1DXSProps xsp, Chl1DXSPropNum prop, real value)
+xsp_set (Chl1DXSProps xsp, Chl1DXSPropNum prop, double value)
 {
   assert (xsp);
   *(xsp->properties + prop) = value;

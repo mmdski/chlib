@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 #include <chl/chlerror.h>
-#include <chl/chlmath.h>
 #include <chl/chlw2.h>
 
 #include "error.h"
@@ -10,13 +9,13 @@
 
 struct ChlW2Grid
 {
-  int    n_segments;
-  int    n_layers;
-  int    n_us;
-  int    n_ds;
-  int    n_top;
-  int    n_bot;
-  real **values;
+  int      n_segments;
+  int      n_layers;
+  int      n_us;
+  int      n_ds;
+  int      n_top;
+  int      n_bot;
+  double **values;
 };
 
 ChlW2Grid
@@ -41,11 +40,11 @@ chl_w2_grid_new (
   int total_segments = n_ds + n_segments + n_us;
   int total_layers   = n_top + n_layers + n_bot;
 
-  real **values = chl_calloc (total_segments, sizeof (real **));
+  double **values = chl_calloc (total_segments, sizeof (double *));
 
   for (int i = 0; i < total_segments; i++)
     {
-      *(values + i) = chl_calloc (total_layers, sizeof (real *));
+      *(values + i) = chl_calloc (total_layers, sizeof (double));
     }
 
   ChlW2Grid g;
@@ -67,8 +66,8 @@ chl_w2_grid_free (ChlW2Grid g)
   if (!g)
     return;
 
-  int    n_segments = g->n_segments;
-  real **values     = g->values;
+  int      n_segments = g->n_segments;
+  double **values     = g->values;
 
   for (int i = 0; i < n_segments; i++)
     {
@@ -80,7 +79,7 @@ chl_w2_grid_free (ChlW2Grid g)
 }
 
 int
-chl_w2_grid_get (ChlW2Grid g, int segment, int layer, real *value)
+chl_w2_grid_get (ChlW2Grid g, int segment, int layer, double *value)
 {
   if (!g)
     RAISE_NULL_ERR_INT;
@@ -123,7 +122,7 @@ chl_w2_grid_get (ChlW2Grid g, int segment, int layer, real *value)
 }
 
 int
-chl_w2_grid_set (ChlW2Grid g, int segment, int layer, real value)
+chl_w2_grid_set (ChlW2Grid g, int segment, int layer, double value)
 {
   if (!g)
     RAISE_NULL_ERR_INT;

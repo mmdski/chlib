@@ -3,8 +3,6 @@
 
 #include <stdbool.h>
 
-#include <chl/chlmath.h>
-
 #include "coordinate.h"
 
 /**
@@ -26,7 +24,7 @@ typedef struct ChlXSArray *ChlXSArray;
  * @return a new array
  * @return @c NULL if creation fails
  */
-extern ChlXSArray chl_xs_array_new (int n, real *elevation, real *station);
+extern ChlXSArray chl_xs_array_new (int n, double *elevation, double *station);
 
 /**
  * @brief Returns a new copy of an array
@@ -66,7 +64,7 @@ extern bool chl_xs_array_eq (ChlXSArray a1, ChlXSArray a2);
  * @param station station values
  * @return int length of array
  */
-extern int chl_xs_array_vals (ChlXSArray a, real *elevation, real *station);
+extern int chl_xs_array_vals (ChlXSArray a, double *elevation, double *station);
 
 /**
  * @brief Returns the length of an array.
@@ -90,11 +88,11 @@ extern int chl_xs_array_length (ChlXSArray a);
  * @return ChlXSArray
  */
 extern ChlXSArray
-chl_xs_array_subarray (ChlXSArray a, real sta_lo, real sta_hi);
+chl_xs_array_subarray (ChlXSArray a, double sta_lo, double sta_hi);
 
-extern real chl_xs_array_max_y (ChlXSArray a);
+extern double chl_xs_array_max_y (ChlXSArray a);
 
-extern real chl_xs_array_min_y (ChlXSArray a);
+extern double chl_xs_array_min_y (ChlXSArray a);
 
 extern Coordinate chl_xs_array_get (ChlXSArray a, int i);
 
@@ -112,6 +110,6 @@ extern Coordinate chl_xs_array_get (ChlXSArray a, int i);
  *
  * Returns: a subset of @a
  */
-extern ChlXSArray chl_xs_array_subarray_y (ChlXSArray a, real y);
+extern ChlXSArray chl_xs_array_subarray_y (ChlXSArray a, double y);
 
 #endif

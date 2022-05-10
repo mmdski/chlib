@@ -1,28 +1,26 @@
-#include <chl/chlmath.h>
+static double gravity            = 9.81;
+static double manning_conversion = 1;
 
-static real gravity            = 9.81;
-static real manning_conversion = 1;
-
-real
+double
 chl_const_gravity (void)
 {
   return gravity;
 }
 
-real
+double
 chl_const_manning (void)
 {
   return manning_conversion;
 }
 
 void
-chl_const_set_gravity (real g)
+chl_const_set_gravity (double g)
 {
   gravity = g;
 }
 
 void
-chl_const_set_manning (real k)
+chl_const_set_manning (double k)
 {
   manning_conversion = k;
 }

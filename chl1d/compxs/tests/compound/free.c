@@ -10,11 +10,11 @@ main (void)
 {
 
   /* test errors */
-  int  n           = 4;
-  real z[]         = { 0, 0, 1, 1 };
-  real y[]         = { 1, 0, 0, 1 };
-  int  n_roughness = 1;
-  real roughness   = 0.035;
+  int    n           = 4;
+  double z[]         = { 0, 0, 1, 1 };
+  double y[]         = { 1, 0, 0, 1 };
+  int    n_roughness = 1;
+  double roughness   = 0.035;
 
   Chl1DCompXS xs;
 

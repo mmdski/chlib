@@ -5,10 +5,6 @@ project('chlib', 'c',
         'b_ndebug=if-release'],
     version : '0.0.0')
 
-if get_option('real_is_float')
-    add_project_arguments('-DREAL_IS_FLOAT', language : 'c')
-endif
-
 if get_option('check_args')
     add_project_arguments('-DCHECK_ARGS', language : 'c')
 endif

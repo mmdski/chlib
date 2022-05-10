@@ -1,8 +1,6 @@
 #ifndef __XS_COORD_H__
 #define __XS_COORD_H__
 
-#include <chl/chlmath.h>
-
 /**
  * SECTION: coordinate.h
  * @short_description: Coordinate
@@ -22,8 +20,8 @@
  */
 struct Coordinate
 {
-  real y; /* vertical coordinate */
-  real z; /* lateral coordinate */
+  double y; /* vertical coordinate */
+  double z; /* lateral coordinate */
 };
 
 /**
@@ -44,7 +42,7 @@ typedef struct Coordinate *Coordinate;
  *
  * Returns: a new coordinate
  */
-extern Coordinate coord_new (real y, real z);
+extern Coordinate coord_new (double y, double z);
 
 /**
  * coord_copy:
@@ -90,7 +88,7 @@ extern int coord_eq (Coordinate c1, Coordinate c2);
  *
  * Returns: an interpolated coordinate
  */
-extern Coordinate coord_interp_y (Coordinate c1, Coordinate c2, real z);
+extern Coordinate coord_interp_y (Coordinate c1, Coordinate c2, double z);
 
 /**
  * coord_interp_z:
@@ -106,6 +104,6 @@ extern Coordinate coord_interp_y (Coordinate c1, Coordinate c2, real z);
  *
  * Returns: an interpolated coordinate
  */
-extern Coordinate coord_interp_z (Coordinate c1, Coordinate c2, real y);
+extern Coordinate coord_interp_z (Coordinate c1, Coordinate c2, double y);
 
 #endif

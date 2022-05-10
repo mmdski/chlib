@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 #include <chl/chlerror.h>
-#include <chl/chlmath.h>
 
 #include "array.h"
 #include "test.h"
@@ -11,20 +10,20 @@ int
 main (void)
 {
   int        n   = 8;
-  real       z[] = { 0, 0, 0.33, 0.33, 0.66, 0.66, 1, 1 };
-  real       y[] = { 1, 0.5, 0.5, 0, 0, 0.5, 0.5, 1 };
+  double     z[] = { 0, 0, 0.33, 0.33, 0.66, 0.66, 1, 1 };
+  double     y[] = { 1, 0.5, 0.5, 0, 0, 0.5, 0.5, 1 };
   ChlXSArray a   = chl_xs_array_new (n, y, z);
 
   int        n1   = 3;
-  real       z1[] = { 0, 0, 0.33 };
-  real       y1[] = { 1, 0.5, 0.5 };
+  double     z1[] = { 0, 0, 0.33 };
+  double     y1[] = { 1, 0.5, 0.5 };
   ChlXSArray a1   = chl_xs_array_new (n1, y1, z1);
 
   ChlXSArray a1_sub = chl_xs_array_subarray (a, 0, 0.33);
 
-  int   len       = chl_xs_array_length (a1_sub);
-  real *elevation = calloc (len, sizeof (real));
-  real *station   = calloc (len, sizeof (real));
+  int     len       = chl_xs_array_length (a1_sub);
+  double *elevation = calloc (len, sizeof (double));
+  double *station   = calloc (len, sizeof (double));
   chl_xs_array_vals (a1_sub, elevation, station);
   for (int i = 0; i < len; i++)
     {
@@ -39,8 +38,8 @@ main (void)
   chl_xs_array_free (a1_sub);
 
   int        n2   = 3;
-  real       z2[] = { 0.66, 1, 1 };
-  real       y2[] = { 0.5, 0.5, 1 };
+  double     z2[] = { 0.66, 1, 1 };
+  double     y2[] = { 0.5, 0.5, 1 };
   ChlXSArray a2   = chl_xs_array_new (n2, y2, z2);
 
   ChlXSArray a2_sub = chl_xs_array_subarray (a, 0.66, 1);

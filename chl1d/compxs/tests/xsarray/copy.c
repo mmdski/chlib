@@ -1,5 +1,4 @@
 #include <chl/chlerror.h>
-#include <chl/chlmath.h>
 
 #include "array.h"
 #include "test.h"
@@ -7,9 +6,9 @@
 int
 main (void)
 {
-  int  n1   = 4;
-  real y1[] = { 1, 0, 0, 1 };
-  real z1[] = { 0, 0, 1, 1 };
+  int    n1   = 4;
+  double y1[] = { 1, 0, 0, 1 };
+  double z1[] = { 0, 0, 1, 1 };
 
   ChlXSArray a1 = chl_xs_array_new (n1, y1, z1);
   assert_nonnull (a1);

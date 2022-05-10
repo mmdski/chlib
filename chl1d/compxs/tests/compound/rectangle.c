@@ -3,7 +3,6 @@
 
 #include <chl/chl1d.h>
 #include <chl/chlconstants.h>
-#include <chl/chlmath.h>
 
 #include "test.h"
 
@@ -14,24 +13,24 @@
 Chl1DCompXS
 new_rect_xs (void)
 {
-  int  n         = 5;
-  real z[]       = { 0, 0, 0.5, 1, 1 };
-  real y[]       = { 1, 0, 0, 0, 1 };
-  real roughness = 0.035;
+  int    n         = 5;
+  double z[]       = { 0, 0, 0.5, 1, 1 };
+  double y[]       = { 1, 0, 0, 0, 1 };
+  double roughness = 0.035;
 
   Chl1DCompXS xs = chl_1d_compxs_new (n, y, z, 1, &roughness, NULL);
 
   return xs;
 }
 
-real
-rect_area (real y)
+double
+rect_area (double y)
 {
   return y * WIDTH;
 }
 
-real
-rect_wp (real y)
+double
+rect_wp (double y)
 {
   if (y <= 0)
     return 0;
@@ -39,8 +38,8 @@ rect_wp (real y)
     return 2 * y + WIDTH;
 }
 
-real
-rect_tw (real y)
+double
+rect_tw (double y)
 {
   if (y <= 0)
     return 0;
@@ -48,26 +47,26 @@ rect_tw (real y)
     return WIDTH;
 }
 
-real
-rect_hd (real y)
+double
+rect_hd (double y)
 {
   return rect_area (y) / rect_tw (y);
 }
 
-real
-rect_hr (real y)
+double
+rect_hr (double y)
 {
   return rect_area (y) / rect_wp (y);
 }
 
-real
-rect_k (real y)
+double
+rect_k (double y)
 {
-  real area = rect_area (y);
-  real hr   = rect_hr (y);
-  real kc   = chl_const_manning ();
+  double area = rect_area (y);
+  double hr   = rect_hr (y);
+  double kc   = chl_const_manning ();
 
-  return kc / 0.035 * chl_pow (hr, 2. / 3.) * area;
+  return kc / 0.035 * pow (hr, 2. / 3.) * area;
 }
 
 void
@@ -76,18 +75,18 @@ test_rect (void)
   Chl1DCompXS  xs = new_rect_xs ();
   Chl1DXSProps xsp;
 
-  real min_h    = 0;
-  real max_h    = 1;
-  int  n_values = 10;
-  real dh       = (max_h - min_h) / n_values;
-  real h;
-  real area;
-  real tw;
-  real wp;
-  real hr;
-  real hd;
-  real k;
-  real alpha;
+  double min_h    = 0;
+  double max_h    = 1;
+  int    n_values = 10;
+  double dh       = (max_h - min_h) / n_values;
+  double h;
+  double area;
+  double tw;
+  double wp;
+  double hr;
+  double hd;
+  double k;
+  double alpha;
 
   for (int i = 0; i < 10; i++)
     {

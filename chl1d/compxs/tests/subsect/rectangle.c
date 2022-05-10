@@ -4,15 +4,15 @@
 
 #include "subsection.h"
 
-const real WIDTH = 1;
+const double WIDTH = 1;
 
 ChlXSSubsect
 new_rect_subsect (void)
 {
-  int  n         = 5;
-  real z[]       = { 0, 0, 0.5, 1, 1 };
-  real y[]       = { 1, 0, 0, 0, 1 };
-  real roughness = 0.035;
+  int    n         = 5;
+  double z[]       = { 0, 0, 0.5, 1, 1 };
+  double y[]       = { 1, 0, 0, 0, 1 };
+  double roughness = 0.035;
 
   ChlXSArray   a  = chl_xs_array_new (n, y, z);
   ChlXSSubsect ss = chl_xs_subsect_new (a, roughness);
@@ -21,36 +21,36 @@ new_rect_subsect (void)
   return ss;
 }
 
-real
-rect_area (real y)
+double
+rect_area (double y)
 {
   return y * WIDTH;
 }
 
-real
-rect_wp (real y)
+double
+rect_wp (double y)
 {
   return 2 * y + WIDTH;
 }
 
-real
-rect_tw (real y)
+double
+rect_tw (double y)
 {
   return WIDTH;
 }
 
-real
-rect_hr (real y)
+double
+rect_hr (double y)
 {
   return rect_area (y) / rect_wp (y);
 }
 
-real
-rect_k (real y)
+double
+rect_k (double y)
 {
-  real area = rect_area (y);
-  real hr   = rect_hr (y);
-  real kc   = chl_const_manning ();
+  double area = rect_area (y);
+  double hr   = rect_hr (y);
+  double kc   = chl_const_manning ();
 
-  return kc / 0.035 * chl_pow (hr, 2. / 3.) * area;
+  return kc / 0.035 * pow (hr, 2. / 3.) * area;
 }

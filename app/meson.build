@@ -3,11 +3,6 @@ error = executable('error',
     include_directories : [chl_inc],
     link_with : [chlib],
     name_suffix : exe_name_suffix)
-real = executable('real',
-    'real.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
 string = executable('string',
     'string.c',
     include_directories : [chl_inc],

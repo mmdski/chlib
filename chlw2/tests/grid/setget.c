@@ -3,7 +3,6 @@
 #include <time.h>
 
 #include <chl/chlerror.h>
-#include <chl/chlmath.h>
 #include <chl/chlw2.h>
 
 #include "test.h"
@@ -14,8 +13,8 @@ main (void)
   int n_segments = 10;
   int n_layers   = 5;
 
-  real setvalue = 0;
-  real getvalue = 0;
+  double setvalue = 0;
+  double getvalue = 0;
 
   ChlW2Grid g = NULL;
 
@@ -64,9 +63,9 @@ main (void)
   assert_true (chl_err_stack_is_type (INVALID_ARGUMENT_ERROR));
   chl_err_stack_clear ();
 
-  real min   = -1e5;
-  real max   = 1e5;
-  real range = max - min;
+  double min   = -1e5;
+  double max   = 1e5;
+  double range = max - min;
 
   srand (time (0));
 
@@ -74,7 +73,7 @@ main (void)
     {
       for (int j = 1; j <= n_layers; j++)
         {
-          setvalue = max - (real) rand () / (((real) RAND_MAX) / range);
+          setvalue = max - (double) rand () / (((double) RAND_MAX) / range);
           if (chl_w2_grid_set (g, i, j, setvalue) < 0)
             {
               chl_err_stack_print (__FILE__, __LINE__);

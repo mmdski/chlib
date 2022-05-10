@@ -7,6 +7,5 @@ chlib API documentation
 
    chlconstants
    chlerror
-   chlmath
    chlstring
    chl1d

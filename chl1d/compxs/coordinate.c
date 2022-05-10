@@ -5,7 +5,7 @@
 
 /* Creates and allocate space for a new Coordinate */
 Coordinate
-coord_new (real y, real z)
+coord_new (double y, double z)
 {
   Coordinate c;
   NEW (c);
@@ -50,28 +50,28 @@ coord_eq (Coordinate c1, Coordinate c2)
 
 /* Linearly interpolates Coordinate z value given a y value */
 Coordinate
-coord_interp_z (Coordinate c1, Coordinate c2, real y)
+coord_interp_z (Coordinate c1, Coordinate c2, double y)
 {
   assert (c1 && c2);
 
   /* assert y is between the two points */
   assert ((c1->y <= y && y <= c2->y) || (c2->y <= y && y <= c1->y));
 
-  real slope = (c2->z - c1->z) / (c2->y - c1->y);
-  real z     = slope * (y - c1->y) + c1->z;
+  double slope = (c2->z - c1->z) / (c2->y - c1->y);
+  double z     = slope * (y - c1->y) + c1->z;
   return coord_new (y, z);
 }
 
 /* Linearly interpolates Coordinate z value given a y value */
 Coordinate
-coord_interp_y (Coordinate c1, Coordinate c2, real z)
+coord_interp_y (Coordinate c1, Coordinate c2, double z)
 {
   assert (c1 && c2);
 
   /* assert z is between the two points */
   assert ((c1->z <= z && z <= c2->z) || (c2->z <= z && z <= c1->z));
 
-  real slope = (c2->y - c1->y) / (c2->z - c1->z);
-  real y     = slope * (z - c1->z) + c1->y;
+  double slope = (c2->y - c1->y) / (c2->z - c1->z);
+  double y     = slope * (z - c1->z) + c1->y;
   return coord_new (y, z);
 }

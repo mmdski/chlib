@@ -8,12 +8,12 @@
 
 struct Chl1DRectXS
 {
-  real width;
+  double width;
 };
 
 // creates a new rectangular cross section
 Chl1DRectXS
-chl_1d_rectxs_new (real width)
+chl_1d_rectxs_new (double width)
 {
 
 #ifdef CHECK_ARGS
@@ -46,7 +46,7 @@ chl_1d_rectxs_free (Chl1DRectXS xs)
 
 // returns the area
 int
-chl_1d_rectxs_area (Chl1DRectXS xs, real y, real *area)
+chl_1d_rectxs_area (Chl1DRectXS xs, double y, double *area)
 {
 
 #ifdef CHECK_ARGS
@@ -61,7 +61,7 @@ chl_1d_rectxs_area (Chl1DRectXS xs, real y, real *area)
 
 // wetted perimeter
 int
-chl_1d_rectxs_wp (Chl1DRectXS xs, real y, real *wp)
+chl_1d_rectxs_wp (Chl1DRectXS xs, double y, double *wp)
 {
 
 #ifdef CHECK_ARGS
@@ -75,7 +75,7 @@ chl_1d_rectxs_wp (Chl1DRectXS xs, real y, real *wp)
 }
 
 int
-chl_1d_rectxs_tw (Chl1DRectXS xs, real y, real *tw)
+chl_1d_rectxs_tw (Chl1DRectXS xs, double y, double *tw)
 {
 
 #ifdef CHECK_ARGS
@@ -89,7 +89,7 @@ chl_1d_rectxs_tw (Chl1DRectXS xs, real y, real *tw)
 }
 
 int
-chl_1d_rectxs_hr (Chl1DRectXS xs, real y, real *hr)
+chl_1d_rectxs_hr (Chl1DRectXS xs, double y, double *hr)
 {
 
 #ifdef CHECK_ARGS

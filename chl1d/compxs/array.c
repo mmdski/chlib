@@ -14,8 +14,8 @@
 struct ChlXSArray
 {
   int         length;      /* number of coordinates in this array */
-  real        max_y;       /* maximum y in chl_xs_array */
-  real        min_y;       /* minimum y in chl_xs_array */
+  double      max_y;       /* maximum y in chl_xs_array */
+  double      min_y;       /* minimum y in chl_xs_array */
   Coordinate *coordinates; /* array of coordinates */
 };
 
@@ -34,7 +34,7 @@ check_z_coordinates (int n, Coordinate *coordinates)
 }
 
 ChlXSArray
-chl_xs_array_new (int n, real *y, real *z)
+chl_xs_array_new (int n, double *y, double *z)
 {
   if (y == NULL)
     {
@@ -49,8 +49,8 @@ chl_xs_array_new (int n, real *y, real *z)
       return NULL;
     }
 
-  real       max_y = -INFINITY;
-  real       min_y = INFINITY;
+  double     max_y = -INFINITY;
+  double     min_y = INFINITY;
   ChlXSArray a;
   NEW (a);
 
@@ -92,8 +92,8 @@ chl_xs_array_from_array (int n, Coordinate *array)
 
   ChlXSArray  a;
   Coordinate *coordinates;
-  real        max_y = -INFINITY;
-  real        min_y = INFINITY;
+  double      max_y = -INFINITY;
+  double      min_y = INFINITY;
 
   Coordinate c;
 
@@ -198,14 +198,14 @@ chl_xs_array_eq (ChlXSArray a1, ChlXSArray a2)
   return true;
 }
 
-real
+double
 chl_xs_array_max_y (ChlXSArray a)
 {
   assert (a);
   return a->max_y;
 }
 
-real
+double
 chl_xs_array_min_y (ChlXSArray a)
 {
   assert (a);
@@ -237,7 +237,7 @@ chl_xs_array_get (ChlXSArray a, int i)
 }
 
 int
-chl_xs_array_vals (ChlXSArray a, real *elevation, real *station)
+chl_xs_array_vals (ChlXSArray a, double *elevation, double *station)
 {
   if (a == NULL)
     RAISE_NULL_ERR_INT;
@@ -260,7 +260,7 @@ chl_xs_array_vals (ChlXSArray a, real *elevation, real *station)
 /* find the index of the coordinate with the greatest z value that's less than
  * or equal to zlo */
 static int
-find_zlo_idx (ChlXSArray a, int lo, int hi, real zlo)
+find_zlo_idx (ChlXSArray a, int lo, int hi, double zlo)
 {
   if (lo == hi)
     {
@@ -282,7 +282,7 @@ find_zlo_idx (ChlXSArray a, int lo, int hi, real zlo)
 }
 
 static int
-find_zhi_idx (ChlXSArray a, int n, int lo, int hi, real zhi)
+find_zhi_idx (ChlXSArray a, int n, int lo, int hi, double zhi)
 {
   if (lo == hi)
     {
@@ -309,7 +309,7 @@ find_zhi_idx (ChlXSArray a, int n, int lo, int hi, real zhi)
 }
 
 ChlXSArray
-chl_xs_array_subarray_y (ChlXSArray a, real y)
+chl_xs_array_subarray_y (ChlXSArray a, double y)
 {
   assert (a);
 
@@ -420,7 +420,7 @@ find_high_elev (ChlXSArray a, int i)
 }
 
 ChlXSArray
-chl_xs_array_subarray (ChlXSArray a, real zlo, real zhi)
+chl_xs_array_subarray (ChlXSArray a, double zlo, double zhi)
 {
   if (!a)
     RAISE_NULL_ERR_NULL;
@@ -452,7 +452,7 @@ chl_xs_array_subarray (ChlXSArray a, real zlo, real zhi)
       return NULL;
     }
 
-  real        eps = 1e-10;
+  double      eps = 1e-10;
   ChlXSArray  sa;
   Coordinate  c0;
   Coordinate  c1;
@@ -468,7 +468,7 @@ chl_xs_array_subarray (ChlXSArray a, real zlo, real zhi)
   c0 = a->coordinates[i];
   c1 = a->coordinates[i + 1];
 
-  if (chl_abs (c1->z - c0->z) <= eps)
+  if (fabs (c1->z - c0->z) <= eps)
     array[j++] = coord_copy (c0);
   else
     array[j++] = coord_interp_y (c0, c1, zlo);
@@ -480,7 +480,7 @@ chl_xs_array_subarray (ChlXSArray a, real zlo, real zhi)
 
   c0 = a->coordinates[i - 1];
   c1 = a->coordinates[i];
-  if (chl_abs (c1->z - c0->z) <= eps)
+  if (fabs (c1->z - c0->z) <= eps)
     array[j++] = coord_copy (c1);
   else
     array[j++] = coord_interp_y (c0, c1, zhi);

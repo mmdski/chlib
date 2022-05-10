@@ -1,7 +1,6 @@
 #include <stdlib.h>
 
 #include <chl/chlerror.h>
-#include <chl/chlmath.h>
 
 #include "array.h"
 #include "test.h"
@@ -10,13 +9,13 @@ int
 main (void)
 {
   int        n   = 8;
-  real       z[] = { 0, 0, 0.33, 0.33, 0.66, 0.66, 1, 1 };
-  real       y[] = { 1, 0.5, 0.5, 0, 0, 0.5, 0.5, 1 };
+  double     z[] = { 0, 0, 0.33, 0.33, 0.66, 0.66, 1, 1 };
+  double     y[] = { 1, 0.5, 0.5, 0, 0, 0.5, 0.5, 1 };
   ChlXSArray a   = chl_xs_array_new (n, y, z);
 
-  int   len       = chl_xs_array_length (a);
-  real *station   = calloc (len, sizeof (real));
-  real *elevation = calloc (len, sizeof (real));
+  int     len       = chl_xs_array_length (a);
+  double *station   = calloc (len, sizeof (double));
+  double *elevation = calloc (len, sizeof (double));
 
   assert_positive (chl_xs_array_vals (a, elevation, station));
 

@@ -16,13 +16,13 @@
 struct ChlXSSubsect
 {
   ChlXSArray array; /* coordinate array */
-  real       n;     /* Manning's n */
-  real       min_y; /* activation depth */
+  double     n;     /* Manning's n */
+  double     min_y; /* activation depth */
 };
 
 /* Allocates memory and creates a new Subsection */
 ChlXSSubsect
-chl_xs_subsect_new (ChlXSArray a, real roughness)
+chl_xs_subsect_new (ChlXSArray a, double roughness)
 {
   if (a == NULL)
     {
@@ -70,7 +70,7 @@ chl_xs_subsect_free (ChlXSSubsect ss)
 }
 
 int
-chl_xs_subsect_roughness (ChlXSSubsect ss, real *roughness)
+chl_xs_subsect_roughness (ChlXSSubsect ss, double *roughness)
 {
   if (ss == NULL)
     {
@@ -86,17 +86,17 @@ chl_xs_subsect_roughness (ChlXSSubsect ss, real *roughness)
  * Returns a new Chl1DXSProps.
  */
 Chl1DXSProps
-chl_xs_subsect_props (ChlXSSubsect ss, real y)
+chl_xs_subsect_props (ChlXSSubsect ss, double y)
 {
   assert (ss);
 
   ChlXSArray sa;
 
-  real area      = 0;
-  real perimeter = 0;
-  real top_width = 0;
-  real hydraulic_radius;
-  real conveyance;
+  double area      = 0;
+  double perimeter = 0;
+  double top_width = 0;
+  double hydraulic_radius;
+  double conveyance;
 
   Chl1DXSProps xsp = xsp_new ();
 
@@ -118,18 +118,18 @@ chl_xs_subsect_props (ChlXSSubsect ss, real y)
   int i;
 
   /* depth for c1 and c2 */
-  real d1;
-  real d2;
+  double d1;
+  double d2;
 
   /* distances for perimeter */
-  real dy;
-  real dz;
+  double dy;
+  double dz;
 
-  real y1;
-  real z1;
+  double y1;
+  double z1;
 
-  real y2;
-  real z2;
+  double y2;
+  double z2;
 
   Coordinate c1;
   Coordinate c2;

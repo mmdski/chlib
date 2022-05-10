@@ -2,7 +2,6 @@
 #define __1D_SUBSECT_H__
 
 #include <chl/chl1d.h>
-#include <chl/chlmath.h>
 
 #include "array.h"
 
@@ -20,7 +19,7 @@ typedef struct ChlXSSubsect *ChlXSSubsect;
  * @return ChlXSSubsect
  * @return @c NULL if creation fails
  */
-extern ChlXSSubsect chl_xs_subsect_new (ChlXSArray a, real roughness);
+extern ChlXSSubsect chl_xs_subsect_new (ChlXSArray a, double roughness);
 
 /**
  * @brief Frees a subsection
@@ -39,7 +38,7 @@ extern int chl_xs_subsect_free (ChlXSSubsect ss);
  * @return 0 if operation successful
  * @return -1 if operation fails
  */
-extern int chl_xs_subsect_roughness (ChlXSSubsect ss, real *roughness);
+extern int chl_xs_subsect_roughness (ChlXSSubsect ss, double *roughness);
 
 /**
  * @brief Returns the hydraulic properties of a subsection
@@ -54,6 +53,6 @@ extern int chl_xs_subsect_roughness (ChlXSSubsect ss, real *roughness);
  * @param h elevation
  * @return Chl1DXSProps
  */
-extern Chl1DXSProps chl_xs_subsect_props (ChlXSSubsect ss, real h);
+extern Chl1DXSProps chl_xs_subsect_props (ChlXSSubsect ss, double h);
 
 #endif

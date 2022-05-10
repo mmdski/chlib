@@ -15,12 +15,12 @@
 Chl1DCompXS
 new_comprect_xs (void)
 {
-  int  n             = 8;
-  real z[]           = { 0, 0, 0.33, 0.33, 0.66, 0.66, 1, 1 };
-  real y[]           = { 1, 0.5, 0.5, 0, 0, 0.5, 0.5, 1 };
-  int  n_roughness   = 3;
-  real roughness[]   = { 0.06, 0.035, 0.06 };
-  real z_roughness[] = { 0.33, 0.66 };
+  int    n             = 8;
+  double z[]           = { 0, 0, 0.33, 0.33, 0.66, 0.66, 1, 1 };
+  double y[]           = { 1, 0.5, 0.5, 0, 0, 0.5, 0.5, 1 };
+  int    n_roughness   = 3;
+  double roughness[]   = { 0.06, 0.035, 0.06 };
+  double z_roughness[] = { 0.33, 0.66 };
 
   Chl1DCompXS xs =
       chl_1d_compxs_new (n, y, z, n_roughness, roughness, z_roughness);
@@ -28,8 +28,8 @@ new_comprect_xs (void)
   return xs;
 }
 
-real
-comprect_area (real y)
+double
+comprect_area (double y)
 {
   if (y <= 0)
     return 0;
@@ -39,8 +39,8 @@ comprect_area (real y)
     return (y - 0.5) * FP_WIDTH + y * CHAN_WIDTH;
 }
 
-real
-comprect_wp (real y)
+double
+comprect_wp (double y)
 {
   if (y <= 0)
     return 0;
@@ -50,8 +50,8 @@ comprect_wp (real y)
     return 2 * (y - 0.5) + FP_WIDTH + 2 * 0.5 + CHAN_WIDTH;
 }
 
-real
-comprect_tw (real y)
+double
+comprect_tw (double y)
 {
   if (y <= 0)
     return 0;
@@ -61,26 +61,26 @@ comprect_tw (real y)
     return 1;
 }
 
-real
-comprect_hd (real y)
+double
+comprect_hd (double y)
 {
   return comprect_area (y) / comprect_tw (y);
 }
 
-real
-comprect_hr (real y)
+double
+comprect_hr (double y)
 {
   return comprect_area (y) / comprect_wp (y);
 }
 
-real
-comprect_k (real y)
+double
+comprect_k (double y)
 {
-  real a1, a2, a3;
-  real wp1, wp2, wp3;
-  real hr1, hr2, hr3;
-  real k1, k2, k3;
-  real kc = chl_const_manning ();
+  double a1, a2, a3;
+  double wp1, wp2, wp3;
+  double hr1, hr2, hr3;
+  double k1, k2, k3;
+  double kc = chl_const_manning ();
 
   if (y <= 0)
     {
@@ -96,26 +96,26 @@ comprect_k (real y)
       a2  = y * CHAN_WIDTH;
       wp2 = 2 * y + CHAN_WIDTH;
       hr2 = a2 / wp2;
-      k2  = kc / 0.035 * a2 * chl_pow (hr2, 2. / 3.);
+      k2  = kc / 0.035 * a2 * pow (hr2, 2. / 3.);
     }
   else
     {
-      real y_ob = y - 0.5;
+      double y_ob = y - 0.5;
 
       a1  = y_ob * FP_WIDTH / 2;
       wp1 = y_ob + FP_WIDTH / 2;
       hr1 = a1 / wp1;
-      k1  = kc / 0.06 * a1 * chl_pow (hr1, 2. / 3.);
+      k1  = kc / 0.06 * a1 * pow (hr1, 2. / 3.);
 
       a2  = y * CHAN_WIDTH;
       wp2 = 2 * 0.5 + CHAN_WIDTH;
       hr2 = a2 / wp2;
-      k2  = kc / 0.035 * a2 * chl_pow (hr2, 2. / 3.);
+      k2  = kc / 0.035 * a2 * pow (hr2, 2. / 3.);
 
       a3  = y_ob * FP_WIDTH / 2;
       wp3 = y_ob + FP_WIDTH / 2;
       hr3 = a3 / wp3;
-      k3  = kc / 0.06 * a3 * chl_pow (hr3, 2. / 3.);
+      k3  = kc / 0.06 * a3 * pow (hr3, 2. / 3.);
     }
 
   return k1 + k2 + k3;
@@ -127,17 +127,17 @@ test_comprect (void)
   Chl1DCompXS  xs = new_comprect_xs ();
   Chl1DXSProps xsp;
 
-  real min_h    = 0;
-  real max_h    = 1;
-  int  n_values = 10;
-  real dh       = (max_h - min_h) / n_values;
-  real h;
-  real area;
-  real tw;
-  real wp;
-  real hr;
-  real hd;
-  real k;
+  double min_h    = 0;
+  double max_h    = 1;
+  int    n_values = 10;
+  double dh       = (max_h - min_h) / n_values;
+  double h;
+  double area;
+  double tw;
+  double wp;
+  double hr;
+  double hd;
+  double k;
 
   for (int i = 0; i < 10; i++)
     {

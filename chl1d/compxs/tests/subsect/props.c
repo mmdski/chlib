@@ -1,5 +1,4 @@
 #include <chl/chlerror.h>
-#include <chl/chlmath.h>
 
 #include "subsection.h"
 #include "test.h"
@@ -14,16 +13,16 @@ test_rect (void)
   ChlXSSubsect rect_ss = new_rect_subsect ();
   Chl1DXSProps xsp;
 
-  real min_h    = 0;
-  real max_h    = 1;
-  int  n_values = 10;
-  real dh       = (max_h - min_h) / n_values;
-  real h;
-  real area;
-  real tw;
-  real wp;
-  real hr;
-  real k;
+  double min_h    = 0;
+  double max_h    = 1;
+  int    n_values = 10;
+  double dh       = (max_h - min_h) / n_values;
+  double h;
+  double area;
+  double tw;
+  double wp;
+  double hr;
+  double k;
 
   for (int i = 0; i < 10; i++)
     {

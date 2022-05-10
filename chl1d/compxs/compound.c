@@ -24,7 +24,7 @@ struct Chl1DCompXS
 };
 
 Chl1DXSProps
-chl_1d_compxs_props (Chl1DCompXS xs, real h)
+chl_1d_compxs_props (Chl1DCompXS xs, double h)
 {
 
   if (xs == NULL)
@@ -33,23 +33,23 @@ chl_1d_compxs_props (Chl1DCompXS xs, real h)
   int n_subsections = xs->n_subsections;
   int i;
 
-  real g = chl_const_gravity ();
+  double g = chl_const_gravity ();
 
-  real area        = 0; /* xs area */
-  real top_width   = 0; /* xs top width */
-  real w_perimeter = 0; /* wetted perimeter */
-  real conveyance  = 0; /* conveyance */
-  real sum         = 0; /* sum for velocity coefficient */
-  real h_depth;         /* hydraulic depth */
-  real h_radius;        /* hydraulic radius */
+  double area        = 0; /* xs area */
+  double top_width   = 0; /* xs top width */
+  double w_perimeter = 0; /* wetted perimeter */
+  double conveyance  = 0; /* conveyance */
+  double sum         = 0; /* sum for velocity coefficient */
+  double h_depth;         /* hydraulic depth */
+  double h_radius;        /* hydraulic radius */
 
-  real area_ss; /* subsection area */
-  real tw_ss;   /* subsection top width */
-  real wp_ss;   /* subsection wetted perimeter */
-  real k_ss;    /* subsection conveyance */
+  double area_ss; /* subsection area */
+  double tw_ss;   /* subsection top width */
+  double wp_ss;   /* subsection wetted perimeter */
+  double k_ss;    /* subsection conveyance */
 
-  real alpha;     /* velocity coefficient */
-  real crit_flow; /* critical flow */
+  double alpha;     /* velocity coefficient */
+  double crit_flow; /* critical flow */
 
   Chl1DXSProps xsp = xsp_new ();
   Chl1DXSProps xsp_ss;
@@ -132,12 +132,12 @@ fail:
 }
 
 Chl1DCompXS
-chl_1d_compxs_new (int   n_coords,
-                   real *y,
-                   real *z,
-                   int   n_roughness,
-                   real *roughness,
-                   real *z_roughness)
+chl_1d_compxs_new (int     n_coords,
+                   double *y,
+                   double *z,
+                   int     n_roughness,
+                   double *roughness,
+                   double *z_roughness)
 {
   if (n_coords < 2)
     RAISE_ARG_ERR_NULL;
@@ -179,7 +179,7 @@ chl_1d_compxs_new (int   n_coords,
   /* initialize z splits
    * include first and last z-values of the array
    */
-  real *z_splits = chl_calloc (n_roughness + 1, sizeof (real));
+  double *z_splits = chl_calloc (n_roughness + 1, sizeof (double));
 
   c           = chl_xs_array_get (xs->ca, 0);
   z_splits[0] = c->z;

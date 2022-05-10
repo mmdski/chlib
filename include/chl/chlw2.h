@@ -11,8 +11,6 @@
 #ifndef __CHL_W2_H__
 #define __CHL_W2_H__
 
-#include <chl/chlmath.h>
-
 /**
  * @brief Generic W2 grid
  *
@@ -24,8 +22,8 @@ extern ChlW2Grid chl_w2_grid_new (
 
 extern void chl_w2_grid_free (ChlW2Grid g);
 
-extern int chl_w2_grid_get (ChlW2Grid g, int segment, int layer, real *value);
+extern int chl_w2_grid_get (ChlW2Grid g, int segment, int layer, double *value);
 
-extern int chl_w2_grid_set (ChlW2Grid g, int segment, int layer, real value);
+extern int chl_w2_grid_set (ChlW2Grid g, int segment, int layer, double value);
 
 #endif

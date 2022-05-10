@@ -5,7 +5,7 @@
 int
 main ()
 {
-  real g = 10;
+  double g = 10;
   chl_const_set_gravity (g);
   assert_equal (g, chl_const_gravity ());
 
@@ -13,7 +13,7 @@ main ()
   chl_const_set_gravity (g);
   assert_equal (g, chl_const_gravity ());
 
-  real k = 1.49;
+  double k = 1.49;
   chl_const_set_manning (k);
   assert_equal (k, chl_const_manning ());
 

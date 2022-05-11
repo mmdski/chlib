@@ -46,7 +46,7 @@ typedef struct ChlXSProps *ChlXSProps;
  *
  * @return ChlXSProps
  */
-extern ChlXSProps xsp_new (void);
+extern ChlXSProps chl_xs_props_new (void);
 
 /**
  * @brief Frees a cross section properties object
@@ -266,13 +266,16 @@ extern void chl_xs_comp_free (ChlXSComp xs);
 /**
  * @brief Returns the hydraulic properies of a compound cross section
  *
- * @details The returned cross section properties object is newly created and
- * must be freed with chl_xs_props_free().
+ * @details If @p *xsp is @c NULL, a new cross section properties object will be
+ * created. Otherwise, the function fills @p xsp with computed cross section
+ * properties. @p xsp must be freed with chl_xs_prop_free() when no longer
+ * needed.
  *
  * @param xs a compound cross section
  * @param h elevation
+ * @param xsp cross section properties object
  * @return ChlXSProps
  */
-extern ChlXSProps chl_xs_comp_props (ChlXSComp xs, double h);
+extern int chl_xs_comp_props (ChlXSComp xs, double h, ChlXSProps *xsp);
 
 #endif

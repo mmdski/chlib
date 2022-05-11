@@ -97,7 +97,7 @@ chl_xs_subsect_props (ChlXSSubsect ss, double y)
   double hydraulic_radius;
   double conveyance;
 
-  ChlXSProps xsp = xsp_new ();
+  ChlXSProps xsp = chl_xs_props_new ();
 
   int n;
 

@@ -123,8 +123,8 @@ comprect_k (double y)
 void
 test_comprect (void)
 {
-  ChlXSComp  xs = new_comprect_xs ();
-  ChlXSProps xsp;
+  ChlXSComp  xs  = new_comprect_xs ();
+  ChlXSProps xsp = NULL;
 
   double min_h    = 0;
   double max_h    = 1;
@@ -144,7 +144,7 @@ test_comprect (void)
 
       printf ("h = %f\n", h);
 
-      xsp = chl_xs_comp_props (xs, h);
+      assert_zero (chl_xs_comp_props (xs, h, &xsp));
       assert_nonnull (xsp);
 
       assert_zero (chl_xs_props_get (xsp, XS_AREA, &area));
@@ -194,9 +194,8 @@ test_comprect (void)
         }
 
       printf ("\n");
-
-      chl_xs_props_free (xsp);
     }
 
+  chl_xs_props_free (xsp);
   chl_xs_comp_free (xs);
 }

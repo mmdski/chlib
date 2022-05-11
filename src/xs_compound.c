@@ -22,12 +22,20 @@ struct ChlXSComp
   ChlXSSubsect *ss;            /* array of subsections */
 };
 
-ChlXSProps
-chl_xs_comp_props (ChlXSComp xs, double h)
+int
+chl_xs_comp_props (ChlXSComp xs, double h, ChlXSProps *xsp_ptr)
 {
 
   if (xs == NULL)
-    RAISE_NULL_ERR_NULL;
+    RAISE_NULL_ERR_INT;
+
+  bool xsp_created = false;
+
+  if (*xsp_ptr == NULL)
+    {
+      *xsp_ptr    = chl_xs_props_new ();
+      xsp_created = true;
+    }
 
   int n_subsections = xs->n_subsections;
   int i;
@@ -50,7 +58,7 @@ chl_xs_comp_props (ChlXSComp xs, double h)
   double alpha;     /* velocity coefficient */
   double crit_flow; /* critical flow */
 
-  ChlXSProps   xsp = xsp_new ();
+  ChlXSProps   xsp = *xsp_ptr;
   ChlXSProps   xsp_ss;
   ChlXSSubsect ss;
 
@@ -122,12 +130,13 @@ chl_xs_comp_props (ChlXSComp xs, double h)
   xsp_set (xsp, XS_VELOCITY_COEFF, alpha);
   xsp_set (xsp, XS_CRITICAL_FLOW, crit_flow);
 
-  return xsp;
+  return 0;
 
 fail:
-  chl_xs_props_free (xsp);
+  if (xsp_created)
+    chl_xs_props_free (xsp);
   chl_xs_props_free (xsp_ss);
-  return NULL;
+  return -1;
 }
 
 ChlXSComp

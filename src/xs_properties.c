@@ -12,7 +12,7 @@ struct ChlXSProps
 };
 
 ChlXSProps
-xsp_new (void)
+chl_xs_props_new (void)
 {
   ChlXSProps xsp;
   NEW (xsp);

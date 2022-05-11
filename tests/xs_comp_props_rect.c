@@ -72,8 +72,8 @@ rect_k (double y)
 void
 test_rect (void)
 {
-  ChlXSComp  xs = new_rect_xs ();
-  ChlXSProps xsp;
+  ChlXSComp  xs  = new_rect_xs ();
+  ChlXSProps xsp = NULL;
 
   double min_h    = 0;
   double max_h    = 1;
@@ -92,7 +92,7 @@ test_rect (void)
     {
       h = i * dh;
 
-      xsp = chl_xs_comp_props (xs, h);
+      assert_zero (chl_xs_comp_props (xs, h, &xsp));
       assert_nonnull (xsp);
 
       assert_zero (chl_xs_props_get (xsp, XS_AREA, &area));
@@ -143,9 +143,8 @@ test_rect (void)
         {
           assert_approx_eq (alpha, 1, EPS);
         }
-
-      chl_xs_props_free (xsp);
     }
 
+  chl_xs_props_free (xsp);
   chl_xs_comp_free (xs);
 }

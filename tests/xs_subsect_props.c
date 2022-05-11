@@ -11,7 +11,7 @@ void
 test_rect (void)
 {
   ChlXSSubsect rect_ss = new_rect_subsect ();
-  ChlXSProps   xsp;
+  ChlXSProps   xsp     = NULL;
 
   double min_h    = 0;
   double max_h    = 1;
@@ -28,7 +28,7 @@ test_rect (void)
     {
       h = i * dh;
 
-      xsp = chl_xs_subsect_props (rect_ss, h);
+      assert_zero (chl_xs_subsect_props (rect_ss, h, &xsp));
       assert_nonnull (xsp);
 
       assert_zero (chl_xs_props_get (xsp, XS_AREA, &area));
@@ -73,10 +73,9 @@ test_rect (void)
         {
           assert_approx_eq (k, rect_k (h), EPS);
         }
-
-      chl_xs_props_free (xsp);
     }
 
+  chl_xs_props_free (xsp);
   chl_xs_subsect_free (rect_ss);
 }
 

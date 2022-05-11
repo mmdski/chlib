@@ -5,6 +5,7 @@
 #include <chl/chl_constants.h>
 #include <chl/chl_error.h>
 
+#include "error.h"
 #include "list.h"
 #include "memory.h"
 #include "xs_array.h"
@@ -84,10 +85,11 @@ chl_xs_subsect_roughness (ChlXSSubsect ss, double *roughness)
 /* Calculates hydraulic properties for the subsection.
  * Returns a new ChlXSProps.
  */
-ChlXSProps
-chl_xs_subsect_props (ChlXSSubsect ss, double y)
+int
+chl_xs_subsect_props (ChlXSSubsect ss, double y, ChlXSProps *xsp_ptr)
 {
-  assert (ss);
+  if (!ss)
+    RAISE_NULL_ERR_INT;
 
   ChlXSArray sa;
 
@@ -97,7 +99,10 @@ chl_xs_subsect_props (ChlXSSubsect ss, double y)
   double hydraulic_radius;
   double conveyance;
 
-  ChlXSProps xsp = chl_xs_props_new ();
+  if (*xsp_ptr == NULL)
+    *xsp_ptr = chl_xs_props_new ();
+
+  ChlXSProps xsp = *xsp_ptr;
 
   int n;
 
@@ -198,8 +203,7 @@ chl_xs_subsect_props (ChlXSSubsect ss, double y)
   xsp_set (xsp, XS_HYDRAULIC_RADIUS, hydraulic_radius);
   xsp_set (xsp, XS_CONVEYANCE, conveyance);
 
-  if (sa)
-    chl_xs_array_free (sa);
+  chl_xs_array_free (sa);
 
-  return xsp;
+  return 0;
 }

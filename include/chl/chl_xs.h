@@ -223,9 +223,11 @@ extern int chl_xs_subsect_roughness (ChlXSSubsect ss, double *roughness);
  *
  * @param ss a subsection
  * @param h elevation
- * @return ChlXSProps
+ * @param xsp_ptr pointer to a cross section properties object
+ * @return int
  */
-extern ChlXSProps chl_xs_subsect_props (ChlXSSubsect ss, double h);
+extern int
+chl_xs_subsect_props (ChlXSSubsect ss, double h, ChlXSProps *xsp_ptr);
 
 /**
  * @brief Compound cross section
@@ -273,9 +275,9 @@ extern void chl_xs_comp_free (ChlXSComp xs);
  *
  * @param xs a compound cross section
  * @param h elevation
- * @param xsp cross section properties object
+ * @param xsp_ptr a pointer to a cross section properties object
  * @return ChlXSProps
  */
-extern int chl_xs_comp_props (ChlXSComp xs, double h, ChlXSProps *xsp);
+extern int chl_xs_comp_props (ChlXSComp xs, double h, ChlXSProps *xsp_ptr);
 
 #endif

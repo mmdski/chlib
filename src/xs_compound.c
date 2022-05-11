@@ -58,8 +58,8 @@ chl_xs_comp_props (ChlXSComp xs, double h, ChlXSProps *xsp_ptr)
   double alpha;     /* velocity coefficient */
   double crit_flow; /* critical flow */
 
-  ChlXSProps   xsp = *xsp_ptr;
-  ChlXSProps   xsp_ss;
+  ChlXSProps   xsp    = *xsp_ptr;
+  ChlXSProps   xsp_ss = NULL;
   ChlXSSubsect ss;
 
   for (i = 0; i < n_subsections; i++)
@@ -69,7 +69,11 @@ chl_xs_comp_props (ChlXSComp xs, double h, ChlXSProps *xsp_ptr)
        * subsection */
       ss = *(xs->ss + i);
 
-      xsp_ss = chl_xs_subsect_props (ss, h);
+      if (chl_xs_subsect_props (ss, h, &xsp_ss) < 0)
+        {
+          chl_err_stack_push (__FILE__, __LINE__);
+          goto fail;
+        }
 
       /* get the subsection area */
       if (chl_xs_props_get (xsp_ss, XS_AREA, &area_ss) < 0)
@@ -107,11 +111,11 @@ chl_xs_comp_props (ChlXSComp xs, double h, ChlXSProps *xsp_ptr)
           sum += (k_ss * k_ss * k_ss) / (area_ss * area_ss);
         }
 
-      chl_xs_props_free (xsp_ss);
-
       area += area_ss;
       conveyance += k_ss;
     }
+
+  chl_xs_props_free (xsp_ss);
 
   h_depth  = area / top_width;
   h_radius = area / w_perimeter;

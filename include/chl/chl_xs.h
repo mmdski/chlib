@@ -93,6 +93,16 @@ extern ChlXSRect chl_xs_rect_new (double width);
 extern int chl_xs_rect_free (ChlXSRect xs);
 
 /**
+ * @brief Returns the cross secton properties of a rectangular cross section
+ *
+ * @param xs a rectangular cross section
+ * @param y depth
+ * @param xsp_ptr pointer to a cross section properties object (or @c NULL)
+ * @return int
+ */
+extern int chl_xs_rect_props (ChlXSRect xs, double y, ChlXSProps *xsp_ptr);
+
+/**
  * @brief Cross section coordinate array
  *
  */

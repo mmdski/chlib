@@ -1,10 +1,10 @@
 /**
  * @file chl_xs.h
- * @brief 1D interface
+ * @brief cross section interface
  */
 
-#ifndef __CHL_1D_H__
-#define __CHL_1D_H__
+#ifndef __CHL_XS_H__
+#define __CHL_XS_H__
 
 #include <stdbool.h>
 
@@ -33,20 +33,27 @@ typedef enum
   /** Critical flow */
   XS_CRITICAL_FLOW,
   N_XSP
-} Chl1DXSPropNum;
+} ChlXSPropNum;
 
 /**
  * @brief Data type for hydraulic properties of a cross section
  *
  */
-typedef struct Chl1DXSProps *Chl1DXSProps;
+typedef struct ChlXSProps *ChlXSProps;
+
+/**
+ * @brief Initializes an empty cross section properties object
+ *
+ * @return ChlXSProps
+ */
+extern ChlXSProps xsp_new (void);
 
 /**
  * @brief Frees a cross section properties object
  *
  * @param xsp
  */
-extern void chl_xs_props_free (Chl1DXSProps xsp);
+extern void chl_xs_props_free (ChlXSProps xsp);
 
 /**
  * @brief Returns cross section property values
@@ -56,13 +63,12 @@ extern void chl_xs_props_free (Chl1DXSProps xsp);
  * @param value pointer to cross section property value
  * @return int
  */
-extern int
-chl_xs_props_get (Chl1DXSProps xsp, Chl1DXSPropNum prop, double *value);
+extern int chl_xs_props_get (ChlXSProps xsp, ChlXSPropNum prop, double *value);
 
 /**
  * Rectangular cross section.
  */
-typedef struct Chl1DRectXS *Chl1DRectXS;
+typedef struct ChlXSRect *ChlXSRect;
 
 /**
  * @brief Creates a new rectangular cross section
@@ -75,7 +81,7 @@ typedef struct Chl1DRectXS *Chl1DRectXS;
  * @return new rectangular cross section
  * @return @c NULL if creation fails
  */
-extern Chl1DRectXS chl_xs_rect_new (double width);
+extern ChlXSRect chl_xs_rect_new (double width);
 
 /**
  * @brief Frees a rectangular cross section
@@ -84,7 +90,7 @@ extern Chl1DRectXS chl_xs_rect_new (double width);
  * @return 0 if operation was a success
  * @return -1 if operation fails
  */
-extern int chl_xs_rect_free (Chl1DRectXS xs);
+extern int chl_xs_rect_free (ChlXSRect xs);
 
 /**
  * @brief Cross section coordinate array
@@ -217,15 +223,15 @@ extern int chl_xs_subsect_roughness (ChlXSSubsect ss, double *roughness);
  *
  * @param ss a subsection
  * @param h elevation
- * @return Chl1DXSProps
+ * @return ChlXSProps
  */
-extern Chl1DXSProps chl_xs_subsect_props (ChlXSSubsect ss, double h);
+extern ChlXSProps chl_xs_subsect_props (ChlXSSubsect ss, double h);
 
 /**
  * @brief Compound cross section
  *
  */
-typedef struct Chl1DCompXS *Chl1DCompXS;
+typedef struct ChlXSComp *ChlXSComp;
 
 /**
  * @brief Creates a new compound cross section
@@ -241,21 +247,21 @@ typedef struct Chl1DCompXS *Chl1DCompXS;
  * @param n_roughness number of values in @p roughness
  * @param roughness n-values for each subsection
  * @param sub_station break points for subsections
- * @return Chl1DCompXS
+ * @return ChlXSComp
  */
-extern Chl1DCompXS chl_xs_comp_new (int     n_coords,
-                                    double *elevation,
-                                    double *station,
-                                    int     n_roughness,
-                                    double *roughness,
-                                    double *sub_station);
+extern ChlXSComp chl_xs_comp_new (int     n_coords,
+                                  double *elevation,
+                                  double *station,
+                                  int     n_roughness,
+                                  double *roughness,
+                                  double *sub_station);
 
 /**
  * @brief Frees a compound cross section
  *
  * @param xs a compound cross section
  */
-extern void chl_xs_comp_free (Chl1DCompXS xs);
+extern void chl_xs_comp_free (ChlXSComp xs);
 
 /**
  * @brief Returns the hydraulic properies of a compound cross section
@@ -265,8 +271,8 @@ extern void chl_xs_comp_free (Chl1DCompXS xs);
  *
  * @param xs a compound cross section
  * @param h elevation
- * @return Chl1DXSProps
+ * @return ChlXSProps
  */
-extern Chl1DXSProps chl_xs_comp_props (Chl1DCompXS xs, double h);
+extern ChlXSProps chl_xs_comp_props (ChlXSComp xs, double h);
 
 #endif

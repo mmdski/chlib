@@ -16,7 +16,7 @@ main (void)
   int    n_roughness = 1;
   double roughness   = 0.035;
 
-  Chl1DCompXS xs;
+  ChlXSComp xs;
 
   /* invalid number of coordinates */
   xs = chl_xs_comp_new (n, y, z, n_roughness, &roughness, NULL);

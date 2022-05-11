@@ -82,9 +82,9 @@ chl_xs_subsect_roughness (ChlXSSubsect ss, double *roughness)
 }
 
 /* Calculates hydraulic properties for the subsection.
- * Returns a new Chl1DXSProps.
+ * Returns a new ChlXSProps.
  */
-Chl1DXSProps
+ChlXSProps
 chl_xs_subsect_props (ChlXSSubsect ss, double y)
 {
   assert (ss);
@@ -97,7 +97,7 @@ chl_xs_subsect_props (ChlXSSubsect ss, double y)
   double hydraulic_radius;
   double conveyance;
 
-  Chl1DXSProps xsp = xsp_new ();
+  ChlXSProps xsp = xsp_new ();
 
   int n;
 

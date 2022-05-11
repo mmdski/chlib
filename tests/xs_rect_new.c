@@ -10,7 +10,7 @@ main (void)
 {
   double width = 10;
 
-  Chl1DRectXS xs = chl_xs_rect_new (width);
+  ChlXSRect xs = chl_xs_rect_new (width);
   assert_nonnull (xs);
   assert_zero (chl_xs_rect_free (xs));
 

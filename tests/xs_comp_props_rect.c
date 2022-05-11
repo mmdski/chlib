@@ -10,7 +10,7 @@
 
 #define WIDTH 1
 
-Chl1DCompXS
+ChlXSComp
 new_rect_xs (void)
 {
   int    n         = 5;
@@ -18,7 +18,7 @@ new_rect_xs (void)
   double y[]       = { 1, 0, 0, 0, 1 };
   double roughness = 0.035;
 
-  Chl1DCompXS xs = chl_xs_comp_new (n, y, z, 1, &roughness, NULL);
+  ChlXSComp xs = chl_xs_comp_new (n, y, z, 1, &roughness, NULL);
 
   return xs;
 }
@@ -72,8 +72,8 @@ rect_k (double y)
 void
 test_rect (void)
 {
-  Chl1DCompXS  xs = new_rect_xs ();
-  Chl1DXSProps xsp;
+  ChlXSComp  xs = new_rect_xs ();
+  ChlXSProps xsp;
 
   double min_h    = 0;
   double max_h    = 1;

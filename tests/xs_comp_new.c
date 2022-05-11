@@ -14,7 +14,7 @@ test_simple_single (void)
   double y[]       = { 1, 0, 0, 1 };
   double roughness = 0.035;
 
-  Chl1DCompXS xs = chl_xs_comp_new (n, y, z, 1, &roughness, NULL);
+  ChlXSComp xs = chl_xs_comp_new (n, y, z, 1, &roughness, NULL);
   assert_nonnull (xs);
   chl_xs_comp_free (xs);
 }
@@ -30,8 +30,7 @@ test_simple_comp (void)
   double roughness[]   = { 0.6, 0.35, 0.6 };
   double z_roughness[] = { 0.33, 0.66 };
 
-  Chl1DCompXS xs =
-      chl_xs_comp_new (n, y, z, n_roughness, roughness, z_roughness);
+  ChlXSComp xs = chl_xs_comp_new (n, y, z, n_roughness, roughness, z_roughness);
   assert_nonnull (xs);
   chl_xs_comp_free (xs);
 }
@@ -50,7 +49,7 @@ main (void)
   double roughness     = 0.035;
   double inv_roughness = -roughness;
 
-  Chl1DCompXS xs;
+  ChlXSComp xs;
 
   /* invalid number of coordinates */
   xs = chl_xs_comp_new (1, y, z, 1, &roughness, NULL);

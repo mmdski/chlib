@@ -12,7 +12,7 @@
 #define CHAN_WIDTH 0.33
 #define FP_WIDTH 0.67
 
-Chl1DCompXS
+ChlXSComp
 new_comprect_xs (void)
 {
   int    n             = 8;
@@ -22,8 +22,7 @@ new_comprect_xs (void)
   double roughness[]   = { 0.06, 0.035, 0.06 };
   double z_roughness[] = { 0.33, 0.66 };
 
-  Chl1DCompXS xs =
-      chl_xs_comp_new (n, y, z, n_roughness, roughness, z_roughness);
+  ChlXSComp xs = chl_xs_comp_new (n, y, z, n_roughness, roughness, z_roughness);
 
   return xs;
 }
@@ -124,8 +123,8 @@ comprect_k (double y)
 void
 test_comprect (void)
 {
-  Chl1DCompXS  xs = new_comprect_xs ();
-  Chl1DXSProps xsp;
+  ChlXSComp  xs = new_comprect_xs ();
+  ChlXSProps xsp;
 
   double min_h    = 0;
   double max_h    = 1;

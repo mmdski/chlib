@@ -6,22 +6,22 @@
 #include "memory.h"
 #include "xs_properties.h"
 
-struct Chl1DXSProps
+struct ChlXSProps
 {
   double *properties;
 };
 
-Chl1DXSProps
+ChlXSProps
 xsp_new (void)
 {
-  Chl1DXSProps xsp;
+  ChlXSProps xsp;
   NEW (xsp);
   xsp->properties = chl_calloc (N_XSP, sizeof (double));
   return xsp;
 }
 
 void
-chl_xs_props_free (Chl1DXSProps xsp)
+chl_xs_props_free (ChlXSProps xsp)
 {
   if (xsp)
     {
@@ -31,7 +31,7 @@ chl_xs_props_free (Chl1DXSProps xsp)
 }
 
 int
-chl_xs_props_get (Chl1DXSProps xsp, Chl1DXSPropNum prop, double *value)
+chl_xs_props_get (ChlXSProps xsp, ChlXSPropNum prop, double *value)
 {
   if (!xsp)
     RAISE_NULL_ERR_INT;
@@ -42,7 +42,7 @@ chl_xs_props_get (Chl1DXSProps xsp, Chl1DXSPropNum prop, double *value)
 }
 
 void
-xsp_set (Chl1DXSProps xsp, Chl1DXSPropNum prop, double value)
+xsp_set (ChlXSProps xsp, ChlXSPropNum prop, double value)
 {
   assert (xsp);
   *(xsp->properties + prop) = value;

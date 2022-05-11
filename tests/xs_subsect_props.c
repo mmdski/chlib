@@ -11,7 +11,7 @@ void
 test_rect (void)
 {
   ChlXSSubsect rect_ss = new_rect_subsect ();
-  Chl1DXSProps xsp;
+  ChlXSProps   xsp;
 
   double min_h    = 0;
   double max_h    = 1;

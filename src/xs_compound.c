@@ -14,7 +14,7 @@
 /*
  * cross section interface
  */
-struct Chl1DCompXS
+struct ChlXSComp
 {
   int           n_coordinates; /* number of coordinates */
   int           n_subsections; /* number of subsections */
@@ -22,8 +22,8 @@ struct Chl1DCompXS
   ChlXSSubsect *ss;            /* array of subsections */
 };
 
-Chl1DXSProps
-chl_xs_comp_props (Chl1DCompXS xs, double h)
+ChlXSProps
+chl_xs_comp_props (ChlXSComp xs, double h)
 {
 
   if (xs == NULL)
@@ -50,8 +50,8 @@ chl_xs_comp_props (Chl1DCompXS xs, double h)
   double alpha;     /* velocity coefficient */
   double crit_flow; /* critical flow */
 
-  Chl1DXSProps xsp = xsp_new ();
-  Chl1DXSProps xsp_ss;
+  ChlXSProps   xsp = xsp_new ();
+  ChlXSProps   xsp_ss;
   ChlXSSubsect ss;
 
   for (i = 0; i < n_subsections; i++)
@@ -130,7 +130,7 @@ fail:
   return NULL;
 }
 
-Chl1DCompXS
+ChlXSComp
 chl_xs_comp_new (int     n_coords,
                  double *y,
                  double *z,
@@ -168,7 +168,7 @@ chl_xs_comp_new (int     n_coords,
   Coordinate c;
 
   /* cross section to return */
-  Chl1DCompXS xs;
+  ChlXSComp xs;
   NEW (xs);
   xs->n_coordinates = chl_xs_array_length (ca);
   xs->n_subsections = n_roughness;
@@ -208,7 +208,7 @@ chl_xs_comp_new (int     n_coords,
 }
 
 void
-chl_xs_comp_free (Chl1DCompXS xs)
+chl_xs_comp_free (ChlXSComp xs)
 {
   if (!xs)
     return;

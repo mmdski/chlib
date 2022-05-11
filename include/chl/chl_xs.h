@@ -66,9 +66,22 @@ extern void chl_xs_props_free (ChlXSProps xsp);
 extern int chl_xs_props_get (ChlXSProps xsp, ChlXSPropNum prop, double *value);
 
 /**
+ * @brief Rectangular cross section structure
+ *
+ */
+struct ChlXSRect_s
+{
+  /** Cross section width */
+  double width;
+
+  /** Cross section roughness */
+  double roughness;
+};
+
+/**
  * Rectangular cross section.
  */
-typedef struct ChlXSRect *ChlXSRect;
+typedef struct ChlXSRect_s *ChlXSRect;
 
 /**
  * @brief Creates a new rectangular cross section

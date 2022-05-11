@@ -9,12 +9,6 @@
 #include "memory.h"
 #include "xs_properties.h"
 
-struct ChlXSRect
-{
-  double width;
-  double roughness;
-};
-
 // creates a new rectangular cross section
 ChlXSRect
 chl_xs_rect_new (double width)

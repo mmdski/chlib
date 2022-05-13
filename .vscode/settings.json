@@ -46,11 +46,11 @@
     "esbonio.sphinx.buildDir": "${workspaceFolder}/docs/_build",
     "esbonio.sphinx.confDir": "${workspaceFolder}/docs/source",
     "mesonbuild.configureOnOpen": false,
-    "mesonbuild.buildFolder": "build",
+    "mesonbuild.buildFolder": "builddir",
     "mesonbuild.configureOptions": [
         "--buildtype=debug",
         "-Db_coverage=true",
-        "-Db_lundef=false",
-        "-Db_sanitize=address"
+        "-Dtests=true",
+        "-Dbuild_app=true"
     ]
 }

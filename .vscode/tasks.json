@@ -6,27 +6,36 @@
         {
             "label": "setup-debug",
             "type": "shell",
-            "command": "${workspaceFolder}/env/bin/meson",
+            "command": "${config:mesonbuild.mesonPath}",
             "args": [
                 "setup",
                 "--buildtype=debug",
-                "-Db_lundef=false",
-                "-Db_sanitize=address",
                 "-Db_coverage=true",
                 "-Dtests=true",
                 "-Dbuild_app=true",
-                "build"
+                "${config:mesonbuild.buildFolder}"
             ],
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
             "group": "build"
         },
         {
-            "label": "test",
+            "label": "test-debug",
             "type": "shell",
-            "command": "${workspaceFolder}/env/bin/ninja",
+            "command": "${config:mesonbuild.mesonPath}",
             "args": [
+                "test",
                 "-C",
-                "build",
-                "test"
+                "${config:mesonbuild.buildFolder}"
+            ],
+            "dependsOn": [
+                "setup-debug"
             ],
             "group": "test"
         },
@@ -36,8 +45,74 @@
             "command": "${workspaceFolder}/env/bin/ninja",
             "args": [
                 "-C",
-                "build",
+                "${config:mesonbuild.buildFolder}",
                 "coverage-html"
+            ],
+            "dependsOn": [
+                "test-debug"
+            ],
+            "group": "test"
+        },
+        {
+            "label": "setup-asan",
+            "type": "shell",
+            "command": "${workspaceFolder}/env/bin/meson",
+            "args": [
+                "setup",
+                "--buildtype=debug",
+                "-Db_lundef=false",
+                "-Db_sanitize=address",
+                "-Dtests=true",
+                "-Dbuild_app=true",
+                "build.asan"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "build"
+        },
+        {
+            "label": "test-asan",
+            "type": "shell",
+            "command": "${workspaceFolder}/env/bin/ninja",
+            "args": [
+                "-C",
+                "build.asan",
+                "test"
+            ],
+            "dependsOn": [
+                "setup-asan"
+            ],
+            "group": "test"
+        },
+        {
+            "label": "setup-node",
+            "type": "shell",
+            "command": "${workspaceFolder}/env/bin/meson",
+            "args": [
+                "setup",
+                "--cross",
+                "node.ini",
+                "build.node"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "test-node",
+            "type": "shell",
+            "command": "${workspaceFolder}/env/bin/ninja",
+            "args": [
+                "-C",
+                "build.node",
+                "test"
+            ],
+            "dependsOn": [
+                "setup-node"
             ],
             "group": "test"
         },
@@ -53,6 +128,37 @@
                 "build.wasm32"
             ],
             "group": "build"
+        },
+        {
+            "label": "sphinx-autobuild",
+            "type": "shell",
+            "command": "${workspaceFolder}/env/bin/sphinx-autobuild",
+            "args": [
+                "${config:esbonio.sphinx.confDir}",
+                "${config:esbonio.sphinx.buildDir}"
+            ],
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "group": "none",
+            "problemMatcher": []
+        },
+        {
+            "label": "open docs",
+            "type": "process",
+            "command": "open",
+            "args": [
+                "-a",
+                "Safari",
+                "http://127.0.0.1:8000"
+            ],
+            "group": "none",
+            "problemMatcher": []
         }
     ]
 }

@@ -65,3 +65,6 @@ docs/_build
 
 # doxygen xml
 docs/xml
+
+# vscode
+.vscode/

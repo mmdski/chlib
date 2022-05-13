@@ -7,7 +7,6 @@
 
 #include "error.h"
 #include "memory.h"
-#include "xs_properties.h"
 
 // creates a new rectangular cross section
 ChlXSRect
@@ -125,14 +124,14 @@ chl_xs_rect_props (ChlXSRect xs, double y, ChlXSProps *xsp_ptr)
   double velocity_coeff = 1;
   double critical_flow  = area * sqrt (chl_const_gravity () * y);
 
-  xsp_set (xsp, XS_DEPTH, y);
-  xsp_set (xsp, XS_TOP_WIDTH, top_width);
-  xsp_set (xsp, XS_WETTED_PERIMETER, wetted_perimeter);
-  xsp_set (xsp, XS_HYDRAULIC_DEPTH, hydraulic_depth);
-  xsp_set (xsp, XS_HYDRAULIC_RADIUS, hydraulic_radius);
-  xsp_set (xsp, XS_CONVEYANCE, conveyance);
-  xsp_set (xsp, XS_VELOCITY_COEFF, velocity_coeff);
-  xsp_set (xsp, XS_CRITICAL_FLOW, critical_flow);
+  chl_xs_props_set (xsp, XS_DEPTH, y);
+  chl_xs_props_set (xsp, XS_TOP_WIDTH, top_width);
+  chl_xs_props_set (xsp, XS_WETTED_PERIMETER, wetted_perimeter);
+  chl_xs_props_set (xsp, XS_HYDRAULIC_DEPTH, hydraulic_depth);
+  chl_xs_props_set (xsp, XS_HYDRAULIC_RADIUS, hydraulic_radius);
+  chl_xs_props_set (xsp, XS_CONVEYANCE, conveyance);
+  chl_xs_props_set (xsp, XS_VELOCITY_COEFF, velocity_coeff);
+  chl_xs_props_set (xsp, XS_CRITICAL_FLOW, critical_flow);
 
   return 0;
 }

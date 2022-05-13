@@ -1,10 +1,10 @@
 #include <assert.h>
 
 #include <chl/chl_error.h>
+#include <chl/chl_xs.h>
 
 #include "error.h"
 #include "memory.h"
-#include "xs_properties.h"
 
 struct _ChlXSProps
 {
@@ -42,7 +42,7 @@ chl_xs_props_get (ChlXSProps xsp, ChlXSPropNum prop, double *value)
 }
 
 void
-xsp_set (ChlXSProps xsp, ChlXSPropNum prop, double value)
+chl_xs_props_set (ChlXSProps xsp, ChlXSPropNum prop, double value)
 {
   assert (xsp);
   *(xsp->properties + prop) = value;

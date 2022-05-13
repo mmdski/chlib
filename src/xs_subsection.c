@@ -10,7 +10,6 @@
 #include "memory.h"
 #include "xs_array.h"
 #include "xs_coordinate.h"
-#include "xs_properties.h"
 
 /* subsection interface */
 struct _ChlXSSubsect
@@ -197,11 +196,11 @@ chl_xs_subsect_props (ChlXSSubsect ss, double y, ChlXSProps *xsp_ptr)
   else
     conveyance = 0;
 
-  xsp_set (xsp, XS_AREA, area);
-  xsp_set (xsp, XS_TOP_WIDTH, top_width);
-  xsp_set (xsp, XS_WETTED_PERIMETER, perimeter);
-  xsp_set (xsp, XS_HYDRAULIC_RADIUS, hydraulic_radius);
-  xsp_set (xsp, XS_CONVEYANCE, conveyance);
+  chl_xs_props_set (xsp, XS_AREA, area);
+  chl_xs_props_set (xsp, XS_TOP_WIDTH, top_width);
+  chl_xs_props_set (xsp, XS_WETTED_PERIMETER, perimeter);
+  chl_xs_props_set (xsp, XS_HYDRAULIC_RADIUS, hydraulic_radius);
+  chl_xs_props_set (xsp, XS_CONVEYANCE, conveyance);
 
   chl_xs_array_free (sa);
 

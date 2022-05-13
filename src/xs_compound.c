@@ -9,7 +9,6 @@
 #include "memory.h"
 #include "xs_array.h"
 #include "xs_coordinate.h"
-#include "xs_properties.h"
 
 /*
  * cross section interface
@@ -124,15 +123,15 @@ chl_xs_comp_props (ChlXSComp xs, double h, ChlXSProps *xsp_ptr)
   alpha     = (area * area) * sum / (conveyance * conveyance * conveyance);
   crit_flow = area * sqrt (g * h_depth);
 
-  xsp_set (xsp, XS_DEPTH, h);
-  xsp_set (xsp, XS_AREA, area);
-  xsp_set (xsp, XS_TOP_WIDTH, top_width);
-  xsp_set (xsp, XS_WETTED_PERIMETER, w_perimeter);
-  xsp_set (xsp, XS_HYDRAULIC_DEPTH, h_depth);
-  xsp_set (xsp, XS_HYDRAULIC_RADIUS, h_radius);
-  xsp_set (xsp, XS_CONVEYANCE, conveyance);
-  xsp_set (xsp, XS_VELOCITY_COEFF, alpha);
-  xsp_set (xsp, XS_CRITICAL_FLOW, crit_flow);
+  chl_xs_props_set (xsp, XS_DEPTH, h);
+  chl_xs_props_set (xsp, XS_AREA, area);
+  chl_xs_props_set (xsp, XS_TOP_WIDTH, top_width);
+  chl_xs_props_set (xsp, XS_WETTED_PERIMETER, w_perimeter);
+  chl_xs_props_set (xsp, XS_HYDRAULIC_DEPTH, h_depth);
+  chl_xs_props_set (xsp, XS_HYDRAULIC_RADIUS, h_radius);
+  chl_xs_props_set (xsp, XS_CONVEYANCE, conveyance);
+  chl_xs_props_set (xsp, XS_VELOCITY_COEFF, alpha);
+  chl_xs_props_set (xsp, XS_CRITICAL_FLOW, crit_flow);
 
   return 0;
 

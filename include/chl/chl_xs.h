@@ -72,6 +72,15 @@ extern void chl_xs_props_free (ChlXSProps xsp);
 extern int chl_xs_props_get (ChlXSProps xsp, ChlXSPropNum prop, double *value);
 
 /**
+ * @brief Sets a value in a cross section property object
+ *
+ * @param xsp cross section property object
+ * @param prop cross section property number
+ * @param value property value value
+ */
+extern void chl_xs_props_set (ChlXSProps xsp, ChlXSPropNum prop, double value);
+
+/**
  * @brief Rectangular cross section structure
  *
  */

@@ -3,6 +3,7 @@ chl_sources = [
   'error.c',
   'list.c',
   'memory.c',
+  'reach.c',
   'string.c',
   'xs_array.c',
   'xs_compound.c',

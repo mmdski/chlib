@@ -42,6 +42,12 @@ typedef enum
 typedef struct _ChlXSProps *ChlXSProps;
 
 /**
+ * @brief Function pointer for cross section properties function
+ *
+ */
+typedef int (*ChlXSPropsFunc) (void *xs, double y, ChlXSProps *xsp_ptr);
+
+/**
  * @brief Initializes an empty cross section properties object
  *
  * @return ChlXSProps

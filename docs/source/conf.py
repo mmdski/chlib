@@ -60,6 +60,7 @@ breathe_projects_source = {
               [
                   "chl/chl_constants.h",
                   "chl/chl_error.h",
+                  "chl/chl_reach.h",
                   "chl/chl_string.h",
                   "chl/chl_xs.h"
               ]

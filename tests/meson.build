@@ -205,3 +205,19 @@ xs_comp_props = executable('xs_comp_props',
     link_with : [chlib],
     name_suffix : exe_name_suffix)
 test('chl/xs/comp/props', xs_comp_props, env: test_env, suite: 'xs')
+
+
+# reach tests
+reach_new = executable('reach_new',
+    'reach_new.c',
+    include_directories : [chl_inc],
+    link_with : [chlib],
+    name_suffix : exe_name_suffix)
+test('chl/reach/new', reach_new, env: test_env, suite: 'reach')
+
+reach_free = executable('reach_free',
+    'reach_free.c',
+    include_directories : [chl_inc],
+    link_with : [chlib],
+    name_suffix : exe_name_suffix)
+test('chl/reach/free', reach_free, env: test_env, suite: 'reach')

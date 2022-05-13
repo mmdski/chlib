@@ -7,5 +7,6 @@ chlib API documentation
 
    chl_constants
    chl_error
+   chl_reach
    chl_string
    chl_xs

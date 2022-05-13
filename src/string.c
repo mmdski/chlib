@@ -5,7 +5,7 @@
 
 #include "memory.h"
 
-struct ChlString
+struct _ChlString
 {
   long  len;
   char *string;

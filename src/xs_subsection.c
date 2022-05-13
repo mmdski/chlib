@@ -13,7 +13,7 @@
 #include "xs_properties.h"
 
 /* subsection interface */
-struct ChlXSSubsect
+struct _ChlXSSubsect
 {
   ChlXSArray array; /* coordinate array */
   double     n;     /* Manning's n */

@@ -14,7 +14,7 @@
  *
  * Linked list
  */
-typedef struct List *List;
+typedef struct _List *List;
 
 /**
  * list_new:
@@ -24,8 +24,7 @@ typedef struct List *List;
  *
  * Returns: nothing
  */
-extern List
-list_new(void);
+extern List list_new (void);
 
 /**
  * list_free:
@@ -35,8 +34,7 @@ list_new(void);
  *
  * Returns: nothing
  */
-extern void
-list_free(List list);
+extern void list_free (List list);
 
 /**
  * list_append:
@@ -47,8 +45,7 @@ list_free(List list);
  *
  * Returns: nothing
  */
-extern void
-list_append(List list, void *item);
+extern void list_append (List list, void *item);
 
 /**
  * list_length:
@@ -58,8 +55,7 @@ list_append(List list, void *item);
  *
  * Returns: length of list
  */
-extern int
-list_length(List list);
+extern int list_length (List list);
 
 /**
  * list_to_array:
@@ -70,7 +66,6 @@ list_length(List list);
  *
  * Returns: an array of items
  */
-extern void *
-list_to_array(List list);
+extern void *list_to_array (List list);
 
 #endif

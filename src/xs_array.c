@@ -11,7 +11,7 @@
 #include "xs_array.h"
 #include "xs_coordinate.h"
 
-struct ChlXSArray
+struct _ChlXSArray
 {
   int         length;      /* number of coordinates in this array */
   double      max_y;       /* maximum y in chl_xs_array */

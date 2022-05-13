@@ -18,7 +18,7 @@
  *
  * y, z coordinate
  */
-struct Coordinate
+struct _Coordinate
 {
   double y; /* vertical coordinate */
   double z; /* lateral coordinate */
@@ -29,7 +29,7 @@ struct Coordinate
  *
  * y, z coordinate
  */
-typedef struct Coordinate *Coordinate;
+typedef struct _Coordinate *Coordinate;
 
 /**
  * coord_new:

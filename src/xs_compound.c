@@ -14,7 +14,7 @@
 /*
  * cross section interface
  */
-struct ChlXSComp
+struct _ChlXSComp
 {
   int           n_coordinates; /* number of coordinates */
   int           n_subsections; /* number of subsections */

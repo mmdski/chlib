@@ -28,7 +28,7 @@ node_free (Node *node)
   FREE (node);
 }
 
-struct List
+struct _List
 {
   int   length;
   Node *head;

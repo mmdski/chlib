@@ -5,7 +5,7 @@
 
 #include "memory.h"
 
-struct ChlError
+struct _ChlError
 {
   ChlErrorType type;
   ChlString    error_name;
@@ -161,9 +161,9 @@ fail:
   return NULL;
 }
 
-typedef struct ChlErrorStackNode ChlErrorStackNode;
+typedef struct _ChlErrorStackNode ChlErrorStackNode;
 
-struct ChlErrorStackNode
+struct _ChlErrorStackNode
 {
   int                line;
   ChlString          file;
@@ -171,13 +171,13 @@ struct ChlErrorStackNode
   ChlErrorStackNode *next;
 };
 
-struct ChlErrorStack
+struct _ChlErrorStack
 {
   ChlError           error;
   ChlErrorStackNode *node;
 };
 
-static struct ChlErrorStack stack = { NULL, NULL };
+static struct _ChlErrorStack stack = { NULL, NULL };
 
 static ChlErrorStackNode *
 chl_err_stack_node_new (const char *file, int line)

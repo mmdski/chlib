@@ -6,7 +6,7 @@
 #include "memory.h"
 #include "xs_properties.h"
 
-struct ChlXSProps
+struct _ChlXSProps
 {
   double *properties;
 };

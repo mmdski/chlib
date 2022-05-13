@@ -39,7 +39,7 @@ typedef enum
  * @brief Data type for hydraulic properties of a cross section
  *
  */
-typedef struct ChlXSProps *ChlXSProps;
+typedef struct _ChlXSProps *ChlXSProps;
 
 /**
  * @brief Initializes an empty cross section properties object
@@ -69,7 +69,7 @@ extern int chl_xs_props_get (ChlXSProps xsp, ChlXSPropNum prop, double *value);
  * @brief Rectangular cross section structure
  *
  */
-struct ChlXSRect_s
+struct _ChlXSRect
 {
   /** Cross section width */
   double width;
@@ -81,7 +81,7 @@ struct ChlXSRect_s
 /**
  * Rectangular cross section.
  */
-typedef struct ChlXSRect_s *ChlXSRect;
+typedef struct _ChlXSRect *ChlXSRect;
 
 /**
  * @brief Creates a new rectangular cross section
@@ -119,7 +119,7 @@ extern int chl_xs_rect_props (ChlXSRect xs, double y, ChlXSProps *xsp_ptr);
  * @brief Cross section coordinate array
  *
  */
-typedef struct ChlXSArray *ChlXSArray;
+typedef struct _ChlXSArray *ChlXSArray;
 
 /**
  * @brief Creates a new array
@@ -204,7 +204,7 @@ chl_xs_array_subarray (ChlXSArray a, double sta_lo, double sta_hi);
  * @brief Subsection of a cross section
  *
  */
-typedef struct ChlXSSubsect *ChlXSSubsect;
+typedef struct _ChlXSSubsect *ChlXSSubsect;
 
 /**
  * @brief Creates a new subsection
@@ -256,7 +256,7 @@ chl_xs_subsect_props (ChlXSSubsect ss, double h, ChlXSProps *xsp_ptr);
  * @brief Compound cross section
  *
  */
-typedef struct ChlXSComp *ChlXSComp;
+typedef struct _ChlXSComp *ChlXSComp;
 
 /**
  * @brief Creates a new compound cross section

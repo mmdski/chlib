@@ -29,7 +29,7 @@ typedef enum
 /**
  * chlib error object
  */
-typedef struct ChlError *ChlError;
+typedef struct _ChlError *ChlError;
 
 /**
  * @brief Creates a new error object

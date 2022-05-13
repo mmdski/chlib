@@ -11,7 +11,7 @@
 /**
  * String object
  */
-typedef struct ChlString *ChlString;
+typedef struct _ChlString *ChlString;
 
 /**
  * @brief Creates a new string

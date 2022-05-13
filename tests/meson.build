@@ -221,3 +221,17 @@ reach_free = executable('reach_free',
     link_with : [chlib],
     name_suffix : exe_name_suffix)
 test('chl/reach/free', reach_free, env: test_env, suite: 'reach')
+
+reach_set_sta = executable('reach_set_sta',
+    'reach_set_sta.c',
+    include_directories : [chl_inc],
+    link_with : [chlib],
+    name_suffix : exe_name_suffix)
+test('chl/reach/set/xs', reach_set_sta, env: test_env, suite: 'reach')
+
+reach_get_sta = executable('reach_get_sta',
+    'reach_get_sta.c',
+    include_directories : [chl_inc],
+    link_with : [chlib],
+    name_suffix : exe_name_suffix)
+test('chl/reach/get/xs', reach_get_sta, env: test_env, suite: 'reach')

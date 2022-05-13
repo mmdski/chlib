@@ -6,7 +6,7 @@
         {
             "label": "setup-debug",
             "type": "shell",
-            "command": "${config:mesonbuild.mesonPath}",
+            "command": "${workspaceFolder}/env/bin/meson",
             "args": [
                 "setup",
                 "--buildtype=debug",
@@ -28,7 +28,7 @@
         {
             "label": "test-debug",
             "type": "shell",
-            "command": "${config:mesonbuild.mesonPath}",
+            "command": "${workspaceFolder}/env/bin/meson",
             "args": [
                 "test",
                 "-C",
@@ -158,6 +158,9 @@
                 "Safari",
                 "http://127.0.0.1:8000"
             ],
+            "presentation": {
+                "close": true
+            },
             "group": "none",
             "problemMatcher": []
         }

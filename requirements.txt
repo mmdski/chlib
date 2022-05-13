@@ -1,7 +1,7 @@
 autopep8
 breathe==4.31.0
 esbonio
-meson==0.60.3
+meson
 ninja
 pydata-sphinx-theme
 Sphinx==4.3.2

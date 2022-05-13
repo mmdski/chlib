@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdlib.h>
 
 #include <chl/chl_error.h>
@@ -50,4 +51,47 @@ chl_reach_free (ChlReach reach)
   FREE (reach);
 
   return;
+}
+
+int
+chl_reach_set_sta (ChlReach       reach,
+                   size_t         node_idx,
+                   void          *chl_xs,
+                   ChlXSPropsFunc xsp_func,
+                   double         elev_datum,
+                   double         downstream_dist)
+{
+#ifdef CHECK_ARGS
+  if (!reach)
+    RAISE_NULL_ERR_INT;
+  if (node_idx >= reach->n_nodes)
+    RAISE_ARG_ERR_INT;
+#else
+  assert (reach);
+  assert (node_idx < reach->n_nodes);
+#endif
+
+  ChlReachNode n     = reach->nodes[node_idx];
+  n->downstream_dist = downstream_dist;
+  n->elev_datum      = elev_datum;
+  n->xs              = chl_xs;
+  n->xsp_func        = xsp_func;
+
+  return 0;
+}
+
+void *
+chl_reach_get_sta (ChlReach reach, size_t node_idx)
+{
+#ifdef CHECK_ARGS
+  if (!reach)
+    RAISE_NULL_ERR_NULL;
+  if (node_idx >= reach->n_nodes)
+    RAISE_ARG_ERR_NULL;
+#else
+  assert (reach);
+  assert (node_idx < reach->n_nodes);
+#endif
+
+  return reach->nodes[node_idx]->xs;
 }

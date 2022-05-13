@@ -57,7 +57,7 @@ typedef struct _ChlReach *ChlReach;
  * chl_reach_free().
  *
  * @param n_nodes number of nodes in the reach
- * @return ChlReach new simulation reach
+ * @return ChlReach
  */
 extern ChlReach chl_reach_new (size_t n_nodes);
 
@@ -67,5 +67,36 @@ extern ChlReach chl_reach_new (size_t n_nodes);
  * @param reach simulation reach
  */
 extern void chl_reach_free (ChlReach reach);
+
+/**
+ * @brief Sets the station information for a node in a reach
+ *
+ * @details @p chl_xs must be freed using the corresponding function to free the
+ * type of the cross section. chl_reach_free() does not free @p chl_xs.
+ *
+ * @param reach a reach
+ * @param node_idx node index
+ * @param chl_xs a chlib cross section
+ * @param xsp_func the function to get the cross section properties from @p
+ * chl_xs
+ * @param elev_datum node elevation datum
+ * @param downstream_dist distance downstream
+ * @return int
+ */
+extern int chl_reach_set_sta (ChlReach       reach,
+                              size_t         node_idx,
+                              void          *chl_xs,
+                              ChlXSPropsFunc xsp_func,
+                              double         elev_datum,
+                              double         downstream_dist);
+
+/**
+ * @brief Returns the cross section from a station
+ *
+ * @param reach a reach
+ * @param node_idx node index
+ * @return void*
+ */
+extern void *chl_reach_get_sta (ChlReach reach, size_t node_idx);
 
 #endif

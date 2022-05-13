@@ -137,6 +137,7 @@
                 "${config:esbonio.sphinx.confDir}",
                 "${config:esbonio.sphinx.buildDir}"
             ],
+            "isBackground": true,
             "presentation": {
                 "echo": false,
                 "reveal": "silent",

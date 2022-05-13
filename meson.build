@@ -43,15 +43,6 @@ if get_option('tests')
     subdir('tests')
 endif
 
-
-# util_inc = include_directories('chlutil')
-# subdir('chlutil')
-
-# subdir('chl1d')
-
-# chlib = static_library('chlib',
-    # link_whole : [chlutil, chl1d])
-
-# if get_option('build_app')
-    # subdir('app')
-# endif
+if get_option('build_app')
+    subdir('app')
+endif

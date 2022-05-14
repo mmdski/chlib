@@ -1,7 +1,7 @@
 project('chlib', 'c',
     default_options : [
         'c_std=c99',
-        'c_args=-Wall',
+        'c_args=-Wall -Werror -pedantic -D_FORTIFY_SOURCE=2',
         'b_ndebug=if-release'],
     version : '0.0.0')
 

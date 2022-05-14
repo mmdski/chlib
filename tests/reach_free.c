@@ -20,4 +20,4 @@ main (void)
   assert_null (reach);
 
   return EXIT_SUCCESS;
-};
+}

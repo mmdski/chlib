@@ -173,6 +173,7 @@ xs_subsect_props = executable('xs_subsect_props',
     'xs_subsect_props.c',
     include_directories : [chl_inc],
     link_with : [chlib],
+    dependencies : m_dep,
     name_suffix : exe_name_suffix)
 test('chl/xs/subsect/props', xs_subsect_props, env: test_env, suite: 'xs')
 
@@ -203,6 +204,7 @@ xs_comp_props = executable('xs_comp_props',
     'xs_comp_props.c',
     include_directories : [chl_inc],
     link_with : [chlib],
+    dependencies: m_dep,
     name_suffix : exe_name_suffix)
 test('chl/xs/comp/props', xs_comp_props, env: test_env, suite: 'xs')
 

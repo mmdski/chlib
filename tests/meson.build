@@ -235,3 +235,10 @@ reach_get_sta = executable('reach_get_sta',
     link_with : [chlib],
     name_suffix : exe_name_suffix)
 test('chl/reach/get/xs', reach_get_sta, env: test_env, suite: 'reach')
+
+reach_get_xsp = executable('reach_get_xsp',
+    'reach_get_xsp.c',
+    include_directories : [chl_inc],
+    link_with : [chlib],
+    name_suffix : exe_name_suffix)
+test('chl/reach/get/xsp', reach_get_xsp, env: test_env, suite: 'reach')

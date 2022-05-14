@@ -20,9 +20,6 @@ struct _ChlReachNode
 
   /** Function that computes cross section properties for @c xs */
   ChlXSPropsFunc xsp_func;
-
-  /** Cross section properties object */
-  ChlXSProps xsp;
 };
 
 /**
@@ -98,5 +95,20 @@ extern int chl_reach_set_sta (ChlReach       reach,
  * @return void*
  */
 extern void *chl_reach_get_sta (ChlReach reach, size_t node_idx);
+
+/**
+ * @brief Returns the cross section properties computed with a cross section at
+ * a reach node
+ *
+ * @param reach a reach
+ * @param node_idx node index
+ * @param elev elevation for computing cross section properties
+ * @param xsp_ptr pointer to cross section properties object
+ * @return int
+ */
+extern int chl_reach_get_xsp (ChlReach    reach,
+                              size_t      node_idx,
+                              double      elev,
+                              ChlXSProps *xsp_ptr);
 
 #endif

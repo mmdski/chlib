@@ -22,7 +22,6 @@ chl_reach_new (size_t n_nodes)
       NEW (n);
       n->xs       = NULL;
       n->xsp_func = NULL;
-      n->xsp      = NULL;
       nodes[i]    = n;
       n           = NULL;
     }
@@ -94,4 +93,32 @@ chl_reach_get_sta (ChlReach reach, size_t node_idx)
 #endif
 
   return reach->nodes[node_idx]->xs;
+}
+
+int
+chl_reach_get_xsp (ChlReach    reach,
+                   size_t      node_idx,
+                   double      elev,
+                   ChlXSProps *xsp_ptr)
+{
+#ifdef CHECK_ARGS
+  if (!reach)
+    RAISE_NULL_ERR_INT;
+  if (node_idx >= reach->n_nodes)
+    RAISE_NULL_ERR_INT;
+#else
+  assert (reach);
+  assert (node_idx < reach->n_nodes);
+#endif
+
+  ChlReachNode n = reach->nodes[node_idx];
+
+  double depth = elev - n->elev_datum;
+  if (n->xsp_func (n->xs, depth, xsp_ptr) < 0)
+    {
+      chl_err_stack_push (__FILE__, __LINE__);
+      return -1;
+    }
+
+  return 0;
 }

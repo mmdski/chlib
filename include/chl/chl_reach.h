@@ -111,4 +111,6 @@ extern int chl_reach_get_xsp (ChlReach    reach,
                               double      elev,
                               ChlXSProps *xsp_ptr);
 
+extern int chl_reach_thalweg (ChlReach reach, double **thalweg);
+
 #endif

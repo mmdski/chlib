@@ -122,3 +122,26 @@ chl_reach_get_xsp (ChlReach    reach,
 
   return 0;
 }
+
+int
+chl_reach_thalweg (ChlReach reach, double **thalweg)
+{
+#ifdef CHECK_ARGS
+  if (!reach)
+    RAISE_NULL_ERR_INT;
+  if (!*thalweg)
+    RAISE_NULL_ERR_INT;
+#else
+  assert (reach);
+  assert (*thalweg);
+#endif
+  size_t        n_nodes = reach->n_nodes;
+  ChlReachNode *nodes   = reach->nodes;
+
+  for (size_t i = 0; i < n_nodes; i++)
+    {
+      (*thalweg)[i] = nodes[i]->elev_datum;
+    }
+
+  return 0;
+}

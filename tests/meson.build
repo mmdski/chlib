@@ -229,14 +229,14 @@ reach_set_sta = executable('reach_set_sta',
     include_directories : [chl_inc],
     link_with : [chlib],
     name_suffix : exe_name_suffix)
-test('chl/reach/set/xs', reach_set_sta, env: test_env, suite: 'reach')
+test('chl/reach/set/sta', reach_set_sta, env: test_env, suite: 'reach')
 
 reach_get_sta = executable('reach_get_sta',
     'reach_get_sta.c',
     include_directories : [chl_inc],
     link_with : [chlib],
     name_suffix : exe_name_suffix)
-test('chl/reach/get/xs', reach_get_sta, env: test_env, suite: 'reach')
+test('chl/reach/get/sta', reach_get_sta, env: test_env, suite: 'reach')
 
 reach_get_xsp = executable('reach_get_xsp',
     'reach_get_xsp.c',
@@ -244,3 +244,10 @@ reach_get_xsp = executable('reach_get_xsp',
     link_with : [chlib],
     name_suffix : exe_name_suffix)
 test('chl/reach/get/xsp', reach_get_xsp, env: test_env, suite: 'reach')
+
+reach_thalweg = executable('reach_thalweg',
+    'reach_thalweg.c',
+    include_directories : [chl_inc],
+    link_with : [chlib],
+    name_suffix : exe_name_suffix)
+test('chl/reach/thalweg', reach_thalweg, env: test_env, suite: 'reach')

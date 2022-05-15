@@ -45,6 +45,7 @@
     "editor.tabSize": 2,
     "esbonio.sphinx.buildDir": "${workspaceFolder}/docs/_build",
     "esbonio.sphinx.confDir": "${workspaceFolder}/docs/source",
+    "mesonbuild.mesonPath": "meson",
     "mesonbuild.configureOnOpen": false,
     "mesonbuild.buildFolder": "builddir",
     "mesonbuild.configureOptions": [

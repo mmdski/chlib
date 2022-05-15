@@ -6,7 +6,7 @@
         {
             "label": "setup-debug",
             "type": "shell",
-            "command": "${workspaceFolder}/env/bin/meson",
+            "command": "${config:mesonbuild.mesonPath}",
             "args": [
                 "setup",
                 "--buildtype=debug",
@@ -28,7 +28,7 @@
         {
             "label": "test-debug",
             "type": "shell",
-            "command": "${workspaceFolder}/env/bin/meson",
+            "command": "${config:mesonbuild.mesonPath}",
             "args": [
                 "test",
                 "-C",
@@ -56,7 +56,7 @@
         {
             "label": "setup-asan",
             "type": "shell",
-            "command": "${workspaceFolder}/env/bin/meson",
+            "command": "${config:mesonbuild.mesonPath}",
             "args": [
                 "setup",
                 "--buildtype=debug",
@@ -93,7 +93,7 @@
         {
             "label": "setup-node",
             "type": "shell",
-            "command": "${workspaceFolder}/env/bin/meson",
+            "command": "${config:mesonbuild.mesonPath}",
             "args": [
                 "setup",
                 "--cross",
@@ -119,7 +119,7 @@
         {
             "label": "setup-wasm32",
             "type": "shell",
-            "command": "${workspaceFolder}/env/bin/meson",
+            "command": "${config:mesonbuild.mesonPath}",
             "args": [
                 "setup",
                 "--cross",

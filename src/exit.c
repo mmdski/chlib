@@ -23,17 +23,18 @@ chl_exit (int exit_status)
 {
   if (expected)
     {
+      puts ("Caught expected call to chl_exit()");
       called = true;
       status = exit_status;
     }
   else if (called)
     {
-      fputs ("chl_exit() has been previously called\n", stderr);
+      fputs ("Fatal Error: chl_exit() call flag already set", stderr);
       exit (EXIT_FAILURE);
     }
   else
     {
-      fputs ("Unexpected call to chl_exit()\n", stderr);
+      fputs ("Fatal Error: Unexpected call to chl_exit()", stderr);
       exit (exit_status);
     }
 }

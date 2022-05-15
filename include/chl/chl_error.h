@@ -14,16 +14,28 @@
  */
 typedef enum
 {
+
+  /** The negative of this number is the number of error types */
+  NEG_NUM_ERROR_TYPES = -7,
+
   /** Null argument error */
   NULL_ARGUMENT_ERROR,
+
   /** Invalid argument error */
   INVALID_ARGUMENT_ERROR,
+
   /** Memory error */
   MEMORY_ERROR,
+
   /** Value error */
   VALUE_ERROR,
-  /** Number of error types */
-  NUM_ERROR_TYPES
+
+  /** chl_exit() has been called */
+  EXIT_CALLED,
+
+  /** General error */
+  GENERAL_ERROR
+
 } ChlErrorType;
 
 /**

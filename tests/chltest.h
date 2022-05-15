@@ -15,3 +15,10 @@
 #define RUN_TEST_FUNC(func)                                                    \
   printf ("Running test function: %s\n", STR (func));                          \
   func ();
+
+#define EXPECT_EXIT_CALL(func_call)                                            \
+  chl_exit_expected_set ();                                                    \
+  func_call;                                                                   \
+  assert_true (chl_exit_called ());                                            \
+  chl_exit_expected_clear ();                                                  \
+  chl_exit_called_clear ();

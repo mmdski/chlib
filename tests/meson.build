@@ -27,55 +27,12 @@ test_string = executable('test_string',
 test('chl/string', test_string, env: test_env, suite: 'base')
 
 # error tests
-error_new = executable('error_new',
-    'error_new.c',
+test_error = executable('test_error',
+    'test_error.c',
     include_directories : [chl_inc],
     link_with : [chlib],
     name_suffix : exe_name_suffix)
-test('chl/err/new', error_new, env: test_env, suite: 'base')
-
-error_free = executable('error_free',
-    'error_free.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/err/free', error_free, env: test_env, suite: 'base')
-
-error_istype = executable('error_istype',
-    'error_istype.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/err/istype', error_istype, env: test_env, suite: 'base')
-
-error_raise = executable('error_raise',
-    'error_raise.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/err/raise', error_raise, env: test_env, suite: 'base')
-
-error_raise_fail = executable('error_raise_fail',
-    'error_raise_fail.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/err/raise_fail', error_raise_fail, env: test_env, should_fail: true, suite: 'base', )
-
-error_stack_check = executable('error_stack_check',
-    'error_stack_check.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/err/stack_check', error_stack_check, env: test_env, suite: 'base')
-
-error_stack_check_fail = executable('error_stack_check_fail',
-    'error_stack_check_fail.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/err/stack_check_fail', error_stack_check_fail, env: test_env, should_fail: true, suite: 'base', )
-
+test('chl/error', test_error, env: test_env, suite: 'base', )
 
 # xs rect tests
 xs_rect_new = executable('xs_rect_new',

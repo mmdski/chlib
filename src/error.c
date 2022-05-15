@@ -31,6 +31,12 @@ chl_err_type_name (ChlErrorType type)
     case VALUE_ERROR:
       error_name = "ValueError";
       break;
+    case EXIT_CALLED:
+      error_name = "ExitError";
+      break;
+    case GENERAL_ERROR:
+      error_name = "GeneralError";
+      break;
     default:
       error_name = "UnnamedError";
     }
@@ -224,6 +230,7 @@ chl_err_raise (ChlErrorType type,
     {
       fprintf (stderr, "Fatal error: Error raised while error in stack\n");
       chl_exit (EXIT_FAILURE);
+      return EXIT_CALLED;
     }
 
   stack.error = chl_err_new (type, message);

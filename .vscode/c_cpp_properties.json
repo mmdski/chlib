@@ -40,7 +40,8 @@
             ],
             "compilerPath": "/opt/homebrew/opt/llvm/bin/clang",
             "compilerArgs": [
-                "-DCHECK_ARGS"
+                "-DCHECK_ARGS",
+                "-DTESTING"
             ],
             "cStandard": "c99",
             "cppStandard": "c++17",

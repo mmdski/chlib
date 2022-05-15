@@ -3,6 +3,14 @@ if get_option('b_sanitize') == 'address'
   subdir('memory')
 endif
 
+# exit test
+test_exit = executable('test_exit',
+    'test_exit.c',
+    include_directories : chl_inc,
+    link_with : chlib,
+    name_suffix : exe_name_suffix)
+test('test_exit', test_exit, env : test_env, suite : 'base')
+
 constants = executable('constants',
     'constants.c',
     include_directories : [chl_inc],

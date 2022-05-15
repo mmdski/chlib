@@ -9,6 +9,10 @@ if get_option('check_args')
     add_project_arguments('-DCHECK_ARGS', language : 'c')
 endif
 
+if get_option('tests')
+    add_project_arguments('-DTESTING', language : 'c')
+endif
+
 cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required : false)
 

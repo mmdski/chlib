@@ -1,6 +1,7 @@
 chl_sources = [
   'constants.c',
   'error.c',
+  'exit.c',
   'list.c',
   'memory.c',
   'reach.c',

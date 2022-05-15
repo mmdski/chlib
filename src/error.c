@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <chl/chl_error.h>
+#include <chl/chl_exit.h>
 
 #include "memory.h"
 
@@ -222,7 +223,7 @@ chl_err_raise (ChlErrorType type,
   if (stack.error != NULL)
     {
       fprintf (stderr, "Fatal error: Error raised while error in stack\n");
-      exit (EXIT_FAILURE);
+      chl_exit (EXIT_FAILURE);
     }
 
   stack.error = chl_err_new (type, message);
@@ -318,6 +319,6 @@ chl_err_stack_check (const char *file, int line)
       fprintf (stderr, "Unchecked error\n");
       fprintf (stderr, "Error stack checked on %s, line %i\n", file, line);
       chl_err_stack_print (__FILE__, __LINE__);
-      exit (EXIT_FAILURE);
+      chl_exit (EXIT_FAILURE);
     }
 }

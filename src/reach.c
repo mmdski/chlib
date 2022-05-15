@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <math.h>
 #include <stdlib.h>
 
 #include <chl/chl_error.h>
@@ -20,10 +21,12 @@ chl_reach_new (size_t n_nodes)
   for (size_t i = 0; i < n_nodes; i++)
     {
       NEW (n);
-      n->xs       = NULL;
-      n->xsp_func = NULL;
-      nodes[i]    = n;
-      n           = NULL;
+      n->downstream_dist = NAN;
+      n->elev_datum      = NAN;
+      n->xs              = 0;
+      n->xsp_func        = NULL;
+      nodes[i]           = n;
+      n                  = NULL;
     }
 
   reach->nodes = nodes;

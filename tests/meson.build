@@ -20,36 +20,11 @@ test('chl/const', constants, env: test_env, suite: 'base')
 
 
 # string tests
-string_new = executable('string_new',
-    'string_new.c',
+test_string = executable('test_string',
+    'test_string.c',
     include_directories : [chl_inc],
     link_with : [chlib])
-test('chl/string/new', string_new, env: test_env, suite: 'base')
-
-string_free = executable('string_free',
-    'string_free.c',
-    include_directories : [chl_inc],
-    link_with : [chlib])
-test('chl/string/free', string_free, env: test_env, suite: 'base')
-
-string_get = executable('string_get',
-    'string_get.c',
-    include_directories : [chl_inc],
-    link_with : [chlib])
-test('chl/string/get', string_get, env: test_env, suite: 'base')
-
-string_copy = executable('string_copy',
-    'string_copy.c',
-    include_directories : [chl_inc],
-    link_with : [chlib])
-test('chl/string/copy', string_copy, env: test_env, suite: 'base')
-
-string_eq = executable('string_eq',
-    'string_eq.c',
-    include_directories : [chl_inc],
-    link_with : [chlib])
-test('chl/string/eq', string_copy, env: test_env, suite: 'base')
-
+test('chl/string', test_string, env: test_env, suite: 'base')
 
 # error tests
 error_new = executable('error_new',

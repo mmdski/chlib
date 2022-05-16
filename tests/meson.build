@@ -75,44 +75,9 @@ test_xs_comp = executable('test_xs_comp',
 test('chl/xs/comp', test_xs_comp, env: test_env, suite: 'xs')
 
 # reach tests
-reach_new = executable('reach_new',
-    'reach_new.c',
+test_reach = executable('test_reach',
+    'test_reach.c',
     include_directories : [chl_inc],
     link_with : [chlib],
     name_suffix : exe_name_suffix)
-test('chl/reach/new', reach_new, env: test_env, suite: 'reach')
-
-reach_free = executable('reach_free',
-    'reach_free.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/reach/free', reach_free, env: test_env, suite: 'reach')
-
-reach_set_sta = executable('reach_set_sta',
-    'reach_set_sta.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/reach/set/sta', reach_set_sta, env: test_env, suite: 'reach')
-
-reach_get_sta = executable('reach_get_sta',
-    'reach_get_sta.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/reach/get/sta', reach_get_sta, env: test_env, suite: 'reach')
-
-reach_get_xsp = executable('reach_get_xsp',
-    'reach_get_xsp.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/reach/get/xsp', reach_get_xsp, env: test_env, suite: 'reach')
-
-reach_thalweg = executable('reach_thalweg',
-    'reach_thalweg.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/reach/thalweg', reach_thalweg, env: test_env, suite: 'reach')
+test('chl/reach', test_reach, env: test_env, suite: 'reach')

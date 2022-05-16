@@ -1,5 +1,6 @@
 #ifndef __CHL_REACH_H__
 #define __CHL_REACH_H__
+#include <stdlib.h>
 
 #include <chl/chl_xs.h>
 

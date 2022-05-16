@@ -3,10 +3,10 @@
 #include <chl/chl_error.h>
 #include <chl/chl_xs.h>
 
-#include "chlassert.h"
+#include "chltest.h"
 
-int
-main (void)
+void
+test_new (void)
 {
   double width = 10;
 
@@ -26,6 +26,23 @@ main (void)
   assert_true (chl_err_stack_is_type (INVALID_ARGUMENT_ERROR));
   chl_err_stack_clear ();
 #endif
+}
 
-  return EXIT_SUCCESS;
+void
+test_free (void)
+{
+#ifdef CHECK_ARGS
+  assert_negative (chl_xs_rect_free (NULL));
+  assert_true (chl_err_stack_is_type (NULL_ARGUMENT_ERROR));
+  chl_err_stack_clear ();
+#endif
+}
+
+int
+main (void)
+{
+  RUN_TEST_FUNC (test_new)
+  RUN_TEST_FUNC (test_free)
+
+  EXIT_TEST
 }

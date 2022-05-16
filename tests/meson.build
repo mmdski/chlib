@@ -35,19 +35,12 @@ test_error = executable('test_error',
 test('chl/error', test_error, env: test_env, suite: 'base', )
 
 # xs rect tests
-xs_rect_new = executable('xs_rect_new',
-    'xs_rect_new.c',
+test_xs_rect = executable('test_xs_rect',
+    'test_xs_rect.c',
     include_directories : [chl_inc],
     link_with : [chlib],
     name_suffix : exe_name_suffix)
-test('chl/xs/rect/new', xs_rect_new, env: test_env, suite: 'xs')
-
-xs_rect_free = executable('xs_rect_free',
-    'xs_rect_free.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/xs/rect/free', xs_rect_free, env: test_env, suite: 'xs')
+test('chl/xs/rect', test_xs_rect, env: test_env, suite: 'xs')
 
 
 # xs array

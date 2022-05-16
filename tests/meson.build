@@ -67,28 +67,12 @@ test_xs_subsect = executable('test_xs_subsect',
 test('chl/xs/subsect', test_xs_subsect, env: test_env, suite: 'xs')
 
 # xs compound
-xs_comp_new = executable('xs_comp_new',
-    'xs_comp_new.c',
+test_xs_comp = executable('test_xs_comp',
+    'test_xs_comp.c',
     include_directories : [chl_inc],
     link_with : [chlib],
     name_suffix : exe_name_suffix)
-test('chl/xs/comp/new', xs_comp_new, env: test_env, suite: 'xs')
-
-xs_comp_free = executable('xs_comp_free',
-    'xs_comp_free.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/xs/comp/free', xs_comp_free, env: test_env, suite: 'xs')
-
-xs_comp_props = executable('xs_comp_props',
-    'xs_comp_props.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    dependencies: m_dep,
-    name_suffix : exe_name_suffix)
-test('chl/xs/comp/props', xs_comp_props, env: test_env, suite: 'xs')
-
+test('chl/xs/comp', test_xs_comp, env: test_env, suite: 'xs')
 
 # reach tests
 reach_new = executable('reach_new',

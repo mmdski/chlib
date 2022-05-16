@@ -13,3 +13,4 @@ add_library(chlib
   xs_rect.c
   xs_subsection.c
 )
+target_link_libraries(chlib PRIVATE m)

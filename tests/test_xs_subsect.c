@@ -210,8 +210,12 @@ int
 main (void)
 {
   RUN_TEST_FUNC (test_new)
-  RUN_TEST_FUNC (test_free)
+
+  // for some reason it's important to node that test_props_rect() runs before
+  // test_free()
   RUN_TEST_FUNC (test_props_rect)
+  RUN_TEST_FUNC (test_free)
+
   RUN_TEST_FUNC (test_rough)
 
   EXIT_TEST

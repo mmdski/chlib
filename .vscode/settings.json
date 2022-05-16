@@ -53,5 +53,11 @@
         "-Db_coverage=true",
         "-Dtests=true",
         "-Dbuild_app=true"
-    ]
+    ],
+    "cmake.configureArgs": [
+        "-DMEM_TESTS=1",
+        "-DCHECK_ARGS=1",
+        "-DAPP=1"
+    ],
+    "cmake.launchBehavior": "reuseTerminal"
 }

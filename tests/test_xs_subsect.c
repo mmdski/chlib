@@ -39,6 +39,7 @@ rect_wp (double y)
 double
 rect_tw (double y)
 {
+  (void) y;
   return WIDTH;
 }
 

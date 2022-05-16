@@ -148,6 +148,8 @@ test_xsp_func (void *xs, double y, ChlXSProps *xsp_ptr)
       *xsp_ptr = chl_xs_props_new ();
     }
 
+  (void) xs;
+
   ChlXSProps xsp = *xsp_ptr;
 
   chl_xs_props_set (xsp, XS_DEPTH, y);
@@ -157,6 +159,9 @@ test_xsp_func (void *xs, double y, ChlXSProps *xsp_ptr)
 int
 test_xsp_func_fail (void *xs, double y, ChlXSProps *xsp_ptr)
 {
+  (void) xs;
+  (void) y;
+  (void) xsp_ptr;
   return -1;
 }
 

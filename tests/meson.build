@@ -1,6 +1,15 @@
 # run memory tests if ASAN is enabled
 if get_option('b_sanitize') == 'address'
-  subdir('memory')
+    subdir('memory')
+endif
+
+if get_option('check_args')
+    test_check_args = executable('test_check_args',
+        'test_check_args.c',
+        include_directories : chl_inc,
+        link_with : chlib,
+        name_suffix : exe_name_suffix)
+    test('test_check_args', test_check_args, env : test_env, suite : 'base')
 endif
 
 # exit test
@@ -9,7 +18,7 @@ test_exit = executable('test_exit',
     include_directories : chl_inc,
     link_with : chlib,
     name_suffix : exe_name_suffix)
-test('test_exit', test_exit, env : test_env, suite : 'base')
+test('chl/exit', test_exit, env : test_env, suite : 'base')
 
 constants = executable('constants',
     'constants.c',

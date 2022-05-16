@@ -50,7 +50,6 @@ test_xs_rect = executable('test_xs_rect',
     name_suffix : exe_name_suffix)
 test('chl/xs/rect', test_xs_rect, env: test_env, suite: 'xs')
 
-
 # xs array
 test_xs_array = executable('test_xs_array',
     'test_xs_array.c',
@@ -60,35 +59,12 @@ test_xs_array = executable('test_xs_array',
 test('chl/xs/array', test_xs_array, env: test_env, suite: 'xs')
 
 # xs subsection
-xs_subsect_new = executable('xs_subsect_new',
-    'xs_subsect_new.c',
+test_xs_subsect = executable('test_xs_subsect',
+    'test_xs_subsect.c',
     include_directories : [chl_inc],
     link_with : [chlib],
     name_suffix : exe_name_suffix)
-test('chl/xs/subsect/new', xs_subsect_new, env: test_env, suite: 'xs')
-
-xs_subsect_free = executable('xs_subsect_free',
-    'xs_subsect_free.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/xs/subsect/free', xs_subsect_free, env: test_env, suite: 'xs')
-
-xs_subsect_props = executable('xs_subsect_props',
-    'xs_subsect_props.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    dependencies : m_dep,
-    name_suffix : exe_name_suffix)
-test('chl/xs/subsect/props', xs_subsect_props, env: test_env, suite: 'xs')
-
-xs_subsect_rough = executable('xs_subsect_rough',
-    'xs_subsect_rough.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/xs/subsect/rough', xs_subsect_rough, env: test_env, suite: 'xs')
-
+test('chl/xs/subsect', test_xs_subsect, env: test_env, suite: 'xs')
 
 # xs compound
 xs_comp_new = executable('xs_comp_new',

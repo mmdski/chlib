@@ -27,7 +27,6 @@ constants = executable('constants',
     name_suffix : exe_name_suffix)
 test('chl/const', constants, env: test_env, suite: 'base')
 
-
 # string tests
 test_string = executable('test_string',
     'test_string.c',
@@ -53,48 +52,12 @@ test('chl/xs/rect', test_xs_rect, env: test_env, suite: 'xs')
 
 
 # xs array
-xs_array_new = executable('xs_array_new',
-    'xs_array_new.c',
+test_xs_array = executable('test_xs_array',
+    'test_xs_array.c',
     include_directories : [chl_inc],
     link_with : [chlib],
     name_suffix : exe_name_suffix)
-test('chl/xs/array/new', xs_array_new, env: test_env, suite: 'xs')
-
-xs_array_free = executable('xs_array_free',
-    'xs_array_free.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/xs/array/free', xs_array_free, env: test_env, suite: 'xs')
-
-xs_array_eq = executable('xs_array_eq',
-    'xs_array_eq.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/xs/array/eq', xs_array_eq, env: test_env, suite: 'xs')
-
-xs_array_copy = executable('xs_array_copy',
-    'xs_array_copy.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/xs/array/copy', xs_array_copy, env: test_env, suite: 'xs')
-
-xs_array_subarray = executable('xs_array_subarray',
-    'xs_array_subarray.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/xs/array/subarray', xs_array_subarray, env: test_env, suite: 'xs')
-
-xs_array_vals = executable('xs_array_vals',
-    'xs_array_vals.c',
-    include_directories : [chl_inc],
-    link_with : [chlib],
-    name_suffix : exe_name_suffix)
-test('chl/xs/array/vals', xs_array_vals, env: test_env, suite: 'xs')
-
+test('chl/xs/array', test_xs_array, env: test_env, suite: 'xs')
 
 # xs subsection
 xs_subsect_new = executable('xs_subsect_new',

@@ -25,9 +25,13 @@ test_is_type (void)
 {
   ChlError err;
 
-  for (int i = -NEG_NUM_ERROR_TYPES; i < 0; i--)
+  int num_error_types = -NEG_NUM_ERROR_TYPES;
+  int error_type;
+
+  for (int i = 0; i < num_error_types; i++)
     {
-      err = chl_err_new (i, "message");
+      error_type = -i - 1;
+      err        = chl_err_new (i, "message");
       assert_nonnull (err);
       assert_true (chl_err_is_type (err, i));
       chl_err_free (err);
@@ -81,7 +85,10 @@ void
 test_stack_check_fail (void)
 {
   chl_err_raise (INVALID_ARGUMENT_ERROR, "", __FILE__, __LINE__);
-  EXPECT_EXIT_CALL (chl_err_stack_check (__FILE__, __LINE__))
+  chl_exit_expected_set ();
+  chl_err_stack_check (__FILE__, __LINE__);
+  assert_true (chl_exit_called ());
+  chl_exit_called_clear ();
   chl_err_stack_clear ();
 }
 

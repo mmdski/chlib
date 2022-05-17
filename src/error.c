@@ -4,6 +4,7 @@
 #include <chl/chl_error.h>
 #include <chl/chl_exit.h>
 
+#include "chl_io.h"
 #include "memory.h"
 
 struct _ChlError
@@ -123,7 +124,6 @@ chl_err_str (ChlError err)
     return NULL;
 
   ChlString err_str;
-  char     *err_str_buffer = NULL;
 
   // no message, return only the error name
   if (err->message == NULL)
@@ -147,24 +147,18 @@ chl_err_str (ChlError err)
       if (chl_string_get (err->message, &message) < 0)
         goto fail;
 
-      // total length: sum minus one for a null character
-      long len       = name_len + message_len + 1;
-      err_str_buffer = chl_calloc (len, sizeof (char));
-      if (sprintf (err_str_buffer, "%s: %s", err_name, message) < 0)
+      char err_str_buffer[500];
+      if (chl_sprintf (err_str_buffer, "%s: %s", err_name, message) < 0)
         goto fail;
 
       err_str = chl_string_new (err_str_buffer);
       if (err_str == NULL)
         goto fail;
-
-      chl_free (err_str_buffer);
     }
 
   return err_str;
 
 fail:
-  if (err_str_buffer != NULL)
-    chl_free (err_str_buffer);
   return NULL;
 }
 
@@ -200,7 +194,7 @@ chl_err_stack_node_new (const char *file, int line)
   node->line = line;
   node->file = chl_string_new (file);
 
-  sprintf (node_string_buffer, "File \"%s\", line %i", file, line);
+  chl_sprintf (node_string_buffer, "File \"%s\", line %i", file, line);
   node->string = chl_string_new (node_string_buffer);
 
   node->next = NULL;
@@ -230,7 +224,9 @@ chl_err_raise (ChlErrorType type,
     {
       fprintf (stderr, "Fatal error: Error raised while error in stack\n");
       chl_exit (EXIT_FAILURE);
+#ifdef TESTING
       return EXIT_CALLED;
+#endif
     }
 
   stack.error = chl_err_new (type, message);

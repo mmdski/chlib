@@ -55,7 +55,7 @@
         "-Dbuild_app=true"
     ],
     "cmake.configureArgs": [
-        "-DMEM_TESTS=1",
+        "-DTESTS=1",
         "-DCHECK_ARGS=1",
         "-DAPP=1"
     ],

@@ -50,6 +50,7 @@ test_thalweg (void)
   double x_dist = 0;
 
   double *thalweg_check = calloc (reach->n_nodes, sizeof (double));
+  assert (thalweg_check);
 
   for (size_t i = 0; i < n_nodes; i++)
     {

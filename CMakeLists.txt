@@ -11,10 +11,16 @@ else()
   add_compile_options(-Wall -Wextra -pedantic -Werror)
 endif()
 
+# maybe find a more sophisticated way to determine if sanitize tests can be ran
+if(NOT MSVC AND NOT EMSCRIPTEN)
+  set(MEM_TESTS True)
+endif()
+
 if(TESTS)
-  message(STATUS "Adding tests")
+  message(STATUS "Enabling testing")
+  enable_testing()
   add_compile_definitions(TESTING)
-  if (NOT MSVC)
+  if(MEM_TESTS)
     message(STATUS "Adding sanitize address compile and link options")
     add_compile_options(-fsanitize=address)
     add_link_options(-fsanitize=address)
@@ -26,9 +32,8 @@ if(COVERAGE)
   add_link_options(--coverage)
 endif()
 
-if(CHECK_ARGS)
-  add_compile_definitions(CHECK_ARGS)
-endif()
+# set check arguments
+add_compile_definitions(CHECK_ARGS)
 
 include_directories(include)
 
@@ -44,6 +49,5 @@ if (APP)
 endif()
 
 if(TESTS)
-  enable_testing()
   add_subdirectory(tests)
 endif()

@@ -1,4 +1,4 @@
-if(NOT MSVC)
+if(MEM_TESTS)
 
   macro(add_chlib_test basename)
     add_chlib_exe(${basename})

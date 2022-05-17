@@ -21,25 +21,6 @@ test_free (void)
 }
 
 void
-test_is_type (void)
-{
-  ChlError err;
-
-  int num_error_types = -NEG_NUM_ERROR_TYPES;
-  int error_type;
-
-  for (int i = 0; i < num_error_types; i++)
-    {
-      error_type = -i - 1;
-      err        = chl_err_new (i, "message");
-      assert_nonnull (err);
-      assert_true (chl_err_is_type (err, i));
-      chl_err_free (err);
-      err = NULL;
-    }
-}
-
-void
 test_raise (void)
 {
   assert_false (chl_err_stack_is_err ());
@@ -97,7 +78,6 @@ main (void)
 {
   RUN_TEST_FUNC (test_new)
   RUN_TEST_FUNC (test_free)
-  RUN_TEST_FUNC (test_is_type)
   RUN_TEST_FUNC (test_raise)
   RUN_TEST_FUNC (test_raise_fail)
   RUN_TEST_FUNC (test_stack_check)

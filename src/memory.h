@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 extern void *chl_alloc (size_t nbytes);
 
 extern void *chl_calloc (size_t count, size_t nbytes);

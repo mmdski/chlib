@@ -1,4 +1,4 @@
-if(MEM_TESTS)
+if(NOT MSVC)
 
   macro(add_chlib_test basename)
     add_chlib_exe(${basename})
@@ -7,6 +7,7 @@ if(MEM_TESTS)
       "ASAN_OPTIONS=detect_leaks=1:abort_on_error=0;LSAN_OPTIONS=suppressions=${CMAKE_SOURCE_DIR}/lsan.supp")
   endmacro()
 
+  message(STATUS "Adding memory tests")
   add_subdirectory(memory)
 
 else()

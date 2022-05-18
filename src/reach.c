@@ -8,6 +8,8 @@
 #include "error.h"
 #include "memory.h"
 
+#define FILENAME "reach.c"
+
 ChlReach
 chl_reach_new (size_t n_nodes)
 {
@@ -119,7 +121,7 @@ chl_reach_get_xsp (ChlReach    reach,
   double depth = elev - n->elev_datum;
   if (n->xsp_func (n->xs, depth, xsp_ptr) < 0)
     {
-      chl_err_stack_push (__FILE__, __LINE__);
+      chl_err_stack_push (FILENAME, __LINE__);
       return -1;
     }
 

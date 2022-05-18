@@ -5,6 +5,8 @@
 
 #include "chltest.h"
 
+#define FILENAME "tests/test_xs_rect.c"
+
 void
 test_new (void)
 {

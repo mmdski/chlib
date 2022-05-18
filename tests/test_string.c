@@ -4,6 +4,8 @@
 
 #include "chltest.h"
 
+#define FILENAME "tests/test_string.c"
+
 void
 test_new (void)
 {

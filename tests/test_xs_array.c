@@ -2,6 +2,8 @@
 
 #include "chltest.h"
 
+#define FILENAME "tests/test_xs_array.c"
+
 void
 test_new (void)
 {

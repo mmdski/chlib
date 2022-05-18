@@ -7,9 +7,9 @@
 #include "chlassert.h"
 
 #define EXIT_TEST                                                              \
-  chl_err_stack_check (__FILE__, __LINE__);                                    \
+  chl_err_stack_check (FILENAME, __LINE__);                                    \
   assert_false (chl_exit_called ());                                           \
-  printf ("Test %s ran successfully\n", __FILE__);                             \
+  printf ("Test %s ran successfully\n", FILENAME);                             \
   return EXIT_SUCCESS;
 
 #define STR(x) #x

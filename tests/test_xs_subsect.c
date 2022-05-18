@@ -5,6 +5,8 @@
 
 #include "chltest.h"
 
+#define FILENAME "tests/test_xs_subsect.c"
+
 #define EPS 1e-5
 
 const double WIDTH = 1;

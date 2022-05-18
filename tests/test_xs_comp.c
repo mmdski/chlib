@@ -5,6 +5,8 @@
 
 #include "chltest.h"
 
+#define FILENAME "tests/test_xs_comp.c"
+
 #define EPS 1e-5
 
 #define CHAN_WIDTH 0.33

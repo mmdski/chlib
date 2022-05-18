@@ -3,6 +3,8 @@
 
 #include "chltest.h"
 
+#define FILENAME "tests/test_error.c"
+
 void
 test_new (void)
 {
@@ -26,7 +28,7 @@ test_raise (void)
   assert_false (chl_err_stack_is_err ());
 
   ChlErrorType type = INVALID_ARGUMENT_ERROR;
-  assert_zero (chl_err_raise (type, "message", __FILE__, __LINE__));
+  assert_zero (chl_err_raise (type, "message", FILENAME, __LINE__));
   assert_true (chl_err_stack_is_err ());
 
   ChlError err = chl_err_stack_get_err ();
@@ -38,13 +40,13 @@ test_raise (void)
 
   // the error should be null after the stack is cleared
   assert_null (chl_err_stack_get_err ());
-  assert_negative (chl_err_stack_push (__FILE__, __LINE__));
+  assert_negative (chl_err_stack_push (FILENAME, __LINE__));
 }
 
 void
 test_stack_check (void)
 {
-  chl_err_stack_check (__FILE__, __LINE__);
+  chl_err_stack_check (FILENAME, __LINE__);
 }
 
 void
@@ -54,10 +56,10 @@ test_raise_fail (void)
   assert_false (chl_err_stack_is_err ());
 
   ChlErrorType type = INVALID_ARGUMENT_ERROR;
-  assert_zero (chl_err_raise (type, "message", __FILE__, __LINE__));
+  assert_zero (chl_err_raise (type, "message", FILENAME, __LINE__));
   assert_true (chl_err_stack_is_err ());
 
-  EXPECT_EXIT_CALL (chl_err_raise (type, "message", __FILE__, __LINE__))
+  EXPECT_EXIT_CALL (chl_err_raise (type, "message", FILENAME, __LINE__))
 
   chl_err_stack_clear ();
 }
@@ -65,9 +67,9 @@ test_raise_fail (void)
 void
 test_stack_check_fail (void)
 {
-  chl_err_raise (INVALID_ARGUMENT_ERROR, "", __FILE__, __LINE__);
+  chl_err_raise (INVALID_ARGUMENT_ERROR, "", FILENAME, __LINE__);
   chl_exit_expected_set ();
-  chl_err_stack_check (__FILE__, __LINE__);
+  chl_err_stack_check (FILENAME, __LINE__);
   assert_true (chl_exit_called ());
   chl_exit_called_clear ();
   chl_err_stack_clear ();

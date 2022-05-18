@@ -6,6 +6,8 @@
 #include "error.h"
 #include "memory.h"
 
+#define FILENAME "xs_properties.c"
+
 struct _ChlXSProps
 {
   double *properties;

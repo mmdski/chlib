@@ -10,6 +10,8 @@
 #include "xs_array.h"
 #include "xs_coordinate.h"
 
+#define FILENAME "xs_compound.c"
+
 /*
  * cross section interface
  */
@@ -70,28 +72,28 @@ chl_xs_comp_props (ChlXSComp xs, double h, ChlXSProps *xsp_ptr)
 
       if (chl_xs_subsect_props (ss, h, &xsp_ss) < 0)
         {
-          chl_err_stack_push (__FILE__, __LINE__);
+          chl_err_stack_push (FILENAME, __LINE__);
           goto fail;
         }
 
       /* get the subsection area */
       if (chl_xs_props_get (xsp_ss, XS_AREA, &area_ss) < 0)
         {
-          chl_err_stack_push (__FILE__, __LINE__);
+          chl_err_stack_push (FILENAME, __LINE__);
           goto fail;
         }
 
       /* get the subsection conveyance */
       if (chl_xs_props_get (xsp_ss, XS_CONVEYANCE, &k_ss) < 0)
         {
-          chl_err_stack_push (__FILE__, __LINE__);
+          chl_err_stack_push (FILENAME, __LINE__);
           goto fail;
         }
 
       /* get the subsection top width and add it to the total top width */
       if (chl_xs_props_get (xsp_ss, XS_TOP_WIDTH, &tw_ss))
         {
-          chl_err_stack_push (__FILE__, __LINE__);
+          chl_err_stack_push (FILENAME, __LINE__);
           goto fail;
         }
       top_width += tw_ss;
@@ -100,7 +102,7 @@ chl_xs_comp_props (ChlXSComp xs, double h, ChlXSProps *xsp_ptr)
        * perimeter */
       if (chl_xs_props_get (xsp_ss, XS_WETTED_PERIMETER, &wp_ss))
         {
-          chl_err_stack_push (__FILE__, __LINE__);
+          chl_err_stack_push (FILENAME, __LINE__);
           goto fail;
         }
       w_perimeter += wp_ss;
@@ -173,7 +175,7 @@ chl_xs_comp_new (int     n_coords,
   ChlXSArray ca = chl_xs_array_new (n_coords, y, z);
   if (ca == NULL)
     {
-      chl_err_stack_push (__FILE__, __LINE__);
+      chl_err_stack_push (FILENAME, __LINE__);
       return NULL;
     }
 

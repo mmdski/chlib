@@ -111,8 +111,8 @@ extern ChlErrorType chl_err_type (ChlError err);
  *
  * @param type error type
  * @param message error message
- * @param file use __FILE__ macro
- * @param line use __LINE__ macro
+ * @param file file name
+ * @param line line number (use __LINE__ macro)
  * @return 0 if successful, -1 otherwise
  */
 extern int chl_err_raise (ChlErrorType type,
@@ -135,8 +135,8 @@ extern void chl_err_stack_clear (void);
 /**
  * @brief Pushes a new line on the error stack
  *
- * @param file use __FILE__ macro
- * @param line use __LINE__ macro
+ * @param file file name
+ * @param line line number (use __LINE__ macro)
  * @return 0 if successful, -1 otherwise
  */
 extern int chl_err_stack_push (const char *file, int line);
@@ -163,8 +163,8 @@ extern bool chl_err_stack_is_type (ChlErrorType type);
 /**
  * @brief Print the error stack to @c stderr
  *
- * @param file use __FILE__ macro
- * @param line use __LINE__ macro
+ * @param file file name
+ * @param line line number (use __LINE__ macro)
  */
 extern void chl_err_stack_print (const char *file, int line);
 
@@ -174,8 +174,8 @@ extern void chl_err_stack_print (const char *file, int line);
  * @details If an error on the stack exists, prints the stack and exits the
  * program.
  *
- * @param file use __FILE__ macro
- * @param line use __LINE__ macro
+ * @param file file name
+ * @param line line number (use __LINE__ macro)
  */
 extern void chl_err_stack_check (const char *file, int line);
 

@@ -11,6 +11,8 @@
 #include "xs_array.h"
 #include "xs_coordinate.h"
 
+#define FILENAME "xs_array.c"
+
 struct _ChlXSArray
 {
   int         length;      /* number of coordinates in this array */
@@ -39,13 +41,13 @@ chl_xs_array_new (int n, double *y, double *z)
   if (y == NULL)
     {
       chl_err_raise (
-          NULL_ARGUMENT_ERROR, "y-array is NULL", __FILE__, __LINE__);
+          NULL_ARGUMENT_ERROR, "y-array is NULL", FILENAME, __LINE__);
       return NULL;
     }
   if (z == NULL)
     {
       chl_err_raise (
-          NULL_ARGUMENT_ERROR, "z-array is NULL", __FILE__, __LINE__);
+          NULL_ARGUMENT_ERROR, "z-array is NULL", FILENAME, __LINE__);
       return NULL;
     }
 
@@ -73,7 +75,7 @@ chl_xs_array_new (int n, double *y, double *z)
     {
       chl_err_raise (VALUE_ERROR,
                      "z-coordinates must be in ascending order",
-                     __FILE__,
+                     FILENAME,
                      __LINE__);
       chl_xs_array_free (a);
       goto fail;
@@ -131,7 +133,7 @@ chl_xs_array_copy (ChlXSArray ca)
   if (ca == NULL)
     {
       chl_err_raise (
-          NULL_ARGUMENT_ERROR, "XS array is NULL", __FILE__, __LINE__);
+          NULL_ARGUMENT_ERROR, "XS array is NULL", FILENAME, __LINE__);
       return NULL;
     }
 
@@ -218,7 +220,7 @@ chl_xs_array_length (ChlXSArray a)
   if (a == NULL)
     {
       chl_err_raise (
-          NULL_ARGUMENT_ERROR, "XS array is NULL", __FILE__, __LINE__);
+          NULL_ARGUMENT_ERROR, "XS array is NULL", FILENAME, __LINE__);
       return -1;
     }
   return a->length;
@@ -429,7 +431,7 @@ chl_xs_array_subarray (ChlXSArray a, double zlo, double zhi)
     {
       chl_err_raise (INVALID_ARGUMENT_ERROR,
                      "sta_hi must be > sta_lo",
-                     __FILE__,
+                     FILENAME,
                      __LINE__);
       return NULL;
     }
@@ -438,7 +440,7 @@ chl_xs_array_subarray (ChlXSArray a, double zlo, double zhi)
     {
       chl_err_raise (INVALID_ARGUMENT_ERROR,
                      "sta_lo must be greater than or equal to first station",
-                     __FILE__,
+                     FILENAME,
                      __LINE__);
       return NULL;
     }
@@ -447,7 +449,7 @@ chl_xs_array_subarray (ChlXSArray a, double zlo, double zhi)
     {
       chl_err_raise (INVALID_ARGUMENT_ERROR,
                      "sta_hi must be less than or equal to last station",
-                     __FILE__,
+                     FILENAME,
                      __LINE__);
       return NULL;
     }

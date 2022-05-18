@@ -11,6 +11,8 @@
 #include "xs_array.h"
 #include "xs_coordinate.h"
 
+#define FILENAME "xs_subsection.c"
+
 /* subsection interface */
 struct _ChlXSSubsect
 {
@@ -25,7 +27,7 @@ chl_xs_subsect_new (ChlXSArray a, double roughness)
 {
   if (a == NULL)
     {
-      chl_err_raise (NULL_ARGUMENT_ERROR, "array is NULL", __FILE__, __LINE__);
+      chl_err_raise (NULL_ARGUMENT_ERROR, "array is NULL", FILENAME, __LINE__);
       return NULL;
     }
 
@@ -33,7 +35,7 @@ chl_xs_subsect_new (ChlXSArray a, double roughness)
     {
       chl_err_raise (VALUE_ERROR,
                      "roughness less than or equal to zero",
-                     __FILE__,
+                     FILENAME,
                      __LINE__);
       return NULL;
     }
@@ -44,7 +46,7 @@ chl_xs_subsect_new (ChlXSArray a, double roughness)
   ss->array = chl_xs_array_copy (a);
   if (ss->array == NULL)
     {
-      chl_err_stack_push (__FILE__, __LINE__);
+      chl_err_stack_push (FILENAME, __LINE__);
       return NULL;
     }
   ss->n = roughness;
@@ -59,7 +61,7 @@ chl_xs_subsect_free (ChlXSSubsect ss)
   if (ss == NULL)
     {
       chl_err_raise (
-          NULL_ARGUMENT_ERROR, "subsection is NULL", __FILE__, __LINE__);
+          NULL_ARGUMENT_ERROR, "subsection is NULL", FILENAME, __LINE__);
       return -1;
     }
   chl_xs_array_free (ss->array);
@@ -74,7 +76,7 @@ chl_xs_subsect_roughness (ChlXSSubsect ss, double *roughness)
   if (ss == NULL)
     {
       chl_err_raise (
-          NULL_ARGUMENT_ERROR, "subsection is NULL", __FILE__, __LINE__);
+          NULL_ARGUMENT_ERROR, "subsection is NULL", FILENAME, __LINE__);
       return -1;
     };
   *roughness = ss->n;

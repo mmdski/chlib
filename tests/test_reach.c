@@ -3,6 +3,8 @@
 
 #include "chltest.h"
 
+#define FILENAME "tests/test_reach.c"
+
 void
 test_new (void)
 {
@@ -56,7 +58,7 @@ test_thalweg (void)
     {
       if (chl_reach_set_sta (reach, i, NULL, NULL, bed_height, x_dist) < 0)
         {
-          chl_err_stack_print (__FILE__, __LINE__);
+          chl_err_stack_print (FILENAME, __LINE__);
           chl_exit (EXIT_FAILURE);
         }
       thalweg_check[i] = bed_height;
@@ -67,7 +69,7 @@ test_thalweg (void)
   double *thalweg = calloc ((reach->n_nodes), sizeof (double));
   if (chl_reach_thalweg (reach, &thalweg) < 0)
     {
-      chl_err_stack_print (__FILE__, __LINE__);
+      chl_err_stack_print (FILENAME, __LINE__);
       chl_exit (EXIT_FAILURE);
     }
 
@@ -91,7 +93,7 @@ test_set_sta (void)
 
   if (chl_reach_set_sta (reach, 0, NULL, NULL, 0, 0) < 0)
     {
-      chl_err_stack_print (__FILE__, __LINE__);
+      chl_err_stack_print (FILENAME, __LINE__);
       chl_exit (EXIT_FAILURE);
     }
 
@@ -118,7 +120,7 @@ test_get_sta (void)
   double xs = 20;
   if (chl_reach_set_sta (reach, 0, &xs, NULL, 0, 0) < 0)
     {
-      chl_err_stack_print (__FILE__, __LINE__);
+      chl_err_stack_print (FILENAME, __LINE__);
       chl_exit (EXIT_FAILURE);
     }
 
@@ -176,13 +178,13 @@ test_get_xsp (void)
 
   if (chl_reach_set_sta (reach, 0, NULL, test_xsp_func, elev_datum, 0) < 0)
     {
-      chl_err_stack_print (__FILE__, __LINE__);
+      chl_err_stack_print (FILENAME, __LINE__);
       chl_exit (EXIT_FAILURE);
     }
 
   if (chl_reach_set_sta (reach, 1, NULL, test_xsp_func_fail, 0, 0) < 0)
     {
-      chl_err_stack_print (__FILE__, __LINE__);
+      chl_err_stack_print (FILENAME, __LINE__);
       chl_exit (EXIT_FAILURE);
     }
 
@@ -191,7 +193,7 @@ test_get_xsp (void)
 
   if (chl_reach_get_xsp (reach, 0, elev, &xsp) < 0)
     {
-      chl_err_stack_print (__FILE__, __LINE__);
+      chl_err_stack_print (FILENAME, __LINE__);
       chl_exit (EXIT_FAILURE);
     }
   assert_nonnull (xsp);
@@ -199,7 +201,7 @@ test_get_xsp (void)
   double xs_depth;
   if (chl_xs_props_get (xsp, XS_DEPTH, &xs_depth) < 0)
     {
-      chl_err_stack_print (__FILE__, __LINE__);
+      chl_err_stack_print (FILENAME, __LINE__);
       chl_exit (EXIT_FAILURE);
     }
   assert_equal (xs_depth, (elev - elev_datum));

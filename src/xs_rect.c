@@ -8,6 +8,8 @@
 #include "error.h"
 #include "memory.h"
 
+#define FILENAME "xs_rect.c"
+
 // creates a new rectangular cross section
 ChlXSRect
 chl_xs_rect_new (double width)

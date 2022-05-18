@@ -5,6 +5,8 @@
 
 #include "errorstack/file1.c"
 
+#define FILENAME "errorstack.c"
+
 void
 check_is_err (void)
 {
@@ -31,13 +33,13 @@ main (void)
 {
 
   if (raise_error () < 0)
-    chl_err_stack_push (__FILE__, __LINE__);
+    chl_err_stack_push (FILENAME, __LINE__);
 
-  chl_err_stack_print (__FILE__, __LINE__);
+  chl_err_stack_print (FILENAME, __LINE__);
 
   chl_err_stack_clear ();
 
-  chl_err_stack_print (__FILE__, __LINE__);
+  chl_err_stack_print (FILENAME, __LINE__);
 
   return EXIT_SUCCESS;
 }

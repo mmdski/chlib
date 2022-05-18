@@ -4,6 +4,8 @@
 
 #include "chltest.h"
 
+#define FILENAME "tests/test_exit.c"
+
 int
 main (void)
 {

@@ -7,6 +7,8 @@
 #include "chl_io.h"
 #include "memory.h"
 
+#define FILENAME "error.c"
+
 struct _ChlError
 {
   ChlErrorType type;
@@ -321,7 +323,7 @@ chl_err_stack_check (const char *file, int line)
     {
       fprintf (stderr, "Unchecked error\n");
       fprintf (stderr, "Error stack checked on %s, line %i\n", file, line);
-      chl_err_stack_print (__FILE__, __LINE__);
+      chl_err_stack_print (FILENAME, __LINE__);
       chl_exit (EXIT_FAILURE);
     }
 }

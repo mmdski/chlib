@@ -79,7 +79,8 @@ macro(add_chlib_test basename)
 
 endmacro()
 
-if(USING_ASAN)
+# will not compile with MSVC and current compile flags
+if(USING_ASAN AND NOT MSVC)
 
   add_chlib_test(test_mem-access-after-free)
   add_chlib_test(test_mem-double-free)
@@ -94,11 +95,11 @@ if(USING_ASAN)
     set_tests_properties(test_mem-leak PROPERTIES WILL_FAIL true)
   endif()
 
+endif()
+
 if(CHECK_ARGS)
   add_chlib_test(test_check_args)
 endif()
-
-endif(USING_ASAN)
 
 add_chlib_test(test_constants)
 add_chlib_test(test_error)

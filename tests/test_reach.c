@@ -50,6 +50,7 @@ test_thalweg (void)
   double x_dist = 0;
 
   double *thalweg_check = calloc (reach->n_nodes, sizeof (double));
+  assert (thalweg_check);
 
   for (size_t i = 0; i < n_nodes; i++)
     {
@@ -148,6 +149,8 @@ test_xsp_func (void *xs, double y, ChlXSProps *xsp_ptr)
       *xsp_ptr = chl_xs_props_new ();
     }
 
+  (void) xs;
+
   ChlXSProps xsp = *xsp_ptr;
 
   chl_xs_props_set (xsp, XS_DEPTH, y);
@@ -157,6 +160,9 @@ test_xsp_func (void *xs, double y, ChlXSProps *xsp_ptr)
 int
 test_xsp_func_fail (void *xs, double y, ChlXSProps *xsp_ptr)
 {
+  (void) xs;
+  (void) y;
+  (void) xsp_ptr;
   return -1;
 }
 

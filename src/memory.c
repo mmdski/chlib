@@ -1,13 +1,13 @@
 #include <stdlib.h>
 
 void *
-chl_alloc (long nbytes)
+chl_alloc (size_t nbytes)
 {
   return malloc (nbytes);
 }
 
 void *
-chl_calloc (long count, long nbytes)
+chl_calloc (size_t count, size_t nbytes)
 {
   return calloc (count, nbytes);
 }

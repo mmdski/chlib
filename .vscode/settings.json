@@ -45,13 +45,10 @@
     "editor.tabSize": 2,
     "esbonio.sphinx.buildDir": "${workspaceFolder}/docs/_build",
     "esbonio.sphinx.confDir": "${workspaceFolder}/docs/source",
-    "mesonbuild.mesonPath": "meson",
-    "mesonbuild.configureOnOpen": false,
-    "mesonbuild.buildFolder": "builddir",
-    "mesonbuild.configureOptions": [
-        "--buildtype=debug",
-        "-Db_coverage=true",
-        "-Dtests=true",
-        "-Dbuild_app=true"
-    ]
+    "cmake.configureArgs": [
+        "-DTESTS=1",
+        "-DCHECK_ARGS=1",
+        "-DAPP=1"
+    ],
+    "cmake.launchBehavior": "reuseTerminal"
 }

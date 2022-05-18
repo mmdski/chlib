@@ -1,3 +1,0 @@
-option('build_app', type : 'boolean', value : false)
-option('tests', type : 'boolean', value : false, description : 'Build tests')
-option('check_args', type : 'boolean', value : true)

@@ -81,6 +81,9 @@ chl_xs_rect_tw (ChlXSRect xs, double y, double *tw)
     RAISE_NULL_ERR_INT;
 #endif
 
+  // silence unused variable warning
+  (void) y;
+
   *tw = xs->width;
 
   return 0;

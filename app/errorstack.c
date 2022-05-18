@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "file1.c"
+#include "errorstack/file1.c"
 
 void
 check_is_err (void)

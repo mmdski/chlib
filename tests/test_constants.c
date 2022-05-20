@@ -3,7 +3,7 @@
 #include "chlassert.h"
 
 int
-main ()
+main (void)
 {
   double g = 10;
   chl_const_set_gravity (g);

@@ -1,10 +1,8 @@
-set(ASAN True)
-set(LSAN False)
-
 # Windows compiler
 if(MSVC)
   # add ASAN flag https://docs.microsoft.com/en-us/cpp/sanitizers/asan
-  add_compile_options(/fsanitize=address)
+  set(ASAN_COMPILE_OPTION /fsanitize=address)
+  set(ASAN_LINK_OPTION )
   set(ASAN_AVAIL True)
   set(LSAN_AVAIL False)
 
@@ -12,17 +10,17 @@ if(MSVC)
 elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
   # assume Homebrew Clang and has ASAN and LSAN
   if(("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang"))
-    add_compile_options(-fsanitize=address)
-    add_link_options(-fsanitize=address)
+    set(ASAN_COMPILE_OPTION -fsanitize=address)
+    set(ASAN_LINK_OPTION -fsanitize=address)
     set(ASAN_AVAIL True)
     set(LSAN_AVAIL True)
 
   # Apple Clang has ASAN but not LSAN
   elseif(("${CMAKE_C_COMPILER_ID}" STREQUAL "AppleClang"))
-    add_compile_options(-fsanitize=address)
-    add_link_options(-fsanitize=address)
+    set(ASAN_COMPILE_OPTION -fsanitize=address)
+    set(ASAN_LINK_OPTION -fsanitize=address)
     set(ASAN_AVAIL True)
-    set(LSAN_AVAIL (False AND LSAN))
+    set(LSAN_AVAIL False)
 
   # assume everything else has neither
   else()
@@ -32,8 +30,8 @@ elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
 
 # Linux
 elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
-  add_compile_options(-fsanitize=address)
-  add_link_options(-fsanitize=address)
+  set(ASAN_COMPILE_OPTION -fsanitize=address)
+  set(ASAN_LINK_OPTION -fsanitize=address)
   set(ASAN_AVAIL True)
   set(LSAN_AVAIL True)
 
@@ -47,6 +45,8 @@ endif()
 if(ASAN AND ASAN_AVAIL)
   set(USING_ASAN True)
   message(STATUS "Using ASAN")
+  add_compile_options(${ASAN_COMPILE_OPTION})
+  add_link_options(${ASAN_LINK_OPTION})
 endif()
 
 if(USING_ASAN AND (LSAN AND LSAN_AVAIL))

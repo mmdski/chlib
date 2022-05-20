@@ -32,7 +32,7 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/opt/homebrew/Cellar/emscripten/3.1.8/libexec/system/include/"
+                "/opt/homebrew/Cellar/emscripten/3.1.10/libexec/system/include/"
             ],
             "defines": [],
             "macFrameworkPath": [

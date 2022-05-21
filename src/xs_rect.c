@@ -106,8 +106,10 @@ chl_xs_rect_hr (ChlXSRect xs, double y, double *hr)
 }
 
 int
-chl_xs_rect_props (ChlXSRect xs, double y, ChlXSProps *xsp_ptr)
+chl_xs_rect_props (void *xs, double y, ChlXSProps *xsp_ptr)
 {
+
+  ChlXSRect xs_rect = (ChlXSRect) xs;
 
 #ifdef CHECK_ARGS
   if (xs == NULL)
@@ -119,12 +121,12 @@ chl_xs_rect_props (ChlXSRect xs, double y, ChlXSProps *xsp_ptr)
 
   ChlXSProps xsp = *xsp_ptr;
 
-  double area             = xs->width * y;
-  double top_width        = xs->width;
-  double wetted_perimeter = 2 * y + xs->width;
+  double area             = xs_rect->width * y;
+  double top_width        = xs_rect->width;
+  double wetted_perimeter = 2 * y + xs_rect->width;
   double hydraulic_depth  = y;
   double hydraulic_radius = area / wetted_perimeter;
-  double conveyance       = chl_const_manning () / xs->roughness *
+  double conveyance       = chl_const_manning () / xs_rect->roughness *
                       pow (hydraulic_radius, 2. / 3.) * area;
   double velocity_coeff = 1;
   double critical_flow  = area * sqrt (chl_const_gravity () * y);
@@ -137,6 +139,26 @@ chl_xs_rect_props (ChlXSRect xs, double y, ChlXSProps *xsp_ptr)
   chl_xs_props_set (xsp, XS_CONVEYANCE, conveyance);
   chl_xs_props_set (xsp, XS_VELOCITY_COEFF, velocity_coeff);
   chl_xs_props_set (xsp, XS_CRITICAL_FLOW, critical_flow);
+
+  return 0;
+}
+
+int
+chl_xs_rect_spec_energy (void *xs, double y, double q, double *spec_energy)
+{
+  ChlXSRect xs_rect = (ChlXSRect) xs;
+
+#ifdef CHECK_ARGS
+  if (xs == NULL)
+    RAISE_NULL_ERR_INT;
+  if (spec_energy == NULL)
+    RAISE_NULL_ERR_INT;
+#endif
+
+  double width = xs_rect->width;
+
+  *spec_energy =
+      y + q * q / (2. * chl_const_gravity () * y * y * width * width);
 
   return 0;
 }

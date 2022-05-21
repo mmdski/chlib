@@ -17,27 +17,13 @@
  *
  * @return acceleration due to gravity
  */
-extern double chl_const_gravity (void);
+#define chl_const_gravity() 9.81
 
 /**
  * @brief Returns the conversion factor k from Manning's formula
  *
  * @return Manning formula conversion factor
  */
-extern double chl_const_manning (void);
-
-/**
- * @brief Sets the acceleration due to gravity
- *
- * @param gravity acceleration due to gravity
- */
-extern void chl_const_set_gravity (double gravity);
-
-/**
- * @brief Sets the Manning formula conversion factor
- *
- * @param k Manning formula conversion factor
- */
-extern void chl_const_set_manning (double k);
+#define chl_const_manning() 1.0
 
 #endif

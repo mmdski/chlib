@@ -1,5 +1,4 @@
 add_library(chlib
-  constants.c
   error.c
   exit.c
   list.c

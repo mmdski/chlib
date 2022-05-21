@@ -101,7 +101,6 @@ if(CHECK_ARGS)
   add_chlib_test(test_check_args)
 endif()
 
-add_chlib_test(test_constants)
 add_chlib_test(test_error)
 add_chlib_test(test_exit)
 add_chlib_test(test_reach)

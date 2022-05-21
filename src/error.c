@@ -3,8 +3,8 @@
 
 #include <chl/chl_error.h>
 #include <chl/chl_exit.h>
+#include <chl/chl_io.h>
 
-#include "chl_io.h"
 #include "memory.h"
 
 #define FILENAME "error.c"

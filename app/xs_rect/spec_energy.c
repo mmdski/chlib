@@ -1,23 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <chl/chl_io.h>
 #include <chl/chl_xs.h>
-
-void
-compute_spec_energy (
-    ChlXSRect xs, double q, size_t n, double *y, double *spec_energy)
-{
-  for (size_t i = 0; i < n; i++)
-    {
-      spec_energy[i] = chl_xs_rect_spec_energy (xs, y[i], q, &(spec_energy[i]));
-    }
-}
 
 int
 main (void)
 {
   FILE *gnuplot;
-  if ((gnuplot = popen ("gnuplot -persistent", "w")) == NULL)
+  if ((gnuplot = chl_popen ("gnuplot -persistent", "w")) == NULL)
     {
       fputs ("Unable to open pipe to gnuplot\n", stderr);
       return EXIT_FAILURE;

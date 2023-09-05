@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.18)
 
 project(chlib)
 
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED True)
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
@@ -33,6 +36,7 @@ if(TESTS)
 
   enable_testing()
   include(GoogleTest)
+
   set(TEST_ENV "")
   set(GTEST_ENV "")
 

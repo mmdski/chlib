@@ -4,4 +4,7 @@
     "-DTESTS=1",
     "-DASAN=1"
   ],
+  "cSpell.words": [
+    "rtol"
+  ],
 }

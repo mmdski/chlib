@@ -3,15 +3,30 @@
 extern "C"
 {
 #include <chl/xs.h>
+#include <stdlib.h>
 }
 
 namespace
 {
 
-TEST (ch_xs_coords, ch_xs_coords_new)
+TEST (ch_xs_coords, new)
 {
-  ChXSCoords *coords = ch_xs_coords_new (10);
+  size_t      size   = 10;
+  ChXSCoords *coords = NULL;
+  coords             = ch_xs_coords_new (size);
+
+  // non-NULL
   ASSERT_TRUE (coords);
+
+  // zero length
+  ASSERT_TRUE (chl_xs_coords_length (coords) == 0);
+
+  ch_xs_coords_free (&coords);
+
+  // set to NULL
+  ASSERT_TRUE (coords == NULL);
+
+  coords = ch_xs_coords_new (0);
   ch_xs_coords_free (&coords);
 }
 

@@ -56,7 +56,6 @@ if(TESTS)
     set(UBSAN_OPTIONS "UBSAN_OPTIONS=print_stacktrace=1")
 
     string(CONCAT TEST_ENV "${TEST_ENV}" "${ASAN_OPTIONS};${LSAN_OPTIONS};${UBSAN_OPTIONS}")
-    string(CONCAT GTEST_ENV "${GTEST_ENV}" "${ASAN_OPTIONS}\;${LSAN_OPTIONS}\;${UBSAN_OPTIONS}")
   endif()
 endif()
 

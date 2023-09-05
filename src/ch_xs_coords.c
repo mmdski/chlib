@@ -26,6 +26,8 @@ ch_xs_coords_free (ChXSCoords **coords)
 
   free (*coords);
 
+  *coords = NULL;
+
   return;
 }
 

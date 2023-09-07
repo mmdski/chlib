@@ -17,6 +17,38 @@ ch_xs_coords_new (size_t size)
   return coords;
 }
 
+ChXSCoords *
+ch_xs_coords_init (size_t length, double *station, double *elevation)
+{
+
+  assert (station && elevation);
+  assert (length != 0);
+
+  ChXSCoords *coords = ch_xs_coords_new (length);
+  if (!coords)
+    return NULL;
+
+  coords->length = length;
+
+  // make sure station is in increasing order
+  coords->coords[0].station   = station[0];
+  coords->coords[0].elevation = elevation[0];
+
+  for (size_t i = 1; i < length; i++)
+    {
+      coords->coords[i].station   = station[i];
+      coords->coords[i].elevation = elevation[i];
+      if (coords->coords[i - 1].station < coords->coords[i].station)
+        goto fail_station;
+    }
+
+  return coords;
+
+fail_station:
+  ch_xs_coords_free (&coords);
+  return NULL;
+}
+
 void
 ch_xs_coords_free (ChXSCoords **coords)
 {
@@ -29,25 +61,6 @@ ch_xs_coords_free (ChXSCoords **coords)
   *coords = NULL;
 
   return;
-}
-
-void
-ch_xs_coords_init (ChXSCoords *coords,
-                   size_t      length,
-                   double     *station,
-                   double     *elevation)
-{
-
-  assert (coords);
-  assert (length <= coords->size);
-
-  coords->length = length;
-
-  for (size_t i = 0; i < length; i++)
-    {
-      coords->coords[i].station   = station[i];
-      coords->coords[i].elevation = elevation[i];
-    }
 }
 
 size_t

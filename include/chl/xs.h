@@ -21,6 +21,12 @@ typedef struct
 typedef struct ChXSCoords ChXSCoords;
 
 /**
+ * @brief Cross section subsection
+ *
+ */
+typedef struct ChXSSubsect ChXSSubsect;
+
+/**
  * @brief Allocates
  *
  * @param size Number of coordinates to allocate
@@ -28,18 +34,8 @@ typedef struct ChXSCoords ChXSCoords;
  */
 extern ChXSCoords *ch_xs_coords_new (size_t size);
 
-/**
- * @brief Initializes a ChXSCoords with station, elevation arrays
- *
- * @param coords A pointer to a ChXSCoords to initialize
- * @param length The length of \p station and \p elevation
- * @param station An array containing station values to initialize
- * @param elevation An array containing elevation values to initialize
- */
-extern void ch_xs_coords_init (ChXSCoords *coords,
-                               size_t      length,
-                               double     *station,
-                               double     *elevation);
+extern ChXSCoords *
+ch_xs_coords_init (size_t length, double *station, double *elevation);
 
 /**
  * @brief Frees a ChXSCoords

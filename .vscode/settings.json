@@ -5,6 +5,7 @@
     "-DASAN=1"
   ],
   "cSpell.words": [
-    "rtol"
+    "rtol",
+    "Subsect"
   ],
 }

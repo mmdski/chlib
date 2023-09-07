@@ -1,6 +1,8 @@
 # add_subdirectory(xs)
 
-add_library(chlib ch_xs_coords.c)
+add_library(chlib
+  ch_xs_coords.c
+  ch_xs_subsect.c)
 
 if(TESTS)
   add_executable(ch_xs_coords.test ch_xs_coords.test.cpp)

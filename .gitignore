@@ -56,3 +56,35 @@ dkms.conf
 
 # build
 build*/
+
+## HEC-RAS files
+
+# boundary conditions
+*.b[[:digit:]][[:digit:]]
+
+# geometry hdf file
+*.g[[:digit:]][[:digit:]].hdf
+
+# geometry pre-processor output
+*.c[[:digit:]][[:digit:]]
+
+# plan hdf file
+*.p[[:digit:]][[:digit:]].hdf
+
+# run files
+*.r[[:digit:]][[:digit:]]
+*.x[[:digit:]][[:digit:]]
+
+# output
+*.o[[:digit:]][[:digit:]]
+*.dss
+*.bco[[:digit:]][[:digit:]]
+*.p[[:digit:]][[:digit:]].blf
+
+# DSS catalog file
+*.dsc
+
+Backup.*
+
+# RASMapper
+*.rasmap

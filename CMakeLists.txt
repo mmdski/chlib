@@ -62,3 +62,7 @@ endif()
 add_subdirectory(src)
 
 add_subdirectory(tests)
+
+if(EXAMPLES)
+  add_subdirectory(examples)
+endif()

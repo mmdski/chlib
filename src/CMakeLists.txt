@@ -1,6 +1,7 @@
 # add_subdirectory(xs)
 
 add_library(chlib
+  ch_io_ras.c
   ch_xs_coords.c
   ch_xs_subsect.c)
 

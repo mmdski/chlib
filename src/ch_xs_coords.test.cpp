@@ -11,23 +11,19 @@ namespace
 
 TEST (ch_xs_coords, new)
 {
-  size_t      size   = 10;
   ChXSCoords *coords = NULL;
-  coords             = ch_xs_coords_new (size);
+  coords             = ch_xs_coords_new ();
 
   // non-NULL
   ASSERT_TRUE (coords);
 
   // zero length
-  ASSERT_TRUE (chl_xs_coords_length (coords) == 0);
+  ASSERT_TRUE (ch_xs_coords_length (coords) == 0);
 
   ch_xs_coords_free (&coords);
 
   // set to NULL
   ASSERT_TRUE (coords == NULL);
-
-  coords = ch_xs_coords_new (0);
-  ch_xs_coords_free (&coords);
 }
 
 } // namespace

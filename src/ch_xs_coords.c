@@ -3,16 +3,16 @@
 #include "ch_xs_coords.h"
 
 ChXSCoords *
-ch_xs_coords_new (size_t size)
+ch_xs_coords_new (void)
 {
 
-  ChXSCoords *coords = malloc (sizeof (ChXSCoords) + sizeof (double) * size);
+  ChXSCoords *coords = malloc (sizeof (ChXSCoords));
 
   if (!coords)
     return NULL;
 
-  coords->size   = size;
   coords->length = 0;
+  coords->size   = CH_XS_MAX_COORDS;
 
   return coords;
 }
@@ -22,9 +22,9 @@ ch_xs_coords_init (size_t length, double *station, double *elevation)
 {
 
   assert (station && elevation);
-  assert (length != 0);
+  assert (length != 0 && length <= CH_XS_MAX_COORDS);
 
-  ChXSCoords *coords = ch_xs_coords_new (length);
+  ChXSCoords *coords = ch_xs_coords_new ();
   if (!coords)
     return NULL;
 
@@ -38,7 +38,7 @@ ch_xs_coords_init (size_t length, double *station, double *elevation)
     {
       coords->coords[i].station   = station[i];
       coords->coords[i].elevation = elevation[i];
-      if (coords->coords[i - 1].station < coords->coords[i].station)
+      if (coords->coords[i - 1].station > coords->coords[i].station)
         goto fail_station;
     }
 
@@ -64,7 +64,7 @@ ch_xs_coords_free (ChXSCoords **coords)
 }
 
 size_t
-chl_xs_coords_length (ChXSCoords *coords)
+ch_xs_coords_length (ChXSCoords *coords)
 {
   assert (coords);
   return coords->length;

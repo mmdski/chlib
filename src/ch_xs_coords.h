@@ -7,13 +7,6 @@
 
 #include <chl/xs.h>
 
-struct ChXSCoords
-{
-  size_t         length;
-  size_t         size;
-  ChXSCoordinate coords[];
-};
-
 static inline bool
 chl_xs_coordinate_is_close (ChXSCoordinate a,
                             ChXSCoordinate b,

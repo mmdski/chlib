@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+#define CH_XS_MAX_COORDS 500
+
 /**
  * @brief Cross section coordinate
  *
@@ -18,7 +20,25 @@ typedef struct
  * @brief Cross section coordinate array
  *
  */
-typedef struct ChXSCoords ChXSCoords;
+typedef struct
+{
+  size_t         length;
+  size_t         size;
+  ChXSCoordinate coords[CH_XS_MAX_COORDS];
+} ChXSCoords;
+
+typedef struct
+{
+  size_t n_coordinates;
+  double station[CH_XS_MAX_COORDS];
+  double elevation[CH_XS_MAX_COORDS];
+
+  size_t n_mann;
+  double mann_station[CH_XS_MAX_COORDS];
+  double mann_value[CH_XS_MAX_COORDS];
+
+  double bank_stations[2];
+} ChXSDefinition;
 
 /**
  * @brief Cross section subsection
@@ -32,7 +52,7 @@ typedef struct ChXSSubsect ChXSSubsect;
  * @param size Number of coordinates to allocate
  * @return ChXSCoords* Pointer to a new ChXSCoords
  */
-extern ChXSCoords *ch_xs_coords_new (size_t size);
+extern ChXSCoords *ch_xs_coords_new (void);
 
 extern ChXSCoords *
 ch_xs_coords_init (size_t length, double *station, double *elevation);
@@ -50,7 +70,7 @@ extern void ch_xs_coords_free (ChXSCoords **coords);
  * @param coords A pointer to a ChXSCoords
  * @return size_t The number of coordinates
  */
-extern size_t chl_xs_coords_length (ChXSCoords *coords);
+extern size_t ch_xs_coords_length (ChXSCoords *coords);
 
 /**
  * @brief Returns a coordinate stored in a ChXSCoords

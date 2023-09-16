@@ -2,28 +2,9 @@ cmake_minimum_required(VERSION 3.18)
 
 project(chlib)
 
-set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_STANDARD_REQUIRED True)
-
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-if(MSVC)
-  add_compile_options(/guard:cf /analyze /permissive- /W4 /WX)
-
-else()
-  add_compile_options(-Wall -Wextra -pedantic -Werror)
-
-  if(COVERAGE)
-    add_compile_options(--coverage)
-    add_link_options(--coverage)
-  endif()
-endif()
-
-include_directories(include)
+include(FetchContent)
 
 if(TESTS)
-  include(FetchContent)
   FetchContent_Declare(
     googletest
     GIT_REPOSITORY https://github.com/google/googletest.git
@@ -59,9 +40,36 @@ if(TESTS)
   endif()
 endif()
 
-add_subdirectory(src)
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED True)
 
-add_subdirectory(tests)
+add_subdirectory(external)
+
+if(MSVC)
+  add_compile_options(/guard:cf /analyze /permissive- /W4 /WX)
+
+else()
+  add_compile_options(-Wall -Wextra -pedantic -Werror)
+
+  if(COVERAGE)
+    add_compile_options(--coverage)
+    add_link_options(--coverage)
+  endif()
+endif()
+
+#
+# Build library
+#
+set(CH_SRCS
+  src/ch_io_yaml_xs.c
+)
+add_library(chlib ${CH_SRCS})
+target_include_directories(chlib PUBLIC "${CMAKE_SOURCE_DIR}/include")
+target_link_libraries(chlib yaml)
+
+if(TESTS)
+  add_subdirectory(tests)
+endif()
 
 if(EXAMPLES)
   add_subdirectory(examples)

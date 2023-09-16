@@ -1,5 +1,5 @@
-#ifndef CH_IO_YAML_H_
-#define CH_IO_YAML_H_
+#ifndef CH_YAML_INT_H_
+#define CH_YAML_INT_H_
 
 #define CH_MAX_SCALAR_CHAR 50
 
@@ -19,5 +19,7 @@
           fprintf (stderr, "Parse error: %s\n", parser->problem);              \
         }                                                                      \
     }
+
+#include <chl/yaml.h>
 
 #endif

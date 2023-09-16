@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#include <chl/io.h>
+#include <chl/yaml.h>
 
 int
 main (void)
@@ -27,21 +27,35 @@ main (void)
 
   yaml_parser_set_input_file (&parser, geom_fp);
 
-  ChXSCoords xs_coords;
+  ChXSDefinition xs_def;
 
-  xs_coords.length = 0;
-  if (ch_io_yaml_xs_coords (&parser, &xs_coords))
+  xs_def.coordinates.length = 0;
+  xs_def.roughness.length   = 0;
+
+  if (ch_yaml_parse_xs (&parser, &xs_def))
     {
       exit_status = EXIT_FAILURE;
       goto error;
     }
 
-  for (size_t i = 0; i < xs_coords.length; i++)
+  printf ("coordinates:\n");
+  for (size_t i = 0; i < xs_def.coordinates.length; i++)
     {
-      printf ("station: %5.f, elevation: %5.f\n",
-              xs_coords.station[i],
-              xs_coords.elevation[i]);
+      printf ("\tstation: %5.f, elevation: %5.f\n",
+              xs_def.coordinates.station[i],
+              xs_def.coordinates.elevation[i]);
     }
+
+  printf ("roughness:\n");
+  for (size_t i = 0; i < xs_def.roughness.length; i++)
+    {
+      printf ("\tstation: %5.f, value: %5.g\n",
+              xs_def.roughness.station[i],
+              xs_def.roughness.value[i]);
+    }
+
+  printf ("bank_stations:\n");
+  printf ("\t%5.f, %5.f\n", xs_def.bank_stations[0], xs_def.bank_stations[1]);
 
 error:
   if (fclose (geom_fp) == EOF)

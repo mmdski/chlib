@@ -61,7 +61,8 @@ endif()
 # Build library
 #
 set(CH_SRCS
-  src/ch_yaml_xs.c
+  src/ch_yaml_emit.c
+  src/ch_yaml_parse.c
 )
 add_library(chlib ${CH_SRCS})
 target_include_directories(chlib PUBLIC "${CMAKE_SOURCE_DIR}/include")

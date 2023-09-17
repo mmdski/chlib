@@ -1,3 +1,4 @@
+
 #include <assert.h>
 #include <stdbool.h>
 
@@ -80,11 +81,11 @@ ch_yaml_parse_xs_coords (yaml_parser_t *parser, ChXSCoords *xs_coords)
       yaml_event_delete (&event);
     }
 
-  return 0;
+  return 1;
 
 error:
   yaml_event_delete (&event);
-  return 1;
+  return 0;
 }
 
 int
@@ -160,11 +161,11 @@ ch_yaml_parse_xs_roughness (yaml_parser_t *parser, ChXSRoughness *xs_roughness)
       yaml_event_delete (&event);
     }
 
-  return 0;
+  return 1;
 
 error:
   yaml_event_delete (&event);
-  return 1;
+  return 0;
 }
 
 int
@@ -217,18 +218,17 @@ ch_yaml_parse_xs (yaml_parser_t *parser, ChXSDefinition *xs_def)
 
           if (strncmp ("coordinates", scalar_value, CH_MAX_SCALAR_CHAR) == 0)
             {
-              if (ch_yaml_parse_xs_coords (parser, &(xs_def->coordinates)))
+              if (!ch_yaml_parse_xs_coords (parser, &(xs_def->coordinates)))
                 goto error;
             }
           else if (strncmp ("roughness", scalar_value, CH_MAX_SCALAR_CHAR) == 0)
             {
-              if (ch_yaml_parse_xs_roughness (parser, &(xs_def->roughness)))
+              if (!ch_yaml_parse_xs_roughness (parser, &(xs_def->roughness)))
                 goto error;
             }
           else if (strncmp (
                        "bank_stations", scalar_value, CH_MAX_SCALAR_CHAR) == 0)
             {
-              printf ("in bank stations\n");
               in_bank_sta = true;
             }
 
@@ -249,9 +249,38 @@ ch_yaml_parse_xs (yaml_parser_t *parser, ChXSDefinition *xs_def)
       yaml_event_delete (&event);
     }
 
-  return 0;
+  return 1;
 
 error:
   yaml_event_delete (&event);
+  return 0;
+}
+
+int
+ch_yaml_parse_xs_file (FILE *fp, ChXSDefinition *xs_def)
+{
+
+  assert (fp);
+  assert (xs_def);
+
+  yaml_parser_t parser;
+  if (!yaml_parser_initialize (&parser))
+    {
+      fputs ("Unable to initialize yaml parser", stderr);
+      goto error;
+    }
+
+  yaml_parser_set_input_file (&parser, fp);
+
+  if (!ch_yaml_parse_xs (&parser, xs_def))
+    {
+      goto error;
+    }
+
+  yaml_parser_delete (&parser);
+
   return 1;
+
+error:
+  return 0;
 }

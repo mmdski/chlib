@@ -8,6 +8,3 @@ target_link_libraries(ex_yaml_string yaml)
 
 add_executable(ex_yaml_xs xs.c)
 target_link_libraries(ex_yaml_xs chlib)
-
-# add_executable(ex_yaml_xs_coords xs_coords.c)
-# target_link_libraries(ex_yaml_xs_coords chlib)

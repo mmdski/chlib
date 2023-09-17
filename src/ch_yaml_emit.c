@@ -97,6 +97,43 @@ error:
   return 0;
 }
 
+static int
+emit_xs_stream (yaml_emitter_t *emitter, ChXSDefinition *xs_def)
+{
+  assert (emitter);
+  assert (xs_def);
+
+  yaml_event_t event;
+
+  if (!yaml_stream_start_event_initialize (&event, YAML_UTF8_ENCODING))
+    goto error;
+  if (!yaml_emitter_emit (emitter, &event))
+    goto error;
+
+  if (!yaml_document_start_event_initialize (
+          &event, NULL, NULL, NULL, CH_YAML_IMPLICIT))
+    goto error;
+  if (!yaml_emitter_emit (emitter, &event))
+    goto error;
+
+  if (!ch_yaml_emit_xs (emitter, xs_def))
+    goto error;
+
+  if (!yaml_document_end_event_initialize (&event, CH_YAML_IMPLICIT))
+    goto error;
+  if (!yaml_emitter_emit (emitter, &event))
+    goto error;
+
+  if (!yaml_stream_end_event_initialize (&event))
+    goto error;
+  if (!yaml_emitter_emit (emitter, &event))
+    goto error;
+  return 1;
+
+error:
+  return 0;
+}
+
 int
 ch_yaml_emit_xs_file (FILE *fp, ChXSDefinition *xs_def)
 {
@@ -105,7 +142,6 @@ ch_yaml_emit_xs_file (FILE *fp, ChXSDefinition *xs_def)
   assert (xs_def);
 
   yaml_emitter_t emitter;
-  yaml_event_t   event;
 
   if (!yaml_emitter_initialize (&emitter))
     {
@@ -115,32 +151,41 @@ ch_yaml_emit_xs_file (FILE *fp, ChXSDefinition *xs_def)
 
   yaml_emitter_set_output_file (&emitter, fp);
 
-  if (!yaml_stream_start_event_initialize (&event, YAML_UTF8_ENCODING))
-    goto error;
-  if (!yaml_emitter_emit (&emitter, &event))
-    goto error;
-
-  if (!yaml_document_start_event_initialize (
-          &event, NULL, NULL, NULL, CH_YAML_IMPLICIT))
-    goto error;
-  if (!yaml_emitter_emit (&emitter, &event))
-    goto error;
-
-  if (!ch_yaml_emit_xs (&emitter, xs_def))
-    goto error;
-
-  if (!yaml_document_end_event_initialize (&event, CH_YAML_IMPLICIT))
-    goto error;
-  if (!yaml_emitter_emit (&emitter, &event))
-    goto error;
-
-  if (!yaml_stream_end_event_initialize (&event))
-    goto error;
-  if (!yaml_emitter_emit (&emitter, &event))
+  if (!emit_xs_stream (&emitter, xs_def))
     goto error;
 
   yaml_emitter_delete (&emitter);
   return 1;
+
+error:
+  yaml_emitter_delete (&emitter);
+  return 0;
+}
+
+size_t
+ch_yaml_emit_xs_string (const char *output, size_t size, ChXSDefinition *xs_def)
+{
+  assert (output);
+  assert (xs_def);
+
+  yaml_emitter_t emitter;
+
+  if (!yaml_emitter_initialize (&emitter))
+    {
+      fputs ("Unable to initialize yaml emitter", stderr);
+      goto error;
+    }
+
+  size_t size_written;
+  yaml_emitter_set_output_string (
+      &emitter, (unsigned char *) output, size, &size_written);
+
+  if (!emit_xs_stream (&emitter, xs_def))
+    goto error;
+
+  yaml_emitter_delete (&emitter);
+
+  return size_written;
 
 error:
   yaml_emitter_delete (&emitter);

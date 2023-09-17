@@ -1,4 +1,3 @@
-
 #include <assert.h>
 #include <stdbool.h>
 
@@ -171,7 +170,6 @@ error:
 int
 ch_yaml_parse_xs (yaml_parser_t *parser, ChXSDefinition *xs_def)
 {
-
   assert (parser);
   assert (xs_def);
 
@@ -259,7 +257,6 @@ error:
 int
 ch_yaml_parse_xs_file (FILE *fp, ChXSDefinition *xs_def)
 {
-
   assert (fp);
   assert (xs_def);
 
@@ -271,6 +268,35 @@ ch_yaml_parse_xs_file (FILE *fp, ChXSDefinition *xs_def)
     }
 
   yaml_parser_set_input_file (&parser, fp);
+
+  if (!ch_yaml_parse_xs (&parser, xs_def))
+    {
+      goto error;
+    }
+
+  yaml_parser_delete (&parser);
+
+  return 1;
+
+error:
+  return 0;
+}
+
+int
+ch_yaml_parse_xs_string (const char *input, ChXSDefinition *xs_def)
+{
+  assert (input);
+  assert (xs_def);
+
+  yaml_parser_t parser;
+  if (!yaml_parser_initialize (&parser))
+    {
+      fputs ("Unable to initialize yaml parser", stderr);
+      goto error;
+    }
+
+  size_t length = strlen (input);
+  yaml_parser_set_input_string (&parser, (const unsigned char *) input, length);
 
   if (!ch_yaml_parse_xs (&parser, xs_def))
     {

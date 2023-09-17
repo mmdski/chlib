@@ -57,6 +57,7 @@ main (void)
         {
         case YAML_NO_EVENT:
           printf ("???\n");
+          break;
         case YAML_STREAM_START_EVENT:
           printf ("+STR\n");
           break;

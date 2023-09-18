@@ -1,42 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <chl/yaml.h>
 
 int
 main (void)
 {
-
-  const char *path = "EX1.RM0.2.yaml";
-  FILE       *geom_fp;
-
-  if ((geom_fp = fopen (path, "r")) == NULL)
-    {
-      fprintf (stderr, "Unable to open file: %s\n", path);
-      return EXIT_FAILURE;
-    }
+  const char *yaml_xs = "coordinates:\n"
+                        "  length: 8\n"
+                        "  station: [210, 220, 260, 265, 270, 275, 300, 310]\n"
+                        "  elevation: [90, 82, 80, 70, 71, 81, 83, 91]\n"
+                        "roughness:\n"
+                        "  length: 3\n"
+                        "  station: [210, 260, 275]\n"
+                        "  value: [0.07, 0.04, 0.07]\n"
+                        "bank_stations: [260, 275]\n";
 
   ChXSDefinition xs_def;
 
-  if (!ch_yaml_parse_xs_file (geom_fp, &xs_def))
+  if (!ch_yaml_parse_xs_string (yaml_xs, &xs_def))
     goto error;
 
-  if (fclose (geom_fp) == EOF)
-    {
-      fprintf (stderr, "Unable to close file: %s\n", path);
-    }
-
-  if (!ch_yaml_emit_xs_file (stdout, &xs_def))
+  char   buffer[500];
+  size_t size_written = ch_yaml_emit_xs_string (buffer, 500, &xs_def);
+  if (!size_written)
     goto error;
+
+  printf ("%s", buffer);
 
   return 0;
 
 error:
-
-  if (fclose (geom_fp) == EOF)
-    {
-      fprintf (stderr, "Unable to close file: %s\n", path);
-    }
 
   return 1;
 }

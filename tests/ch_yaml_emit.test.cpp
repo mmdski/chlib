@@ -24,6 +24,7 @@ TEST (ch_yaml_emit, xs_file)
                         "  value: [0.07, 0.04, 0.07]\n"
                         "bank_stations: [260, 275]\n";
 
+  size_t         size = strlen (yaml_xs);
   char           buffer[500];
   FILE          *buff_fp = fmemopen (buffer, 500, "w");
   ChXSDefinition xs_def  = { { 260, 275 },
@@ -32,7 +33,9 @@ TEST (ch_yaml_emit, xs_file)
                                { 90, 82, 80, 70, 71, 81, 83, 91 } },
                              { 3, { 210, 260, 275 }, { 0.07, 0.04, 0.07 } } };
   ASSERT_TRUE (ch_yaml_emit_xs_file (buff_fp, &xs_def));
-  ASSERT_EQ (strcmp (yaml_xs, buffer), 0);
+
+  fclose (buff_fp);
+  ASSERT_EQ (strncmp (yaml_xs, buffer, size), 0);
 }
 
 TEST (ch_yaml_emit, xs_string)

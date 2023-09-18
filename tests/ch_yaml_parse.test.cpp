@@ -14,6 +14,16 @@ namespace
 {
 TEST (ch_yaml_parse, xs_file)
 {
+  const char *yaml_xs = "coordinates:\n"
+                        "  length: 8\n"
+                        "  station: [210, 220, 260, 265, 270, 275, 300, 310]\n"
+                        "  elevation: [90, 82, 80, 70, 71, 81, 83, 91]\n"
+                        "roughness:\n"
+                        "  length: 3\n"
+                        "  station: [210, 260, 275]\n"
+                        "  value: [0.07, 0.04, 0.07]\n"
+                        "bank_stations: [260, 275]\n";
+
   ChXSDefinition xs_def_parsed;
 
   ChXSDefinition xs_def = { { 260, 275 },
@@ -22,8 +32,14 @@ TEST (ch_yaml_parse, xs_file)
                               { 90, 82, 80, 70, 71, 81, 83, 91 } },
                             { 3, { 210, 260, 275 }, { 0.07, 0.04, 0.07 } } };
 
-  FILE *fp = fopen ("ch_yaml_xs.yaml", "r");
+  char read_buffer[500];
+  strncpy (read_buffer, yaml_xs, 500);
+  size_t len = strlen (read_buffer);
+
+  size_t size = len * sizeof (char);
+  FILE  *fp   = fmemopen (read_buffer, size, "r");
   ASSERT_TRUE (ch_yaml_parse_xs_file (fp, &xs_def_parsed));
+  fclose (fp);
 
   ASSERT_EQ (xs_def.bank_stations[0], xs_def_parsed.bank_stations[0]);
   ASSERT_EQ (xs_def.bank_stations[1], xs_def_parsed.bank_stations[1]);
@@ -42,8 +58,6 @@ TEST (ch_yaml_parse, xs_file)
                  xs_def_parsed.roughness.station[i]);
       ASSERT_EQ (xs_def.roughness.value[i], xs_def_parsed.roughness.value[i]);
     }
-
-  ASSERT_TRUE (fclose (fp) != EOF);
 }
 
 TEST (ch_yaml_parse, xs_string)
@@ -57,13 +71,13 @@ TEST (ch_yaml_parse, xs_string)
                             { 3, { 210, 260, 275 }, { 0.07, 0.04, 0.07 } } };
 
   const char *yaml_xs = "coordinates:\n"
-                        " length: 8\n"
-                        " station: [210, 220, 260, 265, 270, 275, 300, 310]\n"
-                        " elevation: [90, 82, 80, 70, 71, 81, 83, 91]\n"
+                        "  length: 8\n"
+                        "  station: [210, 220, 260, 265, 270, 275, 300, 310]\n"
+                        "  elevation: [90, 82, 80, 70, 71, 81, 83, 91]\n"
                         "roughness:\n"
-                        " length: 3\n"
-                        " station: [210, 260, 275]\n"
-                        " value: [0.07, 0.04, 0.07]\n"
+                        "  length: 3\n"
+                        "  station: [210, 260, 275]\n"
+                        "  value: [0.07, 0.04, 0.07]\n"
                         "bank_stations: [260, 275]\n";
 
   ASSERT_TRUE (ch_yaml_parse_xs_string (yaml_xs, &xs_def_parsed));

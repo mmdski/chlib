@@ -66,10 +66,16 @@ main (void)
           done = 1;
           break;
         case YAML_DOCUMENT_START_EVENT:
-          printf ("+DOC\n");
+          printf ("+DOC");
+          if (!event.data.document_start.implicit)
+            printf (" ---");
+          printf ("\n");
           break;
         case YAML_DOCUMENT_END_EVENT:
-          printf ("-DOC\n");
+          printf ("-DOC");
+          if (!event.data.document_end.implicit)
+            printf (" ...");
+          printf ("\n");
           break;
         case YAML_MAPPING_START_EVENT:
           printf ("+MAP\n");

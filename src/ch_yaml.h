@@ -4,6 +4,8 @@
 #define CH_MAX_SCALAR_CHAR 50
 
 #define CH_YAML_IMPLICIT 1
+#define CH_YAML_MAPPING_STYLE YAML_FLOW_MAPPING_STYLE
+#define CH_YAML_SEQUENCE_STYLE YAML_FLOW_SEQUENCE_STYLE
 
 #include <chl/yaml.h>
 
@@ -34,11 +36,10 @@ ch_yaml_emit_mapping_start (yaml_emitter_t *emitter, yaml_event_t *event)
                                             NULL,
                                             (yaml_char_t *) YAML_MAP_TAG,
                                             CH_YAML_IMPLICIT,
-                                            YAML_ANY_MAPPING_STYLE))
+                                            CH_YAML_MAPPING_STYLE))
     goto error;
   if (!yaml_emitter_emit (emitter, event))
     goto error;
-
   return 1;
 error:
   return 0;
@@ -57,10 +58,11 @@ error:
 }
 
 static inline int
-ch_yaml_emit_scalar (yaml_emitter_t *emitter,
-                     yaml_event_t   *event,
-                     const char     *tag,
-                     const char     *value)
+ch_yaml_emit_scalar (yaml_emitter_t     *emitter,
+                     yaml_event_t       *event,
+                     const char         *tag,
+                     const char         *value,
+                     yaml_scalar_style_t style)
 {
   if (!yaml_scalar_event_initialize (event,
                                      NULL,
@@ -69,7 +71,7 @@ ch_yaml_emit_scalar (yaml_emitter_t *emitter,
                                      strlen (value),
                                      CH_YAML_IMPLICIT,
                                      CH_YAML_IMPLICIT,
-                                     YAML_PLAIN_SCALAR_STYLE))
+                                     style))
     goto error;
   if (!yaml_emitter_emit (emitter, event))
     goto error;
@@ -83,7 +85,8 @@ ch_yaml_emit_scalar_str (yaml_emitter_t *emitter,
                          yaml_event_t   *event,
                          const char     *value)
 {
-  return ch_yaml_emit_scalar (emitter, event, YAML_STR_TAG, value);
+  return ch_yaml_emit_scalar (
+      emitter, event, YAML_STR_TAG, value, YAML_DOUBLE_QUOTED_SCALAR_STYLE);
 }
 
 static inline int
@@ -92,7 +95,8 @@ ch_yaml_emit_scalar_len (yaml_emitter_t *emitter,
                          size_t          value)
 {
   snprintf (buffer, CH_YAML_STATIC_BUFFER_LEN, "%lu", value);
-  return ch_yaml_emit_scalar (emitter, event, YAML_INT_TAG, buffer);
+  return ch_yaml_emit_scalar (
+      emitter, event, YAML_INT_TAG, buffer, YAML_PLAIN_SCALAR_STYLE);
 }
 
 static inline int
@@ -101,7 +105,8 @@ ch_yaml_emit_scalar_dbl (yaml_emitter_t *emitter,
                          double          value)
 {
   snprintf (buffer, CH_YAML_STATIC_BUFFER_LEN, "%.8g", value);
-  return ch_yaml_emit_scalar (emitter, event, YAML_FLOAT_TAG, buffer);
+  return ch_yaml_emit_scalar (
+      emitter, event, YAML_FLOAT_TAG, buffer, YAML_PLAIN_SCALAR_STYLE);
 }
 
 static inline int
@@ -114,7 +119,7 @@ ch_yaml_emit_seq_dbl (yaml_emitter_t *emitter,
                                              NULL,
                                              (yaml_char_t *) YAML_SEQ_TAG,
                                              CH_YAML_IMPLICIT,
-                                             YAML_FLOW_SEQUENCE_STYLE))
+                                             CH_YAML_SEQUENCE_STYLE))
     goto error;
   if (!yaml_emitter_emit (emitter, event))
     goto error;

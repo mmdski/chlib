@@ -14,14 +14,17 @@ if(TESTS)
   # For Windows: Prevent overriding the parent project's compiler/linker settings
   set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
   FetchContent_MakeAvailable(googletest)
-
   enable_testing()
   include(GoogleTest)
+endif()
 
-  set(TEST_ENV "")
-  set(GTEST_ENV "")
+set(TEST_ENV "")
+set(GTEST_ENV "")
 
-  if(ASAN)
+if(ASAN)
+  if(MSVC)
+    add_compile_options(/fsanitize=address)
+  else()
     add_compile_options(-fno-omit-frame-pointer)
 
     # for ASan and LSan
@@ -46,7 +49,8 @@ set(CMAKE_C_STANDARD_REQUIRED True)
 add_subdirectory(external)
 
 if(MSVC)
-  add_compile_options(/guard:cf /analyze /permissive- /W4 /WX)
+  # /wd6326 is for "Potential comparison of a constant with another constant."
+  add_compile_options(/guard:cf /analyze /permissive- /W4 /WX /wd6326)
 
 else()
   add_compile_options(-Wall -Wextra -pedantic -Werror)
@@ -63,6 +67,7 @@ endif()
 set(CH_SRCS
   src/ch_yaml_emit.c
   src/ch_yaml_parse.c
+  src/ch_xs.c
 )
 add_library(chlib ${CH_SRCS})
 target_include_directories(chlib PUBLIC "${CMAKE_SOURCE_DIR}/include")

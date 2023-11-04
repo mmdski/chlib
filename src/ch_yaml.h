@@ -68,7 +68,7 @@ ch_yaml_emit_scalar (yaml_emitter_t     *emitter,
                                      NULL,
                                      (yaml_char_t *) tag,
                                      (yaml_char_t *) value,
-                                     strlen (value),
+                                     (int) strlen (value),
                                      CH_YAML_IMPLICIT,
                                      CH_YAML_IMPLICIT,
                                      style))
@@ -94,7 +94,12 @@ ch_yaml_emit_scalar_len (yaml_emitter_t *emitter,
                          yaml_event_t   *event,
                          size_t          value)
 {
+#ifdef _WIN32
+  snprintf (buffer, CH_YAML_STATIC_BUFFER_LEN, "%llu", value);
+#else
   snprintf (buffer, CH_YAML_STATIC_BUFFER_LEN, "%lu", value);
+#endif
+
   return ch_yaml_emit_scalar (
       emitter, event, YAML_INT_TAG, buffer, YAML_PLAIN_SCALAR_STYLE);
 }

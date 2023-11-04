@@ -27,4 +27,7 @@ typedef struct
   ChXSRoughness roughness;
 } ChXSDefinition;
 
+ChXSDefinition *ch_xs_def_new (void);
+void            ch_xs_def_free (ChXSDefinition *xs_def);
+
 #endif

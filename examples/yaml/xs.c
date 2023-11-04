@@ -7,6 +7,7 @@
 int
 main (void)
 {
+
   const char *yaml_xs = "coordinates:\n"
                         "  length: 8\n"
                         "  station: [210, 220, 260, 265, 270, 275, 300, 310]\n"
@@ -17,17 +18,22 @@ main (void)
                         "  value: [0.07, 0.04, 0.07]\n"
                         "bank_stations: [260, 275]\n";
 
-  ChXSDefinition xs_def;
+  ChXSDefinition *xs_def_p = ch_xs_def_new ();
 
-  if (!ch_yaml_parse_xs_string (yaml_xs, &xs_def))
+  if (!ch_yaml_parse_xs_string (yaml_xs, xs_def_p))
     goto error;
 
-  char   buffer[500];
-  size_t size_written = ch_yaml_emit_xs_string (buffer, 500, &xs_def);
+  char buffer[500];
+  for (size_t i = 0; i < 500; i++)
+    buffer[i] = '\0';
+
+  size_t size_written = ch_yaml_emit_xs_string (buffer, 500, xs_def_p);
   if (!size_written)
     goto error;
 
   printf ("%s", buffer);
+
+  ch_xs_def_free (xs_def_p);
 
   return 0;
 

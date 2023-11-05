@@ -9,6 +9,8 @@
 
 #include <chl/yaml.h>
 
+#include "ch_io.h"
+
 #define CH_YAML_PARSER_PARSE                                                   \
   if (!yaml_parser_parse (parser, &event))                                     \
     {                                                                          \
@@ -94,11 +96,7 @@ ch_yaml_emit_scalar_len (yaml_emitter_t *emitter,
                          yaml_event_t   *event,
                          size_t          value)
 {
-#ifdef _WIN32
-  snprintf (buffer, CH_YAML_STATIC_BUFFER_LEN, "%llu", value);
-#else
-  snprintf (buffer, CH_YAML_STATIC_BUFFER_LEN, "%lu", value);
-#endif
+  ch_snprintf (buffer, CH_YAML_STATIC_BUFFER_LEN, SIZE_T_FMT, value);
 
   return ch_yaml_emit_scalar (
       emitter, event, YAML_INT_TAG, buffer, YAML_PLAIN_SCALAR_STYLE);
@@ -109,7 +107,7 @@ ch_yaml_emit_scalar_dbl (yaml_emitter_t *emitter,
                          yaml_event_t   *event,
                          double          value)
 {
-  snprintf (buffer, CH_YAML_STATIC_BUFFER_LEN, "%.8g", value);
+  ch_snprintf (buffer, CH_YAML_STATIC_BUFFER_LEN, "%.8g", value);
   return ch_yaml_emit_scalar (
       emitter, event, YAML_FLOAT_TAG, buffer, YAML_PLAIN_SCALAR_STYLE);
 }

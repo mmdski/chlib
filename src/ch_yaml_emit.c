@@ -163,7 +163,7 @@ error:
 }
 
 size_t
-ch_yaml_emit_xs_string (const char *output, size_t size, ChXSDefinition *xs_def)
+ch_yaml_emit_xs_string (char *output, size_t size, ChXSDefinition *xs_def)
 {
   assert (output);
   assert (xs_def);
@@ -182,6 +182,11 @@ ch_yaml_emit_xs_string (const char *output, size_t size, ChXSDefinition *xs_def)
 
   if (!emit_xs_stream (&emitter, xs_def))
     goto error;
+
+  if (size <= size_written)
+    goto error;
+
+  output[size_written++] = '\0';
 
   yaml_emitter_delete (&emitter);
 

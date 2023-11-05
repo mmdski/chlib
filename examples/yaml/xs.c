@@ -24,8 +24,6 @@ main (void)
     goto error;
 
   char buffer[500];
-  for (size_t i = 0; i < 500; i++)
-    buffer[i] = '\0';
 
   size_t size_written = ch_yaml_emit_xs_string (buffer, 500, xs_def_p);
   if (!size_written)
